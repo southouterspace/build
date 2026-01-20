@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Settings2 } from 'lucide-react'
 import {
@@ -19,7 +19,7 @@ interface ChartDisplayProps {
 }
 
 export function ChartDisplay({ data, settings, isMobile = false, onSettingsClick }: ChartDisplayProps) {
-  const { type, variant } = settings
+  const { type } = settings
 
   const renderChart = () => {
     switch (type) {
@@ -41,15 +41,11 @@ export function ChartDisplay({ data, settings, isMobile = false, onSettingsClick
   }
 
   const chartTitle = `${type.charAt(0).toUpperCase() + type.slice(1)} Chart`
-  const chartDescription = `Variant: ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
 
   return (
     <Card className="flex h-full flex-col">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <div>
-          <CardTitle>{chartTitle}</CardTitle>
-          <CardDescription>{chartDescription}</CardDescription>
-        </div>
+        <CardTitle>{chartTitle}</CardTitle>
         {onSettingsClick && (
           <Button
             variant="ghost"
