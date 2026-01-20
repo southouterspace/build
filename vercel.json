@@ -1,5 +1,0 @@
-{
-  "buildCommand": "cd charter && npm install && npm run build",
-  "outputDirectory": "charter/dist",
-  "framework": "vite"
-}
