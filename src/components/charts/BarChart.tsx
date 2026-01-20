@@ -85,24 +85,35 @@ export function BarChartComponent({ data, settings, isMobile = false }: BarChart
         )}
         <ChartTooltip content={<ChartTooltipContent />} />
         {showLegend && <ChartLegend content={<ChartLegendContent />} />}
-        {valueColumns.map((col, index) => (
-          <Bar
-            key={col}
-            dataKey={col}
-            stackId={isStacked ? 'stack' : undefined}
-            fill={CHART_COLORS[index % CHART_COLORS.length]}
-            radius={isStacked ? [0, 0, 0, 0] : [4, 4, 0, 0]}
-          >
-            {showLabels && (
-              <LabelList
-                dataKey={col}
-                position={isHorizontal ? 'right' : 'top'}
-                className="fill-foreground"
-                fontSize={12}
-              />
-            )}
-          </Bar>
-        ))}
+        {valueColumns.map((col, index) => {
+          // Radius array: [topLeft, topRight, bottomRight, bottomLeft]
+          // Vertical bars: rounded on top [4, 4, 0, 0]
+          // Horizontal bars: rounded on right (end) [0, 4, 4, 0]
+          const getRadius = (): [number, number, number, number] => {
+            if (isStacked) return [0, 0, 0, 0]
+            if (isHorizontal) return [0, 4, 4, 0]
+            return [4, 4, 0, 0]
+          }
+
+          return (
+            <Bar
+              key={col}
+              dataKey={col}
+              stackId={isStacked ? 'stack' : undefined}
+              fill={CHART_COLORS[index % CHART_COLORS.length]}
+              radius={getRadius()}
+            >
+              {showLabels && (
+                <LabelList
+                  dataKey={col}
+                  position={isHorizontal ? 'right' : 'top'}
+                  className="fill-foreground"
+                  fontSize={12}
+                />
+              )}
+            </Bar>
+          )
+        })}
       </RechartsBarChart>
     </ChartContainer>
   )
