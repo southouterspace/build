@@ -18,6 +18,7 @@ import type { ParsedData, ChartSettings } from '@/types'
 interface RadarChartProps {
   data: ParsedData
   settings: ChartSettings
+  isMobile?: boolean
 }
 
 const CHART_COLORS = [
@@ -28,7 +29,7 @@ const CHART_COLORS = [
   'var(--chart-5)'
 ]
 
-export function RadarChartComponent({ data, settings }: RadarChartProps) {
+export function RadarChartComponent({ data, settings, isMobile = false }: RadarChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
 
   const chartConfig: ChartConfig = valueColumns.reduce((acc, col, index) => {
@@ -42,10 +43,10 @@ export function RadarChartComponent({ data, settings }: RadarChartProps) {
   const showLegend = variant === 'legend' || valueColumns.length > 1
 
   return (
-    <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+    <ChartContainer config={chartConfig} className="h-full min-h-[300px] w-full">
       <RechartsRadarChart data={data.rows}>
         <PolarGrid />
-        <PolarAngleAxis dataKey={categoryColumn} />
+        <PolarAngleAxis dataKey={categoryColumn} tick={{ fontSize: isMobile ? 10 : 12 }} />
         <PolarRadiusAxis angle={30} domain={[0, 'auto']} />
         <ChartTooltip content={<ChartTooltipContent />} />
         {showLegend && <ChartLegend content={<ChartLegendContent />} />}

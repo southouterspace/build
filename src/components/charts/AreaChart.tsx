@@ -18,6 +18,7 @@ import type { ChartVariant, ParsedData, ChartSettings } from '@/types'
 interface AreaChartProps {
   data: ParsedData
   settings: ChartSettings
+  isMobile?: boolean
 }
 
 const CHART_COLORS = [
@@ -28,7 +29,7 @@ const CHART_COLORS = [
   'var(--chart-5)'
 ]
 
-export function AreaChartComponent({ data, settings }: AreaChartProps) {
+export function AreaChartComponent({ data, settings, isMobile = false }: AreaChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
 
   const chartConfig: ChartConfig = valueColumns.reduce((acc, col, index) => {
@@ -60,11 +61,16 @@ export function AreaChartComponent({ data, settings }: AreaChartProps) {
 
   const showLegend = variant === 'legend' || valueColumns.length > 1
 
+  // Mobile-specific axis settings
+  const xAxisProps = isMobile
+    ? { angle: -45, textAnchor: 'end' as const, height: 80, fontSize: 11 }
+    : {}
+
   return (
-    <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+    <ChartContainer config={chartConfig} className="h-full min-h-[300px] w-full">
       <RechartsAreaChart
         data={data.rows}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        margin={{ top: 10, right: 10, left: 0, bottom: isMobile ? 20 : 0 }}
         stackOffset={variant === 'expanded' ? 'expand' : undefined}
       >
         <CartesianGrid strokeDasharray="3 3" />
@@ -73,6 +79,7 @@ export function AreaChartComponent({ data, settings }: AreaChartProps) {
           tickLine={false}
           axisLine={false}
           tickMargin={8}
+          {...xAxisProps}
         />
         <YAxis
           tickLine={false}

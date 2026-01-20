@@ -17,6 +17,7 @@ import type { ParsedData, ChartSettings } from '@/types'
 interface RadialChartProps {
   data: ParsedData
   settings: ChartSettings
+  isMobile?: boolean
 }
 
 const CHART_COLORS = [
@@ -27,12 +28,13 @@ const CHART_COLORS = [
   'var(--chart-5)'
 ]
 
-export function RadialChartComponent({ data, settings }: RadialChartProps) {
+export function RadialChartComponent({ data, settings, isMobile = false }: RadialChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
 
   // For radial charts, we need to transform the data
   // Each row becomes a radial bar segment
-  const transformedData = data.rows.slice(0, 5).map((row, index) => ({
+  const maxItems = isMobile ? 4 : 5
+  const transformedData = data.rows.slice(0, maxItems).map((row, index) => ({
     name: String(row[categoryColumn]),
     value: Number(row[valueColumns[0]]) || 0,
     fill: CHART_COLORS[index % CHART_COLORS.length]
@@ -55,13 +57,13 @@ export function RadialChartComponent({ data, settings }: RadialChartProps) {
   if (isStacked) {
     // Stacked radial - show all values as concentric rings
     const stackedData = [
-      data.rows.slice(0, 5).reduce((acc, row) => {
+      data.rows.slice(0, maxItems).reduce((acc, row) => {
         acc[String(row[categoryColumn])] = Number(row[valueColumns[0]]) || 0
         return acc
       }, {} as Record<string, number>)
     ]
 
-    const stackedConfig: ChartConfig = data.rows.slice(0, 5).reduce((acc, row, index) => {
+    const stackedConfig: ChartConfig = data.rows.slice(0, maxItems).reduce((acc, row, index) => {
       const key = String(row[categoryColumn])
       acc[key] = {
         label: key,
@@ -71,7 +73,7 @@ export function RadialChartComponent({ data, settings }: RadialChartProps) {
     }, {} as ChartConfig)
 
     return (
-      <ChartContainer config={stackedConfig} className="min-h-[300px] w-full">
+      <ChartContainer config={stackedConfig} className="h-full min-h-[300px] w-full">
         <RechartsRadialBarChart
           data={stackedData}
           innerRadius={30}
@@ -106,7 +108,7 @@ export function RadialChartComponent({ data, settings }: RadialChartProps) {
               }}
             />
           </PolarRadiusAxis>
-          {data.rows.slice(0, 5).map((row, index) => (
+          {data.rows.slice(0, maxItems).map((row, index) => (
             <RadialBar
               key={String(row[categoryColumn])}
               dataKey={String(row[categoryColumn])}
@@ -121,7 +123,7 @@ export function RadialChartComponent({ data, settings }: RadialChartProps) {
   }
 
   return (
-    <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+    <ChartContainer config={chartConfig} className="h-full min-h-[300px] w-full">
       <RechartsRadialBarChart
         data={transformedData}
         innerRadius={30}

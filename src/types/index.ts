@@ -1,4 +1,4 @@
-export type ChartType = 'area' | 'bar' | 'line' | 'radar' | 'radial'
+export type ChartType = 'area' | 'bar' | 'line' | 'pie' | 'radar' | 'radial'
 
 export type ChartVariant =
   | 'default'
@@ -10,6 +10,7 @@ export type ChartVariant =
   | 'multiple'
   | 'legend'
   | 'label'
+  | 'donut'
 
 export interface ChartConfig {
   [key: string]: {
@@ -42,6 +43,7 @@ export const CHART_VARIANTS: Record<ChartType, ChartVariant[]> = {
   area: ['default', 'stacked', 'expanded', 'linear', 'step', 'legend'],
   bar: ['default', 'horizontal', 'multiple', 'stacked', 'label'],
   line: ['default', 'linear', 'step', 'multiple', 'label', 'legend'],
+  pie: ['default', 'donut', 'label', 'legend'],
   radar: ['default', 'multiple', 'legend'],
   radial: ['default', 'stacked', 'label', 'legend']
 }
@@ -50,6 +52,7 @@ export const CHART_TYPE_REQUIREMENTS: Record<ChartType, { minNumericColumns: num
   area: { minNumericColumns: 1, minRows: 2 },
   bar: { minNumericColumns: 1, minRows: 1 },
   line: { minNumericColumns: 1, minRows: 2 },
+  pie: { minNumericColumns: 1, minRows: 1 },
   radar: { minNumericColumns: 3, minRows: 1 },
   radial: { minNumericColumns: 1, minRows: 1 }
 }

@@ -19,6 +19,7 @@ import type { ParsedData, ChartSettings } from '@/types'
 interface BarChartProps {
   data: ParsedData
   settings: ChartSettings
+  isMobile?: boolean
 }
 
 const CHART_COLORS = [
@@ -29,7 +30,7 @@ const CHART_COLORS = [
   'var(--chart-5)'
 ]
 
-export function BarChartComponent({ data, settings }: BarChartProps) {
+export function BarChartComponent({ data, settings, isMobile = false }: BarChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
 
   const chartConfig: ChartConfig = valueColumns.reduce((acc, col, index) => {
@@ -45,12 +46,17 @@ export function BarChartComponent({ data, settings }: BarChartProps) {
   const showLabels = variant === 'label'
   const showLegend = valueColumns.length > 1 || variant === 'multiple'
 
+  // Mobile-specific axis settings
+  const xAxisProps = isMobile && !isHorizontal
+    ? { angle: -45, textAnchor: 'end' as const, height: 80, fontSize: 11 }
+    : {}
+
   return (
-    <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+    <ChartContainer config={chartConfig} className="h-full min-h-[300px] w-full">
       <RechartsBarChart
         data={data.rows}
         layout={isHorizontal ? 'vertical' : 'horizontal'}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        margin={{ top: 10, right: 10, left: 0, bottom: isMobile ? 20 : 0 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         {isHorizontal ? (
@@ -72,30 +78,42 @@ export function BarChartComponent({ data, settings }: BarChartProps) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              {...xAxisProps}
             />
             <YAxis tickLine={false} axisLine={false} tickMargin={8} />
           </>
         )}
         <ChartTooltip content={<ChartTooltipContent />} />
         {showLegend && <ChartLegend content={<ChartLegendContent />} />}
-        {valueColumns.map((col, index) => (
-          <Bar
-            key={col}
-            dataKey={col}
-            stackId={isStacked ? 'stack' : undefined}
-            fill={CHART_COLORS[index % CHART_COLORS.length]}
-            radius={isStacked ? [0, 0, 0, 0] : [4, 4, 0, 0]}
-          >
-            {showLabels && (
-              <LabelList
-                dataKey={col}
-                position={isHorizontal ? 'right' : 'top'}
-                className="fill-foreground"
-                fontSize={12}
-              />
-            )}
-          </Bar>
-        ))}
+        {valueColumns.map((col, index) => {
+          // Radius array: [topLeft, topRight, bottomRight, bottomLeft]
+          // Vertical bars: rounded on top [4, 4, 0, 0]
+          // Horizontal bars: rounded on right (end) [0, 4, 4, 0]
+          const getRadius = (): [number, number, number, number] => {
+            if (isStacked) return [0, 0, 0, 0]
+            if (isHorizontal) return [0, 4, 4, 0]
+            return [4, 4, 0, 0]
+          }
+
+          return (
+            <Bar
+              key={col}
+              dataKey={col}
+              stackId={isStacked ? 'stack' : undefined}
+              fill={CHART_COLORS[index % CHART_COLORS.length]}
+              radius={getRadius()}
+            >
+              {showLabels && (
+                <LabelList
+                  dataKey={col}
+                  position={isHorizontal ? 'right' : 'top'}
+                  className="fill-foreground"
+                  fontSize={12}
+                />
+              )}
+            </Bar>
+          )
+        })}
       </RechartsBarChart>
     </ChartContainer>
   )

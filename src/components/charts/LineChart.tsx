@@ -19,6 +19,7 @@ import type { ChartVariant, ParsedData, ChartSettings } from '@/types'
 interface LineChartProps {
   data: ParsedData
   settings: ChartSettings
+  isMobile?: boolean
 }
 
 const CHART_COLORS = [
@@ -29,7 +30,7 @@ const CHART_COLORS = [
   'var(--chart-5)'
 ]
 
-export function LineChartComponent({ data, settings }: LineChartProps) {
+export function LineChartComponent({ data, settings, isMobile = false }: LineChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
 
   const chartConfig: ChartConfig = valueColumns.reduce((acc, col, index) => {
@@ -54,11 +55,16 @@ export function LineChartComponent({ data, settings }: LineChartProps) {
   const showLabels = variant === 'label'
   const showLegend = variant === 'legend' || valueColumns.length > 1
 
+  // Mobile-specific axis settings
+  const xAxisProps = isMobile
+    ? { angle: -45, textAnchor: 'end' as const, height: 80, fontSize: 11 }
+    : {}
+
   return (
-    <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+    <ChartContainer config={chartConfig} className="h-full min-h-[300px] w-full">
       <RechartsLineChart
         data={data.rows}
-        margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+        margin={{ top: 20, right: 10, left: 0, bottom: isMobile ? 20 : 0 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
@@ -66,6 +72,7 @@ export function LineChartComponent({ data, settings }: LineChartProps) {
           tickLine={false}
           axisLine={false}
           tickMargin={8}
+          {...xAxisProps}
         />
         <YAxis tickLine={false} axisLine={false} tickMargin={8} />
         <ChartTooltip content={<ChartTooltipContent />} />
