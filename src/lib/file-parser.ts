@@ -2,6 +2,28 @@ import * as XLSX from 'xlsx'
 import type { ParsedData } from '@/types'
 
 /**
+ * Checks if a string looks like a currency/numeric value.
+ * Valid patterns:
+ * - Simple numbers: "123", "123.45", "-123.45"
+ * - Currency: "$123", "$1,234.56", "€100"
+ * - Signed currency: "+ $123", "- $45.67"
+ * - Parentheses negative: "(123.45)", "($123)"
+ */
+function isCurrencyOrNumeric(value: string): boolean {
+  const trimmed = value.trim()
+  if (trimmed === '') return false
+
+  // Pattern for valid currency/numeric values
+  // Allows: optional sign, optional currency symbol, digits with optional commas and decimal
+  const currencyPattern = /^[(\-+]?\s*[$€£¥₹₽₩฿₫₦]?\s*[\d,]+\.?\d*\s*\)?$/
+
+  // Also check for signed currency like "+ $123" or "- $45"
+  const signedCurrencyPattern = /^[+-]\s*[$€£¥₹₽₩฿₫₦]?\s*[\d,]+\.?\d*$/
+
+  return currencyPattern.test(trimmed) || signedCurrencyPattern.test(trimmed)
+}
+
+/**
  * Parses a string value that may contain currency formatting.
  * Handles formats like: "$1,234.56", "+ $45566", "- $60", "(1234.56)"
  * Returns the numeric value or NaN if not parseable.
@@ -13,6 +35,11 @@ function parseCurrencyValue(value: string): number {
 
   let str = value.trim()
   if (str === '') return NaN
+
+  // First check if this looks like a currency/numeric value
+  if (!isCurrencyOrNumeric(str)) {
+    return NaN
+  }
 
   // Check for negative values in parentheses format: (1234.56)
   const isParenthesesNegative = str.startsWith('(') && str.endsWith(')')
@@ -36,10 +63,9 @@ function parseCurrencyValue(value: string): number {
   }
 
   // Remove currency symbols and thousand separators
-  // Handles $, €, £, ¥, and common currency symbols
   str = str.replace(/[$€£¥₹₽₩฿₫₦,]/g, '').trim()
 
-  // Try to parse the cleaned value
+  // Parse the cleaned value
   const num = parseFloat(str)
   return isNaN(num) ? NaN : num * sign
 }
