@@ -127,12 +127,18 @@ export function RadialChartComponent({ data, settings, isMobile = false }: Radia
       <RechartsRadialBarChart
         data={transformedData}
         innerRadius="20%"
-        outerRadius={showLegend ? '70%' : '80%'}
+        outerRadius="80%"
         startAngle={180}
         endAngle={-180}
       >
         <ChartTooltip content={<ChartTooltipContent nameKey="name" />} />
-        {showLegend && <ChartLegend content={<ChartLegendContent nameKey="name" />} />}
+        {showLegend && (
+          <ChartLegend
+            content={<ChartLegendContent nameKey="name" />}
+            verticalAlign="bottom"
+            wrapperStyle={{ paddingTop: 16 }}
+          />
+        )}
         <RadialBar
           dataKey="value"
           background

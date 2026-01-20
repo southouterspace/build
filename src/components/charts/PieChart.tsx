@@ -89,7 +89,7 @@ export function PieChartComponent({ data, settings }: PieChartProps) {
   }
 
   // Use percentage-based radii for fluid sizing
-  const outerR = showLegend ? '70%' : '80%'
+  const outerR = '80%'
   const innerR = isDonut ? '50%' : 0
 
   return (
@@ -99,7 +99,13 @@ export function PieChartComponent({ data, settings }: PieChartProps) {
           cursor={false}
           content={<ChartTooltipContent hideLabel />}
         />
-        {showLegend && <ChartLegend content={<ChartLegendContent />} />}
+        {showLegend && (
+          <ChartLegend
+            content={<ChartLegendContent />}
+            verticalAlign="bottom"
+            wrapperStyle={{ paddingTop: 16 }}
+          />
+        )}
         <Pie
           data={pieData}
           dataKey="value"
