@@ -1,11 +1,15 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect, useCallback } from 'react'
-import { Dropzone } from '@/components/Dropzone'
-import { ChartDisplay } from '@/components/ChartDisplay'
-import { ConfigPanel } from '@/components/ConfigPanel'
+import { Dropzone } from './-Dropzone'
+import { ChartDisplay } from './-ChartDisplay'
+import { ConfigPanel } from './-ConfigPanel'
 import { parseFile } from '@/lib/file-parser'
 import { saveState, loadState, clearState } from '@/lib/storage'
 import type { ParsedData, ChartSettings } from '@/types'
-import './index.css'
+
+export const Route = createFileRoute('/charter/')({
+  component: CharterPage,
+})
 
 const DEFAULT_SETTINGS: ChartSettings = {
   type: 'bar',
@@ -14,7 +18,7 @@ const DEFAULT_SETTINGS: ChartSettings = {
   valueColumns: []
 }
 
-function App() {
+function CharterPage() {
   const [parsedData, setParsedData] = useState<ParsedData | null>(null)
   const [chartSettings, setChartSettings] = useState<ChartSettings>(DEFAULT_SETTINGS)
   const [isLoading, setIsLoading] = useState(false)
@@ -81,7 +85,7 @@ function App() {
   // Show dropzone if no data
   if (!parsedData) {
     return (
-      <div className="min-h-screen">
+      <div className="h-[calc(100vh-3.5rem)]">
         <Dropzone onFileAccepted={handleFileAccepted} isLoading={isLoading} />
         {error && (
           <div className="fixed bottom-6 left-6 right-6 rounded-lg bg-destructive p-4 text-destructive-foreground shadow-lg">
@@ -95,8 +99,8 @@ function App() {
 
   // Show chart view with config panel
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="grid h-[calc(100vh-3rem)] grid-cols-3 gap-6">
+    <div className="h-[calc(100vh-3.5rem)] p-6">
+      <div className="grid h-full grid-cols-3 gap-6">
         <div className="col-span-2">
           <ChartDisplay data={parsedData} settings={chartSettings} />
         </div>
@@ -112,5 +116,3 @@ function App() {
     </div>
   )
 }
-
-export default App
