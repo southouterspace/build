@@ -30,7 +30,7 @@ export function Dropzone({ onFileAccepted, isLoading }: DropzoneProps) {
   })
 
   return (
-    <div className="h-screen w-screen p-6">
+    <div className="h-full w-full p-6">
       <div
         {...getRootProps()}
         className={cn(
