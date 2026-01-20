@@ -4,14 +4,13 @@ import { Field, FieldLabel, FieldDescription } from '@/components/ui/field'
 import { Select } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription
-} from '@/components/ui/sheet'
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle
+} from '@/components/ui/drawer'
 import { ColorPicker, DEFAULT_CHART_COLORS } from '@/components/ui/color-picker'
-import { RotateCcw, Palette } from 'lucide-react'
+import { RotateCcw } from 'lucide-react'
 import type { ChartType, ChartVariant, ChartSettings, ParsedData } from '@/types'
 import { CHART_VARIANTS, CHART_TYPE_REQUIREMENTS } from '@/types'
 
@@ -33,7 +32,7 @@ export function ConfigPanel({
   const { type, variant, categoryColumn, valueColumns, columnColors } = settings
   const { numericColumns, categoricalColumns, headers } = data
 
-  const [colorSheetOpen, setColorSheetOpen] = useState(false)
+  const [colorDrawerOpen, setColorDrawerOpen] = useState(false)
   const [selectedColumn, setSelectedColumn] = useState<string | null>(null)
 
   // Check if data has negative values in numeric columns
@@ -110,7 +109,7 @@ export function ConfigPanel({
 
   const openColorPicker = (column: string) => {
     setSelectedColumn(column)
-    setColorSheetOpen(true)
+    setColorDrawerOpen(true)
   }
 
   const configContent = (
@@ -155,7 +154,7 @@ export function ConfigPanel({
       <Field>
         <FieldLabel>Value Columns</FieldLabel>
         <FieldDescription>
-          Select columns to display and click the color swatch to customize colors
+          Select columns to display and click the color to customize
         </FieldDescription>
         <div className="space-y-2 pt-1">
           {numericColumns.map((col, index) => {
@@ -178,16 +177,20 @@ export function ConfigPanel({
                   <span className="text-sm">{col}</span>
                 </label>
                 {isSelected && (
-                  <button
+                  <Button
                     type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 p-0"
                     onClick={() => openColorPicker(col)}
-                    className="flex h-6 w-6 items-center justify-center rounded border border-border/50 transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                    style={{ backgroundColor: color }}
                     title={`Change color for ${col}`}
                     aria-label={`Change color for ${col}`}
                   >
-                    <Palette className="h-3 w-3 text-white mix-blend-difference" />
-                  </button>
+                    <span
+                      className="h-5 w-5 rounded-full border border-border"
+                      style={{ backgroundColor: color }}
+                    />
+                  </Button>
                 )}
               </div>
             )
@@ -207,27 +210,24 @@ export function ConfigPanel({
         </p>
       </div>
 
-      <Sheet open={colorSheetOpen} onOpenChange={setColorSheetOpen}>
-        <SheetContent side="right" className="overflow-y-auto">
-          <SheetHeader>
-            <SheetTitle>Choose Color</SheetTitle>
-            <SheetDescription>
-              Select a color for "{selectedColumn}" from the Tailwind palette
-            </SheetDescription>
-          </SheetHeader>
-          <div className="mt-6">
+      <Drawer open={colorDrawerOpen} onOpenChange={setColorDrawerOpen}>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Choose Color for "{selectedColumn}"</DrawerTitle>
+          </DrawerHeader>
+          <div className="px-4 pb-6">
             {selectedColumn && (
               <ColorPicker
                 value={columnColors[selectedColumn]}
                 onValueChange={(color) => {
                   handleColorChange(selectedColumn, color)
-                  setColorSheetOpen(false)
+                  setColorDrawerOpen(false)
                 }}
               />
             )}
           </div>
-        </SheetContent>
-      </Sheet>
+        </DrawerContent>
+      </Drawer>
     </>
   )
 
