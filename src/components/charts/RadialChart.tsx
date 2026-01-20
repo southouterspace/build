@@ -73,7 +73,7 @@ export function RadialChartComponent({ data, settings, isMobile = false }: Radia
     }, {} as ChartConfig)
 
     return (
-      <ChartContainer config={stackedConfig} className="mx-auto aspect-square h-full min-h-[250px]">
+      <ChartContainer config={stackedConfig} className="mx-auto aspect-square w-full max-w-[min(100%,70vh)]">
         <RechartsRadialBarChart
           data={stackedData}
           innerRadius="20%"
@@ -123,7 +123,7 @@ export function RadialChartComponent({ data, settings, isMobile = false }: Radia
   }
 
   return (
-    <ChartContainer config={chartConfig} className="mx-auto aspect-square h-full min-h-[250px]">
+    <ChartContainer config={chartConfig} className="mx-auto aspect-square w-full max-w-[min(100%,70vh)]">
       <RechartsRadialBarChart
         data={transformedData}
         innerRadius="20%"

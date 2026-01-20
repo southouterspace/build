@@ -93,7 +93,7 @@ export function PieChartComponent({ data, settings }: PieChartProps) {
   const innerR = isDonut ? '50%' : 0
 
   return (
-    <ChartContainer config={chartConfig} className="mx-auto aspect-square h-full min-h-[250px]">
+    <ChartContainer config={chartConfig} className="mx-auto aspect-square w-full max-w-[min(100%,70vh)]">
       <RechartsPieChart>
         <ChartTooltip
           cursor={false}
