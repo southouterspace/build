@@ -11,13 +11,15 @@ interface ConfigPanelProps {
   settings: ChartSettings
   onSettingsChange: (settings: ChartSettings) => void
   onReset: () => void
+  variant?: 'default' | 'drawer'
 }
 
 export function ConfigPanel({
   data,
   settings,
   onSettingsChange,
-  onReset
+  onReset,
+  variant: panelVariant = 'default'
 }: ConfigPanelProps) {
   const { type, variant, categoryColumn, valueColumns } = settings
   const { numericColumns, categoricalColumns, headers } = data
@@ -65,6 +67,96 @@ export function ConfigPanel({
     onSettingsChange({ ...settings, valueColumns: newValueColumns })
   }
 
+  const configContent = (
+    <>
+      <div className="space-y-2">
+        <Label htmlFor="chart-type">Chart Type</Label>
+        <Select
+          id="chart-type"
+          value={type}
+          onChange={(e) => handleTypeChange(e.target.value as ChartType)}
+          options={chartTypeOptions}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="chart-variant">Variant</Label>
+        <Select
+          id="chart-variant"
+          value={variant}
+          onChange={(e) =>
+            onSettingsChange({
+              ...settings,
+              variant: e.target.value as ChartVariant
+            })
+          }
+          options={variantOptions}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="category-column">Category (X-Axis)</Label>
+        <Select
+          id="category-column"
+          value={categoryColumn}
+          onChange={(e) =>
+            onSettingsChange({ ...settings, categoryColumn: e.target.value })
+          }
+          options={categoryOptions}
+        />
+      </div>
+
+      <div className="space-y-3">
+        <Label>Value Columns</Label>
+        <div className="space-y-2">
+          {numericColumns.map((col) => (
+            <label
+              key={col}
+              className="flex cursor-pointer items-center gap-2 rounded-md border p-2 hover:bg-accent"
+            >
+              <input
+                type="checkbox"
+                checked={valueColumns.includes(col)}
+                onChange={() => handleValueColumnToggle(col)}
+                className="h-4 w-4 rounded border-gray-300"
+              />
+              <span className="text-sm">{col}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-md bg-muted p-3">
+        <p className="text-xs text-muted-foreground">
+          <strong>Data Summary:</strong>
+          <br />
+          {data.rows.length} rows
+          <br />
+          {numericColumns.length} numeric columns
+          <br />
+          {categoricalColumns.length} categorical columns
+        </p>
+      </div>
+    </>
+  )
+
+  // Drawer variant: no card wrapper, horizontal layout for header
+  if (panelVariant === 'drawer') {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Chart Configuration</h3>
+          <Button variant="ghost" size="sm" onClick={onReset}>
+            <RotateCcw className="mr-2 h-4 w-4" />
+            Reset
+          </Button>
+        </div>
+        {configContent}
+      </div>
+    )
+  }
+
+  // Default variant: card wrapper
   return (
     <Card className="h-full">
       <CardHeader className="flex flex-row items-center justify-between pb-4">
@@ -75,74 +167,7 @@ export function ConfigPanel({
         </Button>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="chart-type">Chart Type</Label>
-          <Select
-            id="chart-type"
-            value={type}
-            onChange={(e) => handleTypeChange(e.target.value as ChartType)}
-            options={chartTypeOptions}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="chart-variant">Variant</Label>
-          <Select
-            id="chart-variant"
-            value={variant}
-            onChange={(e) =>
-              onSettingsChange({
-                ...settings,
-                variant: e.target.value as ChartVariant
-              })
-            }
-            options={variantOptions}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="category-column">Category (X-Axis)</Label>
-          <Select
-            id="category-column"
-            value={categoryColumn}
-            onChange={(e) =>
-              onSettingsChange({ ...settings, categoryColumn: e.target.value })
-            }
-            options={categoryOptions}
-          />
-        </div>
-
-        <div className="space-y-3">
-          <Label>Value Columns</Label>
-          <div className="space-y-2">
-            {numericColumns.map((col) => (
-              <label
-                key={col}
-                className="flex cursor-pointer items-center gap-2 rounded-md border p-2 hover:bg-accent"
-              >
-                <input
-                  type="checkbox"
-                  checked={valueColumns.includes(col)}
-                  onChange={() => handleValueColumnToggle(col)}
-                  className="h-4 w-4 rounded border-gray-300"
-                />
-                <span className="text-sm">{col}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-md bg-muted p-3">
-          <p className="text-xs text-muted-foreground">
-            <strong>Data Summary:</strong>
-            <br />
-            {data.rows.length} rows
-            <br />
-            {numericColumns.length} numeric columns
-            <br />
-            {categoricalColumns.length} categorical columns
-          </p>
-        </div>
+        {configContent}
       </CardContent>
     </Card>
   )

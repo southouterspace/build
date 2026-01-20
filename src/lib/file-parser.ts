@@ -1,6 +1,72 @@
 import * as XLSX from 'xlsx'
 import type { ParsedData } from '@/types'
 
+/**
+ * Parses a string value that may contain currency formatting.
+ * Handles formats like: "$1,234.56", "+ $45566", "- $60", "(1234.56)"
+ * Returns the numeric value or NaN if not parseable.
+ */
+function parseCurrencyValue(value: string): number {
+  if (typeof value !== 'string') {
+    return typeof value === 'number' ? value : NaN
+  }
+
+  let str = value.trim()
+  if (str === '') return NaN
+
+  // Check for negative values in parentheses format: (1234.56)
+  const isParenthesesNegative = str.startsWith('(') && str.endsWith(')')
+  if (isParenthesesNegative) {
+    str = str.slice(1, -1)
+  }
+
+  // Extract sign from prefix (handles "+ $" or "- $" formats)
+  let sign = 1
+  if (str.startsWith('-')) {
+    sign = -1
+    str = str.slice(1).trim()
+  } else if (str.startsWith('+')) {
+    sign = 1
+    str = str.slice(1).trim()
+  }
+
+  // Apply parentheses negative
+  if (isParenthesesNegative) {
+    sign = -1
+  }
+
+  // Remove currency symbols and thousand separators
+  // Handles $, €, £, ¥, and common currency symbols
+  str = str.replace(/[$€£¥₹₽₩฿₫₦,]/g, '').trim()
+
+  // Try to parse the cleaned value
+  const num = parseFloat(str)
+  return isNaN(num) ? NaN : num * sign
+}
+
+/**
+ * Attempts to parse a value as a number, including currency formats.
+ * Returns the number if successful, or the original string if not.
+ */
+function parseNumericValue(value: string): number | string {
+  const trimmed = value.trim()
+  if (trimmed === '') return value
+
+  // First try standard parseFloat (faster for simple numbers)
+  const simpleNum = parseFloat(trimmed)
+  if (!isNaN(simpleNum) && /^-?\d*\.?\d+$/.test(trimmed)) {
+    return simpleNum
+  }
+
+  // Try currency parsing
+  const currencyNum = parseCurrencyValue(trimmed)
+  if (!isNaN(currencyNum)) {
+    return currencyNum
+  }
+
+  return value
+}
+
 export async function parseFile(file: File): Promise<ParsedData> {
   const extension = file.name.split('.').pop()?.toLowerCase()
 
@@ -30,8 +96,7 @@ async function parseCSV(file: File): Promise<ParsedData> {
 
     headers.forEach((header, index) => {
       const value = values[index] || ''
-      const numValue = parseFloat(value)
-      row[header] = !isNaN(numValue) && value.trim() !== '' ? numValue : value
+      row[header] = parseNumericValue(value)
     })
 
     rows.push(row)
@@ -88,9 +153,12 @@ function analyzeData(
 
   headers.forEach((header) => {
     const values = rows.map((row) => row[header])
-    const numericCount = values.filter(
-      (v) => typeof v === 'number' || (!isNaN(parseFloat(String(v))) && String(v).trim() !== '')
-    ).length
+    const numericCount = values.filter((v) => {
+      if (typeof v === 'number') return true
+      if (typeof v !== 'string') return false
+      const parsed = parseCurrencyValue(v)
+      return !isNaN(parsed)
+    }).length
 
     if (numericCount >= values.length * 0.5) {
       numericColumns.push(header)
@@ -105,7 +173,12 @@ function analyzeData(
     headers.forEach((header) => {
       const value = row[header]
       if (numericColumns.includes(header)) {
-        newRow[header] = typeof value === 'number' ? value : parseFloat(String(value)) || 0
+        if (typeof value === 'number') {
+          newRow[header] = value
+        } else {
+          const parsed = parseCurrencyValue(String(value))
+          newRow[header] = isNaN(parsed) ? 0 : parsed
+        }
       } else {
         newRow[header] = String(value)
       }
