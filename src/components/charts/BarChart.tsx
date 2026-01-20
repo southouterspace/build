@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   Bar,
   BarChart as RechartsBarChart,
@@ -14,6 +15,7 @@ import {
   ChartLegendContent,
   type ChartConfig
 } from '@/components/ui/chart'
+import { calculateYAxisDomain } from '@/lib/chart-utils'
 import type { ParsedData, ChartSettings } from '@/types'
 
 interface BarChartProps {
@@ -46,6 +48,12 @@ export function BarChartComponent({ data, settings, isMobile = false }: BarChart
   const showLabels = variant === 'label'
   const showLegend = valueColumns.length > 1 || variant === 'multiple'
 
+  // Calculate tight Y-axis domain to avoid excessive empty space
+  const yAxisDomain = useMemo(
+    () => calculateYAxisDomain(data.rows, valueColumns),
+    [data.rows, valueColumns]
+  )
+
   // Mobile-specific axis settings
   const xAxisProps = isMobile && !isHorizontal
     ? { angle: -45, textAnchor: 'end' as const, height: 80, fontSize: 11 }
@@ -69,7 +77,7 @@ export function BarChartComponent({ data, settings, isMobile = false }: BarChart
               tickMargin={8}
               width={80}
             />
-            <XAxis type="number" tickLine={false} axisLine={false} />
+            <XAxis type="number" tickLine={false} axisLine={false} domain={yAxisDomain} />
           </>
         ) : (
           <>
@@ -80,7 +88,7 @@ export function BarChartComponent({ data, settings, isMobile = false }: BarChart
               tickMargin={8}
               {...xAxisProps}
             />
-            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} domain={yAxisDomain} />
           </>
         )}
         <ChartTooltip content={<ChartTooltipContent />} />

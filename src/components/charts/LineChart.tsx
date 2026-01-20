@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   Line,
   LineChart as RechartsLineChart,
@@ -14,6 +15,7 @@ import {
   ChartLegendContent,
   type ChartConfig
 } from '@/components/ui/chart'
+import { calculateYAxisDomain } from '@/lib/chart-utils'
 import type { ChartVariant, ParsedData, ChartSettings } from '@/types'
 
 interface LineChartProps {
@@ -55,6 +57,12 @@ export function LineChartComponent({ data, settings, isMobile = false }: LineCha
   const showLabels = variant === 'label'
   const showLegend = variant === 'legend' || valueColumns.length > 1
 
+  // Calculate tight Y-axis domain to avoid excessive empty space
+  const yAxisDomain = useMemo(
+    () => calculateYAxisDomain(data.rows, valueColumns),
+    [data.rows, valueColumns]
+  )
+
   // Mobile-specific axis settings
   const xAxisProps = isMobile
     ? { angle: -45, textAnchor: 'end' as const, height: 80, fontSize: 11 }
@@ -74,7 +82,7 @@ export function LineChartComponent({ data, settings, isMobile = false }: LineCha
           tickMargin={8}
           {...xAxisProps}
         />
-        <YAxis tickLine={false} axisLine={false} tickMargin={8} />
+        <YAxis tickLine={false} axisLine={false} tickMargin={8} domain={yAxisDomain} />
         <ChartTooltip content={<ChartTooltipContent />} />
         {showLegend && <ChartLegend content={<ChartLegendContent />} />}
         {valueColumns.map((col, index) => (
