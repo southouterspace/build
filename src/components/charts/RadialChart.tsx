@@ -12,6 +12,7 @@ import {
   ChartLegendContent,
   type ChartConfig
 } from '@/components/ui/chart'
+import { DEFAULT_CHART_COLORS } from '@/components/ui/color-picker'
 import type { ParsedData, ChartSettings } from '@/types'
 
 interface RadialChartProps {
@@ -19,14 +20,6 @@ interface RadialChartProps {
   settings: ChartSettings
   isMobile?: boolean
 }
-
-const CHART_COLORS = [
-  'var(--chart-1)',
-  'var(--chart-2)',
-  'var(--chart-3)',
-  'var(--chart-4)',
-  'var(--chart-5)'
-]
 
 export function RadialChartComponent({ data, settings, isMobile = false }: RadialChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
@@ -37,7 +30,7 @@ export function RadialChartComponent({ data, settings, isMobile = false }: Radia
   const transformedData = data.rows.slice(0, maxItems).map((row, index) => ({
     name: String(row[categoryColumn]),
     value: Number(row[valueColumns[0]]) || 0,
-    fill: CHART_COLORS[index % CHART_COLORS.length]
+    fill: DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
   }))
 
   const chartConfig: ChartConfig = transformedData.reduce((acc, item) => {
@@ -67,7 +60,7 @@ export function RadialChartComponent({ data, settings, isMobile = false }: Radia
       const key = String(row[categoryColumn])
       acc[key] = {
         label: key,
-        color: CHART_COLORS[index % CHART_COLORS.length]
+        color: DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
       }
       return acc
     }, {} as ChartConfig)
@@ -112,7 +105,7 @@ export function RadialChartComponent({ data, settings, isMobile = false }: Radia
             <RadialBar
               key={String(row[categoryColumn])}
               dataKey={String(row[categoryColumn])}
-              fill={CHART_COLORS[index % CHART_COLORS.length]}
+              fill={DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]}
               stackId="stack"
               cornerRadius={5}
             />

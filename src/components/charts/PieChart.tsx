@@ -14,6 +14,7 @@ import {
   ChartLegendContent,
   type ChartConfig
 } from '@/components/ui/chart'
+import { DEFAULT_CHART_COLORS } from '@/components/ui/color-picker'
 import type { ParsedData, ChartSettings } from '@/types'
 
 interface PieChartProps {
@@ -21,14 +22,6 @@ interface PieChartProps {
   settings: ChartSettings
   isMobile?: boolean
 }
-
-const CHART_COLORS = [
-  'var(--chart-1)',
-  'var(--chart-2)',
-  'var(--chart-3)',
-  'var(--chart-4)',
-  'var(--chart-5)'
-]
 
 export function PieChartComponent({ data, settings }: PieChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
@@ -56,7 +49,7 @@ export function PieChartComponent({ data, settings }: PieChartProps) {
     return Array.from(aggregated.entries()).map(([name, value], index) => ({
       name,
       value,
-      fill: CHART_COLORS[index % CHART_COLORS.length]
+      fill: DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
     }))
   }, [data.rows, categoryColumn, valueColumn])
 
@@ -70,7 +63,7 @@ export function PieChartComponent({ data, settings }: PieChartProps) {
     return pieData.reduce((acc, item, index) => {
       acc[item.name] = {
         label: item.name,
-        color: CHART_COLORS[index % CHART_COLORS.length]
+        color: DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
       }
       return acc
     }, {} as ChartConfig)

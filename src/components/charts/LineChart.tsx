@@ -16,6 +16,7 @@ import {
   type ChartConfig
 } from '@/components/ui/chart'
 import { calculateYAxisDomain } from '@/lib/chart-utils'
+import { getColumnColor } from '@/lib/chart-colors'
 import type { ChartVariant, ParsedData, ChartSettings } from '@/types'
 
 interface LineChartProps {
@@ -24,21 +25,13 @@ interface LineChartProps {
   isMobile?: boolean
 }
 
-const CHART_COLORS = [
-  'var(--chart-1)',
-  'var(--chart-2)',
-  'var(--chart-3)',
-  'var(--chart-4)',
-  'var(--chart-5)'
-]
-
 export function LineChartComponent({ data, settings, isMobile = false }: LineChartProps) {
-  const { variant, categoryColumn, valueColumns } = settings
+  const { variant, categoryColumn, valueColumns, columnColors } = settings
 
   const chartConfig: ChartConfig = valueColumns.reduce((acc, col, index) => {
     acc[col] = {
       label: col,
-      color: CHART_COLORS[index % CHART_COLORS.length]
+      color: getColumnColor(col, index, columnColors)
     }
     return acc
   }, {} as ChartConfig)
@@ -85,27 +78,30 @@ export function LineChartComponent({ data, settings, isMobile = false }: LineCha
         <YAxis tickLine={false} axisLine={false} tickMargin={8} domain={yAxisDomain} />
         <ChartTooltip content={<ChartTooltipContent />} />
         {showLegend && <ChartLegend content={<ChartLegendContent />} />}
-        {valueColumns.map((col, index) => (
-          <Line
-            key={col}
-            type={getCurveType(variant)}
-            dataKey={col}
-            stroke={CHART_COLORS[index % CHART_COLORS.length]}
-            strokeWidth={2}
-            dot={{ fill: CHART_COLORS[index % CHART_COLORS.length] }}
-            activeDot={{ r: 6 }}
-          >
-            {showLabels && (
-              <LabelList
-                dataKey={col}
-                position="top"
-                className="fill-foreground"
-                fontSize={12}
-                offset={8}
-              />
-            )}
-          </Line>
-        ))}
+        {valueColumns.map((col, index) => {
+          const color = getColumnColor(col, index, columnColors)
+          return (
+            <Line
+              key={col}
+              type={getCurveType(variant)}
+              dataKey={col}
+              stroke={color}
+              strokeWidth={2}
+              dot={{ fill: color }}
+              activeDot={{ r: 6 }}
+            >
+              {showLabels && (
+                <LabelList
+                  dataKey={col}
+                  position="top"
+                  className="fill-foreground"
+                  fontSize={12}
+                  offset={8}
+                />
+              )}
+            </Line>
+          )
+        })}
       </RechartsLineChart>
     </ChartContainer>
   )

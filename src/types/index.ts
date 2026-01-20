@@ -31,6 +31,7 @@ export interface ChartSettings {
   variant: ChartVariant
   categoryColumn: string
   valueColumns: string[]
+  columnColors: Record<string, string>
 }
 
 export interface AppState {

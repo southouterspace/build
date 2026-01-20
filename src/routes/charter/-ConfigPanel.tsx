@@ -1,8 +1,17 @@
+import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
+import { Field, FieldLabel, FieldDescription } from '@/components/ui/field'
 import { Select } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
-import { RotateCcw } from 'lucide-react'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription
+} from '@/components/ui/sheet'
+import { ColorPicker, DEFAULT_CHART_COLORS } from '@/components/ui/color-picker'
+import { RotateCcw, Palette } from 'lucide-react'
 import type { ChartType, ChartVariant, ChartSettings, ParsedData } from '@/types'
 import { CHART_VARIANTS, CHART_TYPE_REQUIREMENTS } from '@/types'
 
@@ -21,8 +30,11 @@ export function ConfigPanel({
   onReset,
   variant: panelVariant = 'default'
 }: ConfigPanelProps) {
-  const { type, variant, categoryColumn, valueColumns } = settings
+  const { type, variant, categoryColumn, valueColumns, columnColors } = settings
   const { numericColumns, categoricalColumns, headers } = data
+
+  const [colorSheetOpen, setColorSheetOpen] = useState(false)
+  const [selectedColumn, setSelectedColumn] = useState<string | null>(null)
 
   // Check if data has negative values in numeric columns
   const hasNegativeValues = numericColumns.some((col) =>
@@ -82,20 +94,39 @@ export function ConfigPanel({
     onSettingsChange({ ...settings, valueColumns: newValueColumns })
   }
 
+  const getColumnColor = (column: string, index: number): string => {
+    return columnColors[column] || DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
+  }
+
+  const handleColorChange = (column: string, color: string) => {
+    onSettingsChange({
+      ...settings,
+      columnColors: {
+        ...columnColors,
+        [column]: color
+      }
+    })
+  }
+
+  const openColorPicker = (column: string) => {
+    setSelectedColumn(column)
+    setColorSheetOpen(true)
+  }
+
   const configContent = (
     <>
-      <div className="space-y-2">
-        <Label htmlFor="chart-type">Chart Type</Label>
+      <Field>
+        <FieldLabel htmlFor="chart-type">Chart Type</FieldLabel>
         <Select
           id="chart-type"
           value={type}
           onChange={(e) => handleTypeChange(e.target.value as ChartType)}
           options={chartTypeOptions}
         />
-      </div>
+      </Field>
 
-      <div className="space-y-2">
-        <Label htmlFor="chart-variant">Variant</Label>
+      <Field>
+        <FieldLabel htmlFor="chart-variant">Variant</FieldLabel>
         <Select
           id="chart-variant"
           value={variant}
@@ -107,10 +138,10 @@ export function ConfigPanel({
           }
           options={variantOptions}
         />
-      </div>
+      </Field>
 
-      <div className="space-y-2">
-        <Label htmlFor="category-column">Category (X-Axis)</Label>
+      <Field>
+        <FieldLabel htmlFor="category-column">Category (X-Axis)</FieldLabel>
         <Select
           id="category-column"
           value={categoryColumn}
@@ -119,27 +150,50 @@ export function ConfigPanel({
           }
           options={categoryOptions}
         />
-      </div>
+      </Field>
 
-      <div className="space-y-3">
-        <Label>Value Columns</Label>
-        <div className="space-y-2">
-          {numericColumns.map((col) => (
-            <label
-              key={col}
-              className="flex cursor-pointer items-center gap-2 rounded-md border p-2 hover:bg-accent"
-            >
-              <input
-                type="checkbox"
-                checked={valueColumns.includes(col)}
-                onChange={() => handleValueColumnToggle(col)}
-                className="h-4 w-4 rounded border-gray-300"
-              />
-              <span className="text-sm">{col}</span>
-            </label>
-          ))}
+      <Field>
+        <FieldLabel>Value Columns</FieldLabel>
+        <FieldDescription>
+          Select columns to display and click the color swatch to customize colors
+        </FieldDescription>
+        <div className="space-y-2 pt-1">
+          {numericColumns.map((col, index) => {
+            const isSelected = valueColumns.includes(col)
+            const columnIndex = valueColumns.indexOf(col)
+            const color = getColumnColor(col, columnIndex >= 0 ? columnIndex : index)
+
+            return (
+              <div
+                key={col}
+                className="flex items-center gap-2 rounded-md border p-2 hover:bg-accent"
+              >
+                <label className="flex flex-1 cursor-pointer items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={isSelected}
+                    onChange={() => handleValueColumnToggle(col)}
+                    className="h-4 w-4 rounded border-gray-300"
+                  />
+                  <span className="text-sm">{col}</span>
+                </label>
+                {isSelected && (
+                  <button
+                    type="button"
+                    onClick={() => openColorPicker(col)}
+                    className="flex h-6 w-6 items-center justify-center rounded border border-border/50 transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    style={{ backgroundColor: color }}
+                    title={`Change color for ${col}`}
+                    aria-label={`Change color for ${col}`}
+                  >
+                    <Palette className="h-3 w-3 text-white mix-blend-difference" />
+                  </button>
+                )}
+              </div>
+            )
+          })}
         </div>
-      </div>
+      </Field>
 
       <div className="rounded-md bg-muted p-3">
         <p className="text-xs text-muted-foreground">
@@ -152,6 +206,28 @@ export function ConfigPanel({
           {categoricalColumns.length} categorical columns
         </p>
       </div>
+
+      <Sheet open={colorSheetOpen} onOpenChange={setColorSheetOpen}>
+        <SheetContent side="right" className="overflow-y-auto">
+          <SheetHeader>
+            <SheetTitle>Choose Color</SheetTitle>
+            <SheetDescription>
+              Select a color for "{selectedColumn}" from the Tailwind palette
+            </SheetDescription>
+          </SheetHeader>
+          <div className="mt-6">
+            {selectedColumn && (
+              <ColorPicker
+                value={columnColors[selectedColumn]}
+                onValueChange={(color) => {
+                  handleColorChange(selectedColumn, color)
+                  setColorSheetOpen(false)
+                }}
+              />
+            )}
+          </div>
+        </SheetContent>
+      </Sheet>
     </>
   )
 
