@@ -70,78 +70,47 @@ function parseNumericValue(value: string): number | string {
 export async function parseFile(file: File): Promise<ParsedData> {
   const extension = file.name.split('.').pop()?.toLowerCase()
 
-  if (extension === 'csv') {
-    return parseCSV(file)
-  } else if (extension === 'xlsx' || extension === 'xls') {
-    return parseExcel(file)
+  if (!extension || !['csv', 'xlsx', 'xls'].includes(extension)) {
+    throw new Error('Unsupported file format. Please use CSV or Excel files.')
   }
 
-  throw new Error('Unsupported file format. Please use CSV or Excel files.')
-}
-
-async function parseCSV(file: File): Promise<ParsedData> {
-  const text = await file.text()
-  const lines = text.trim().split('\n')
-
-  if (lines.length < 2) {
-    throw new Error('CSV file must have at least a header row and one data row.')
-  }
-
-  const headers = parseCSVLine(lines[0])
-  const rows: Record<string, string | number>[] = []
-
-  for (let i = 1; i < lines.length; i++) {
-    const values = parseCSVLine(lines[i])
-    const row: Record<string, string | number> = {}
-
-    headers.forEach((header, index) => {
-      const value = values[index] || ''
-      row[header] = parseNumericValue(value)
-    })
-
-    rows.push(row)
-  }
-
-  return analyzeData(headers, rows)
-}
-
-function parseCSVLine(line: string): string[] {
-  const result: string[] = []
-  let current = ''
-  let inQuotes = false
-
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i]
-
-    if (char === '"') {
-      inQuotes = !inQuotes
-    } else if (char === ',' && !inQuotes) {
-      result.push(current.trim())
-      current = ''
-    } else {
-      current += char
-    }
-  }
-
-  result.push(current.trim())
-  return result
-}
-
-async function parseExcel(file: File): Promise<ParsedData> {
+  // Use xlsx library to parse both CSV and Excel files
   const arrayBuffer = await file.arrayBuffer()
-  const workbook = XLSX.read(arrayBuffer, { type: 'array' })
+  const workbook = XLSX.read(arrayBuffer, {
+    type: 'array',
+    raw: true, // Keep raw values for currency parsing
+  })
 
   const firstSheetName = workbook.SheetNames[0]
   const worksheet = workbook.Sheets[firstSheetName]
 
-  const jsonData = XLSX.utils.sheet_to_json<Record<string, string | number>>(worksheet)
+  // Get data as strings to preserve currency formatting for parsing
+  const jsonData = XLSX.utils.sheet_to_json<Record<string, string | number>>(worksheet, {
+    raw: false, // Get formatted strings
+    defval: '', // Default empty cells to empty string
+  })
 
   if (jsonData.length === 0) {
-    throw new Error('Excel file is empty or has no valid data.')
+    throw new Error('File is empty or has no valid data.')
   }
 
   const headers = Object.keys(jsonData[0])
-  return analyzeData(headers, jsonData)
+
+  // Apply currency parsing to all values
+  const parsedRows = jsonData.map((row) => {
+    const newRow: Record<string, string | number> = {}
+    headers.forEach((header) => {
+      const value = row[header]
+      if (typeof value === 'string') {
+        newRow[header] = parseNumericValue(value)
+      } else {
+        newRow[header] = value
+      }
+    })
+    return newRow
+  })
+
+  return analyzeData(headers, parsedRows)
 }
 
 function analyzeData(
