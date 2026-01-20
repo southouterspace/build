@@ -19,6 +19,7 @@ import type { ParsedData, ChartSettings } from '@/types'
 interface PieChartProps {
   data: ParsedData
   settings: ChartSettings
+  isMobile?: boolean
 }
 
 const CHART_COLORS = [
@@ -29,7 +30,7 @@ const CHART_COLORS = [
   'var(--chart-5)'
 ]
 
-export function PieChartComponent({ data, settings }: PieChartProps) {
+export function PieChartComponent({ data, settings, isMobile = false }: PieChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
 
   // For pie charts, we aggregate data by category and use the first value column
@@ -79,7 +80,6 @@ export function PieChartComponent({ data, settings }: PieChartProps) {
   const showLabels = variant === 'label'
   const showLegend = variant === 'legend'
 
-  const innerRadius = isDonut ? 60 : 0
   const outerRadius = 110
 
   if (pieData.length === 0) {
@@ -90,8 +90,11 @@ export function PieChartComponent({ data, settings }: PieChartProps) {
     )
   }
 
+  const outerR = isMobile ? 90 : outerRadius
+  const innerR = isDonut ? (isMobile ? 50 : 60) : 0
+
   return (
-    <ChartContainer config={chartConfig} className="mx-auto aspect-square min-h-[300px] max-h-[350px]">
+    <ChartContainer config={chartConfig} className="mx-auto aspect-square h-full min-h-[250px] max-h-[400px]">
       <RechartsPieChart>
         <ChartTooltip
           cursor={false}
@@ -102,8 +105,8 @@ export function PieChartComponent({ data, settings }: PieChartProps) {
           data={pieData}
           dataKey="value"
           nameKey="name"
-          innerRadius={innerRadius}
-          outerRadius={outerRadius}
+          innerRadius={innerR}
+          outerRadius={outerR}
           strokeWidth={2}
           stroke="var(--background)"
         >

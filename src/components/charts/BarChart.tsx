@@ -19,6 +19,7 @@ import type { ParsedData, ChartSettings } from '@/types'
 interface BarChartProps {
   data: ParsedData
   settings: ChartSettings
+  isMobile?: boolean
 }
 
 const CHART_COLORS = [
@@ -29,7 +30,7 @@ const CHART_COLORS = [
   'var(--chart-5)'
 ]
 
-export function BarChartComponent({ data, settings }: BarChartProps) {
+export function BarChartComponent({ data, settings, isMobile = false }: BarChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
 
   const chartConfig: ChartConfig = valueColumns.reduce((acc, col, index) => {
@@ -45,12 +46,17 @@ export function BarChartComponent({ data, settings }: BarChartProps) {
   const showLabels = variant === 'label'
   const showLegend = valueColumns.length > 1 || variant === 'multiple'
 
+  // Mobile-specific axis settings
+  const xAxisProps = isMobile && !isHorizontal
+    ? { angle: -45, textAnchor: 'end' as const, height: 80, fontSize: 11 }
+    : {}
+
   return (
-    <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+    <ChartContainer config={chartConfig} className="h-full min-h-[300px] w-full">
       <RechartsBarChart
         data={data.rows}
         layout={isHorizontal ? 'vertical' : 'horizontal'}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        margin={{ top: 10, right: 10, left: 0, bottom: isMobile ? 20 : 0 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         {isHorizontal ? (
@@ -72,6 +78,7 @@ export function BarChartComponent({ data, settings }: BarChartProps) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              {...xAxisProps}
             />
             <YAxis tickLine={false} axisLine={false} tickMargin={8} />
           </>

@@ -1,18 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect, useCallback } from 'react'
-import { Settings } from 'lucide-react'
 import { Dropzone } from './-Dropzone'
 import { ChartDisplay } from './-ChartDisplay'
 import { ConfigPanel } from './-ConfigPanel'
 import { parseFile } from '@/lib/file-parser'
 import { saveState, loadState, clearState } from '@/lib/storage'
-import { Button } from '@/components/ui/button'
 import {
   Drawer,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from '@/components/ui/drawer'
 import type { ParsedData, ChartSettings } from '@/types'
 
@@ -158,19 +155,15 @@ function CharterPage() {
   return (
     <div className="h-[calc(100vh-3.5rem)] p-4">
       <div className="h-full">
-        <ChartDisplay data={parsedData} settings={chartSettings} />
+        <ChartDisplay
+          data={parsedData}
+          settings={chartSettings}
+          isMobile={true}
+          onSettingsClick={() => setDrawerOpen(true)}
+        />
       </div>
 
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-        <DrawerTrigger asChild>
-          <Button
-            size="lg"
-            className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full shadow-lg"
-          >
-            <Settings className="h-6 w-6" />
-            <span className="sr-only">Open chart settings</span>
-          </Button>
-        </DrawerTrigger>
         <DrawerContent className="max-h-[85vh]">
           <DrawerHeader className="sr-only">
             <DrawerTitle>Chart Configuration</DrawerTitle>
