@@ -73,11 +73,11 @@ export function RadialChartComponent({ data, settings, isMobile = false }: Radia
     }, {} as ChartConfig)
 
     return (
-      <ChartContainer config={stackedConfig} className="h-full min-h-[300px] w-full">
+      <ChartContainer config={stackedConfig} className="mx-auto aspect-square w-full max-w-[min(100%,70vh)]">
         <RechartsRadialBarChart
           data={stackedData}
-          innerRadius={30}
-          outerRadius={140}
+          innerRadius="20%"
+          outerRadius="80%"
           startAngle={180}
           endAngle={0}
         >
@@ -123,16 +123,22 @@ export function RadialChartComponent({ data, settings, isMobile = false }: Radia
   }
 
   return (
-    <ChartContainer config={chartConfig} className="h-full min-h-[300px] w-full">
+    <ChartContainer config={chartConfig} className="mx-auto aspect-square w-full max-w-[min(100%,70vh)]">
       <RechartsRadialBarChart
         data={transformedData}
-        innerRadius={30}
-        outerRadius={140}
+        innerRadius="20%"
+        outerRadius="80%"
         startAngle={180}
         endAngle={-180}
       >
         <ChartTooltip content={<ChartTooltipContent nameKey="name" />} />
-        {showLegend && <ChartLegend content={<ChartLegendContent nameKey="name" />} />}
+        {showLegend && (
+          <ChartLegend
+            content={<ChartLegendContent nameKey="name" />}
+            verticalAlign="bottom"
+            wrapperStyle={{ paddingTop: 16 }}
+          />
+        )}
         <RadialBar
           dataKey="value"
           background

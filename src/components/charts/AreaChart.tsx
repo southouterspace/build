@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   Area,
   AreaChart as RechartsAreaChart,
@@ -13,6 +14,7 @@ import {
   ChartLegendContent,
   type ChartConfig
 } from '@/components/ui/chart'
+import { calculateYAxisDomain } from '@/lib/chart-utils'
 import type { ChartVariant, ParsedData, ChartSettings } from '@/types'
 
 interface AreaChartProps {
@@ -61,6 +63,12 @@ export function AreaChartComponent({ data, settings, isMobile = false }: AreaCha
 
   const showLegend = variant === 'legend' || valueColumns.length > 1
 
+  // Calculate tight Y-axis domain (not used for expanded variant which normalizes to 0-100%)
+  const yAxisDomain = useMemo(
+    () => calculateYAxisDomain(data.rows, valueColumns),
+    [data.rows, valueColumns]
+  )
+
   // Mobile-specific axis settings
   const xAxisProps = isMobile
     ? { angle: -45, textAnchor: 'end' as const, height: 80, fontSize: 11 }
@@ -85,6 +93,7 @@ export function AreaChartComponent({ data, settings, isMobile = false }: AreaCha
           tickLine={false}
           axisLine={false}
           tickMargin={8}
+          domain={variant !== 'expanded' ? yAxisDomain : undefined}
           tickFormatter={variant === 'expanded' ? (v) => `${(v * 100).toFixed(0)}%` : undefined}
         />
         <ChartTooltip content={<ChartTooltipContent />} />

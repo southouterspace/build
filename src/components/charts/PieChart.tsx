@@ -30,7 +30,7 @@ const CHART_COLORS = [
   'var(--chart-5)'
 ]
 
-export function PieChartComponent({ data, settings, isMobile = false }: PieChartProps) {
+export function PieChartComponent({ data, settings }: PieChartProps) {
   const { variant, categoryColumn, valueColumns } = settings
 
   // For pie charts, we aggregate data by category and use the first value column
@@ -80,8 +80,6 @@ export function PieChartComponent({ data, settings, isMobile = false }: PieChart
   const showLabels = variant === 'label'
   const showLegend = variant === 'legend'
 
-  const outerRadius = 110
-
   if (pieData.length === 0) {
     return (
       <div className="flex min-h-[300px] items-center justify-center text-muted-foreground">
@@ -90,17 +88,24 @@ export function PieChartComponent({ data, settings, isMobile = false }: PieChart
     )
   }
 
-  const outerR = isMobile ? 90 : outerRadius
-  const innerR = isDonut ? (isMobile ? 50 : 60) : 0
+  // Use percentage-based radii for fluid sizing
+  const outerR = '80%'
+  const innerR = isDonut ? '50%' : 0
 
   return (
-    <ChartContainer config={chartConfig} className="mx-auto aspect-square h-full min-h-[250px] max-h-[400px]">
+    <ChartContainer config={chartConfig} className="mx-auto aspect-square w-full max-w-[min(100%,70vh)]">
       <RechartsPieChart>
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent hideLabel />}
         />
-        {showLegend && <ChartLegend content={<ChartLegendContent />} />}
+        {showLegend && (
+          <ChartLegend
+            content={<ChartLegendContent />}
+            verticalAlign="bottom"
+            wrapperStyle={{ paddingTop: 16 }}
+          />
+        )}
         <Pie
           data={pieData}
           dataKey="value"
