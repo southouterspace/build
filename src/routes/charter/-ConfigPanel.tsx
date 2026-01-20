@@ -24,18 +24,33 @@ export function ConfigPanel({
   const { type, variant, categoryColumn, valueColumns } = settings
   const { numericColumns, categoricalColumns, headers } = data
 
+  // Check if data has negative values in numeric columns
+  const hasNegativeValues = numericColumns.some((col) =>
+    data.rows.some((row) => {
+      const val = row[col]
+      return typeof val === 'number' && val < 0
+    })
+  )
+
   const isChartTypeAvailable = (chartType: ChartType): boolean => {
     const requirements = CHART_TYPE_REQUIREMENTS[chartType]
-    return (
+    const meetsRequirements =
       numericColumns.length >= requirements.minNumericColumns &&
       data.rows.length >= requirements.minRows
-    )
+
+    // Pie and radial charts don't display negative values well
+    if ((chartType === 'pie' || chartType === 'radial') && hasNegativeValues) {
+      return false
+    }
+
+    return meetsRequirements
   }
 
   const chartTypeOptions = [
     { value: 'area', label: 'Area Chart', disabled: !isChartTypeAvailable('area') },
     { value: 'bar', label: 'Bar Chart', disabled: !isChartTypeAvailable('bar') },
     { value: 'line', label: 'Line Chart', disabled: !isChartTypeAvailable('line') },
+    { value: 'pie', label: 'Pie Chart', disabled: !isChartTypeAvailable('pie') },
     { value: 'radar', label: 'Radar Chart', disabled: !isChartTypeAvailable('radar') },
     { value: 'radial', label: 'Radial Chart', disabled: !isChartTypeAvailable('radial') }
   ]
