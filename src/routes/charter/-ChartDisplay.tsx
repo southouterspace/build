@@ -3,6 +3,7 @@ import {
   AreaChartComponent,
   BarChartComponent,
   LineChartComponent,
+  PieChartComponent,
   RadarChartComponent,
   RadialChartComponent
 } from '@/components/charts'
@@ -24,6 +25,8 @@ export function ChartDisplay({ data, settings }: ChartDisplayProps) {
         return <BarChartComponent data={data} settings={settings} />
       case 'line':
         return <LineChartComponent data={data} settings={settings} />
+      case 'pie':
+        return <PieChartComponent data={data} settings={settings} />
       case 'radar':
         return <RadarChartComponent data={data} settings={settings} />
       case 'radial':
