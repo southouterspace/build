@@ -9,6 +9,7 @@ export interface Env {
   BETTER_AUTH_URL: string;
   RESEND_API_KEY: string;
   ANTHROPIC_API_KEY: string;
+  APP_DOMAIN?: string;
 }
 
 export function createAuth(env: Env) {

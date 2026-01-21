@@ -15,10 +15,16 @@
       "database_id": "local"
     }
   ],
+  "send_email": [
+    {
+      "name": "SEND_EMAIL"
+    }
+  ],
   "vars": {
     "BETTER_AUTH_SECRET": "",
     "BETTER_AUTH_URL": "http://localhost:5173",
     "RESEND_API_KEY": "",
-    "ANTHROPIC_API_KEY": ""
+    "ANTHROPIC_API_KEY": "",
+    "APP_DOMAIN": "fettle.app"
   }
 }

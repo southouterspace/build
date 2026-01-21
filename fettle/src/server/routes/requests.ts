@@ -2,26 +2,12 @@ import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { eq, desc, and, sql, inArray } from "drizzle-orm";
 import { z } from "zod";
-import type { Env, Auth } from "../lib/auth";
-import type { Database } from "../lib/db";
+import type { AppContext } from "../index";
+import { getTenantContext, isAdmin, getFieldsForInbox } from "../lib/tenant";
 import * as schema from "@shared/schema";
 import { CreateRequestSchema, UpdateRequestSchema, CreateCommentSchema } from "@shared/types";
 
-type Variables = {
-  db: Database;
-  auth: Auth;
-  user: { id: string; email: string; role: string } | null;
-};
-
-export const requestsRoutes = new Hono<{ Bindings: Env; Variables: Variables }>();
-
-// Auth middleware
-requestsRoutes.use("*", async (c, next) => {
-  const auth = c.get("auth");
-  const session = await auth.api.getSession({ headers: c.req.raw.headers });
-  c.set("user", session?.user as Variables["user"] | null);
-  await next();
-});
+export const requestsRoutes = new Hono<AppContext>();
 
 // List requests
 requestsRoutes.get(
@@ -32,6 +18,7 @@ requestsRoutes.get(
       status: z.string().optional(),
       category: z.string().optional(),
       tag: z.string().optional(),
+      inbox: z.string().optional(),
       search: z.string().optional(),
       sort: z.enum(["newest", "oldest", "most_upvoted", "priority"]).optional(),
       limit: z.coerce.number().min(1).max(100).optional(),
@@ -39,32 +26,32 @@ requestsRoutes.get(
     })
   ),
   async (c) => {
-    const user = c.get("user");
-    if (!user) {
+    const db = c.get("db");
+    const auth = c.get("auth");
+    const tenant = await getTenantContext(c, db, auth);
+
+    if (!tenant) {
       return c.json({ error: "Unauthorized" }, 401);
     }
 
-    const db = c.get("db");
-    const { status, category, tag, search, sort = "newest", limit = 50, offset = 0 } = c.req.valid("query");
+    const { status, category, tag, inbox, search, sort = "newest", limit = 50, offset = 0 } = c.req.valid("query");
 
-    // Build base query
-    let query = db.select().from(schema.requests);
+    // Build query with org scoping
+    const conditions = [eq(schema.requests.orgId, tenant.org.id)];
 
-    const conditions = [];
     if (status) {
       conditions.push(eq(schema.requests.status, status as typeof schema.requests.status.enumValues[number]));
     }
     if (category) {
       conditions.push(eq(schema.requests.category, category as typeof schema.requests.category.enumValues[number]));
     }
+    if (inbox) {
+      conditions.push(eq(schema.requests.inboxId, inbox));
+    }
     if (search) {
       conditions.push(
         sql`(${schema.requests.title} LIKE ${"%" + search + "%"} OR ${schema.requests.description} LIKE ${"%" + search + "%"})`
       );
-    }
-
-    if (conditions.length > 0) {
-      query = query.where(and(...conditions)) as typeof query;
     }
 
     // Sorting
@@ -77,7 +64,13 @@ requestsRoutes.get(
             ? desc(schema.requests.priorityScore)
             : desc(schema.requests.createdAt);
 
-    const requests = await query.orderBy(orderBy).limit(limit).offset(offset);
+    const requests = await db
+      .select()
+      .from(schema.requests)
+      .where(and(...conditions))
+      .orderBy(orderBy)
+      .limit(limit)
+      .offset(offset);
 
     // Get tags for each request
     const requestIds = requests.map((r) => r.id);
@@ -95,13 +88,19 @@ requestsRoutes.get(
             .where(inArray(schema.requestTags.requestId, requestIds))
         : [];
 
+    // Get inboxes for display
+    const inboxIds = [...new Set(requests.map((r) => r.inboxId))];
+    const inboxesData =
+      inboxIds.length > 0 ? await db.select().from(schema.inboxes).where(inArray(schema.inboxes.id, inboxIds)) : [];
+    const inboxMap = new Map(inboxesData.map((i) => [i.id, i]));
+
     // Get user upvotes
     const userUpvotes =
       requestIds.length > 0
         ? await db
             .select({ requestId: schema.upvotes.requestId })
             .from(schema.upvotes)
-            .where(and(eq(schema.upvotes.userId, user.id), inArray(schema.upvotes.requestId, requestIds)))
+            .where(and(eq(schema.upvotes.userId, tenant.user.id), inArray(schema.upvotes.requestId, requestIds)))
         : [];
     const upvotedSet = new Set(userUpvotes.map((u) => u.requestId));
 
@@ -126,6 +125,7 @@ requestsRoutes.get(
 
     const result = filteredRequests.map((r) => ({
       ...r,
+      inbox: inboxMap.get(r.inboxId),
       tags: tagsByRequest.get(r.id) || [],
       hasUpvoted: upvotedSet.has(r.id),
     }));
@@ -136,19 +136,28 @@ requestsRoutes.get(
 
 // Get single request
 requestsRoutes.get("/:id", async (c) => {
-  const user = c.get("user");
-  if (!user) {
+  const db = c.get("db");
+  const auth = c.get("auth");
+  const tenant = await getTenantContext(c, db, auth);
+
+  if (!tenant) {
     return c.json({ error: "Unauthorized" }, 401);
   }
 
-  const db = c.get("db");
   const id = c.req.param("id");
 
-  const [request] = await db.select().from(schema.requests).where(eq(schema.requests.id, id)).limit(1);
+  const [request] = await db
+    .select()
+    .from(schema.requests)
+    .where(and(eq(schema.requests.id, id), eq(schema.requests.orgId, tenant.org.id)))
+    .limit(1);
 
   if (!request) {
     return c.json({ error: "Request not found" }, 404);
   }
+
+  // Get inbox
+  const [inbox] = await db.select().from(schema.inboxes).where(eq(schema.inboxes.id, request.inboxId)).limit(1);
 
   // Get tags
   const tags = await db
@@ -177,11 +186,11 @@ requestsRoutes.get("/:id", async (c) => {
   const [upvote] = await db
     .select()
     .from(schema.upvotes)
-    .where(and(eq(schema.upvotes.requestId, id), eq(schema.upvotes.userId, user.id)))
+    .where(and(eq(schema.upvotes.requestId, id), eq(schema.upvotes.userId, tenant.user.id)))
     .limit(1);
 
   // Get comments (filter internal if viewer)
-  const commentsQuery = db
+  let comments = await db
     .select({
       id: schema.comments.id,
       content: schema.comments.content,
@@ -195,8 +204,7 @@ requestsRoutes.get("/:id", async (c) => {
     .where(eq(schema.comments.requestId, id))
     .orderBy(desc(schema.comments.createdAt));
 
-  let comments = await commentsQuery;
-  if (user.role !== "admin") {
+  if (!isAdmin(tenant)) {
     comments = comments.filter((c) => !c.isInternal);
   }
 
@@ -217,6 +225,7 @@ requestsRoutes.get("/:id", async (c) => {
   return c.json({
     request: {
       ...request,
+      inbox,
       tags,
       customFields,
       hasUpvoted: !!upvote,
@@ -228,23 +237,38 @@ requestsRoutes.get("/:id", async (c) => {
 
 // Create request
 requestsRoutes.post("/", zValidator("json", CreateRequestSchema), async (c) => {
-  const user = c.get("user");
-  if (!user) {
+  const db = c.get("db");
+  const auth = c.get("auth");
+  const tenant = await getTenantContext(c, db, auth);
+
+  if (!tenant) {
     return c.json({ error: "Unauthorized" }, 401);
   }
 
-  const db = c.get("db");
   const data = c.req.valid("json");
+
+  // Verify inbox belongs to org
+  const [inbox] = await db
+    .select()
+    .from(schema.inboxes)
+    .where(and(eq(schema.inboxes.id, data.inboxId), eq(schema.inboxes.orgId, tenant.org.id)))
+    .limit(1);
+
+  if (!inbox) {
+    return c.json({ error: "Inbox not found" }, 404);
+  }
 
   const [request] = await db
     .insert(schema.requests)
     .values({
+      orgId: tenant.org.id,
+      inboxId: data.inboxId,
       title: data.title,
       description: data.description,
       category: data.category,
       productArea: data.productArea,
-      requesterEmail: user.email,
-      requesterUserId: user.id,
+      requesterEmail: tenant.user.email,
+      requesterUserId: tenant.user.id,
       source: "form",
       status: "new",
     })
@@ -252,31 +276,39 @@ requestsRoutes.post("/", zValidator("json", CreateRequestSchema), async (c) => {
 
   // Add tags if provided
   if (data.tags?.length) {
-    const existingTags = await db.select().from(schema.tags).where(inArray(schema.tags.name, data.tags));
+    const existingTags = await db
+      .select()
+      .from(schema.tags)
+      .where(and(eq(schema.tags.orgId, tenant.org.id), inArray(schema.tags.name, data.tags)));
 
     const existingTagNames = new Set(existingTags.map((t) => t.name));
     const newTagNames = data.tags.filter((t) => !existingTagNames.has(t));
 
     // Create new tags
     if (newTagNames.length > 0) {
-      await db.insert(schema.tags).values(newTagNames.map((name) => ({ name })));
+      await db.insert(schema.tags).values(newTagNames.map((name) => ({ orgId: tenant.org.id, name })));
     }
 
     // Get all tag IDs
-    const allTags = await db.select().from(schema.tags).where(inArray(schema.tags.name, data.tags));
+    const allTags = await db
+      .select()
+      .from(schema.tags)
+      .where(and(eq(schema.tags.orgId, tenant.org.id), inArray(schema.tags.name, data.tags)));
 
     // Link tags to request
-    await db.insert(schema.requestTags).values(
-      allTags.map((tag) => ({
-        requestId: request.id,
-        tagId: tag.id,
-      }))
-    );
+    if (allTags.length > 0) {
+      await db.insert(schema.requestTags).values(
+        allTags.map((tag) => ({
+          requestId: request.id,
+          tagId: tag.id,
+        }))
+      );
+    }
   }
 
   // Save custom field values
   if (data.customFields && Object.keys(data.customFields).length > 0) {
-    const fieldDefs = await db.select().from(schema.customFieldDefinitions);
+    const fieldDefs = await getFieldsForInbox(db, tenant.org.id, data.inboxId);
     const fieldMap = new Map(fieldDefs.map((f) => [f.name, f.id]));
 
     const values = Object.entries(data.customFields)
@@ -297,7 +329,7 @@ requestsRoutes.post("/", zValidator("json", CreateRequestSchema), async (c) => {
     requestId: request.id,
     fromStatus: null,
     toStatus: "new",
-    changedBy: user.id,
+    changedBy: tenant.user.id,
   });
 
   return c.json({ request }, 201);
@@ -305,25 +337,31 @@ requestsRoutes.post("/", zValidator("json", CreateRequestSchema), async (c) => {
 
 // Update request (admin only for most fields)
 requestsRoutes.patch("/:id", zValidator("json", UpdateRequestSchema), async (c) => {
-  const user = c.get("user");
-  if (!user) {
+  const db = c.get("db");
+  const auth = c.get("auth");
+  const tenant = await getTenantContext(c, db, auth);
+
+  if (!tenant) {
     return c.json({ error: "Unauthorized" }, 401);
   }
 
-  const db = c.get("db");
   const id = c.req.param("id");
   const data = c.req.valid("json");
 
-  const [existing] = await db.select().from(schema.requests).where(eq(schema.requests.id, id)).limit(1);
+  const [existing] = await db
+    .select()
+    .from(schema.requests)
+    .where(and(eq(schema.requests.id, id), eq(schema.requests.orgId, tenant.org.id)))
+    .limit(1);
 
   if (!existing) {
     return c.json({ error: "Request not found" }, 404);
   }
 
   // Viewers can only edit their own requests when status is "new"
-  const isOwner = existing.requesterUserId === user.id;
-  const isAdmin = user.role === "admin";
-  const canEdit = isAdmin || (isOwner && existing.status === "new");
+  const isOwner = existing.requesterUserId === tenant.user.id;
+  const isAdminUser = isAdmin(tenant);
+  const canEdit = isAdminUser || (isOwner && existing.status === "new");
 
   if (!canEdit) {
     return c.json({ error: "Forbidden" }, 403);
@@ -331,7 +369,7 @@ requestsRoutes.patch("/:id", zValidator("json", UpdateRequestSchema), async (c) 
 
   // Only admins can change certain fields
   const adminOnlyFields = ["status", "businessImpact", "effortEstimate", "targetQuarter"];
-  if (!isAdmin) {
+  if (!isAdminUser) {
     for (const field of adminOnlyFields) {
       if (field in data) {
         return c.json({ error: `Only admins can modify ${field}` }, 403);
@@ -345,7 +383,7 @@ requestsRoutes.patch("/:id", zValidator("json", UpdateRequestSchema), async (c) 
       requestId: id,
       fromStatus: existing.status,
       toStatus: data.status,
-      changedBy: user.id,
+      changedBy: tenant.user.id,
     });
   }
 
@@ -370,7 +408,7 @@ requestsRoutes.patch("/:id", zValidator("json", UpdateRequestSchema), async (c) 
   if (data.businessImpact !== undefined || data.effortEstimate !== undefined) {
     const impactScore = { high: 3, medium: 2, low: 1 }[data.businessImpact ?? existing.businessImpact ?? "low"] ?? 1;
     const effortPenalty = { xs: 0, s: 1, m: 2, l: 3, xl: 4 }[data.effortEstimate ?? existing.effortEstimate ?? "m"] ?? 2;
-    updateData.priorityScore = impactScore * 10 + existing.upvoteCount - effortPenalty;
+    updateData.priorityScore = impactScore * 10 + (existing.upvoteCount ?? 0) - effortPenalty;
   }
 
   const [updated] = await db.update(schema.requests).set(updateData).where(eq(schema.requests.id, id)).returning();
@@ -382,21 +420,30 @@ requestsRoutes.patch("/:id", zValidator("json", UpdateRequestSchema), async (c) 
 
     if (data.tags.length > 0) {
       // Get or create tags
-      const existingTags = await db.select().from(schema.tags).where(inArray(schema.tags.name, data.tags));
+      const existingTags = await db
+        .select()
+        .from(schema.tags)
+        .where(and(eq(schema.tags.orgId, tenant.org.id), inArray(schema.tags.name, data.tags)));
       const existingTagNames = new Set(existingTags.map((t) => t.name));
       const newTagNames = data.tags.filter((t) => !existingTagNames.has(t));
 
       if (newTagNames.length > 0) {
-        await db.insert(schema.tags).values(newTagNames.map((name) => ({ name })));
+        await db.insert(schema.tags).values(newTagNames.map((name) => ({ orgId: tenant.org.id, name })));
       }
 
-      const allTags = await db.select().from(schema.tags).where(inArray(schema.tags.name, data.tags));
-      await db.insert(schema.requestTags).values(
-        allTags.map((tag) => ({
-          requestId: id,
-          tagId: tag.id,
-        }))
-      );
+      const allTags = await db
+        .select()
+        .from(schema.tags)
+        .where(and(eq(schema.tags.orgId, tenant.org.id), inArray(schema.tags.name, data.tags)));
+
+      if (allTags.length > 0) {
+        await db.insert(schema.requestTags).values(
+          allTags.map((tag) => ({
+            requestId: id,
+            tagId: tag.id,
+          }))
+        );
+      }
     }
   }
 
@@ -405,13 +452,26 @@ requestsRoutes.patch("/:id", zValidator("json", UpdateRequestSchema), async (c) 
 
 // Delete request (admin only)
 requestsRoutes.delete("/:id", async (c) => {
-  const user = c.get("user");
-  if (!user || user.role !== "admin") {
+  const db = c.get("db");
+  const auth = c.get("auth");
+  const tenant = await getTenantContext(c, db, auth);
+
+  if (!tenant || !isAdmin(tenant)) {
     return c.json({ error: "Forbidden" }, 403);
   }
 
-  const db = c.get("db");
   const id = c.req.param("id");
+
+  // Verify request belongs to org
+  const [existing] = await db
+    .select()
+    .from(schema.requests)
+    .where(and(eq(schema.requests.id, id), eq(schema.requests.orgId, tenant.org.id)))
+    .limit(1);
+
+  if (!existing) {
+    return c.json({ error: "Request not found" }, 404);
+  }
 
   await db.delete(schema.requests).where(eq(schema.requests.id, id));
 
@@ -420,18 +480,31 @@ requestsRoutes.delete("/:id", async (c) => {
 
 // Toggle upvote
 requestsRoutes.post("/:id/upvote", async (c) => {
-  const user = c.get("user");
-  if (!user) {
+  const db = c.get("db");
+  const auth = c.get("auth");
+  const tenant = await getTenantContext(c, db, auth);
+
+  if (!tenant) {
     return c.json({ error: "Unauthorized" }, 401);
   }
 
-  const db = c.get("db");
   const id = c.req.param("id");
+
+  // Verify request belongs to org
+  const [request] = await db
+    .select()
+    .from(schema.requests)
+    .where(and(eq(schema.requests.id, id), eq(schema.requests.orgId, tenant.org.id)))
+    .limit(1);
+
+  if (!request) {
+    return c.json({ error: "Request not found" }, 404);
+  }
 
   const [existing] = await db
     .select()
     .from(schema.upvotes)
-    .where(and(eq(schema.upvotes.requestId, id), eq(schema.upvotes.userId, user.id)))
+    .where(and(eq(schema.upvotes.requestId, id), eq(schema.upvotes.userId, tenant.user.id)))
     .limit(1);
 
   if (existing) {
@@ -444,7 +517,7 @@ requestsRoutes.post("/:id/upvote", async (c) => {
     return c.json({ upvoted: false });
   } else {
     // Add upvote
-    await db.insert(schema.upvotes).values({ requestId: id, userId: user.id });
+    await db.insert(schema.upvotes).values({ requestId: id, userId: tenant.user.id });
     await db
       .update(schema.requests)
       .set({ upvoteCount: sql`${schema.requests.upvoteCount} + 1` })
@@ -455,17 +528,30 @@ requestsRoutes.post("/:id/upvote", async (c) => {
 
 // Add comment
 requestsRoutes.post("/:id/comments", zValidator("json", CreateCommentSchema), async (c) => {
-  const user = c.get("user");
-  if (!user) {
+  const db = c.get("db");
+  const auth = c.get("auth");
+  const tenant = await getTenantContext(c, db, auth);
+
+  if (!tenant) {
     return c.json({ error: "Unauthorized" }, 401);
   }
 
-  const db = c.get("db");
   const id = c.req.param("id");
   const data = c.req.valid("json");
 
+  // Verify request belongs to org
+  const [request] = await db
+    .select()
+    .from(schema.requests)
+    .where(and(eq(schema.requests.id, id), eq(schema.requests.orgId, tenant.org.id)))
+    .limit(1);
+
+  if (!request) {
+    return c.json({ error: "Request not found" }, 404);
+  }
+
   // Only admins can post internal comments
-  if (data.isInternal && user.role !== "admin") {
+  if (data.isInternal && !isAdmin(tenant)) {
     return c.json({ error: "Only admins can post internal comments" }, 403);
   }
 
@@ -473,7 +559,7 @@ requestsRoutes.post("/:id/comments", zValidator("json", CreateCommentSchema), as
     .insert(schema.comments)
     .values({
       requestId: id,
-      userId: user.id,
+      userId: tenant.user.id,
       content: data.content,
       isInternal: data.isInternal ?? false,
     })
