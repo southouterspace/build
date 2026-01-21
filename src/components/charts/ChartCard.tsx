@@ -41,22 +41,18 @@ export function ChartCard({ data, settings, column, columnIndex }: ChartCardProp
   })
 
   return (
-    <Card>
-      <CardHeader className="pb-0">
-        <CardTitle className="text-base">{column}</CardTitle>
-        <CardDescription className="text-2xl font-bold text-foreground">
-          {formattedTotal}
-        </CardDescription>
+    <Card className="pb-0">
+      <CardHeader>
+        <CardTitle>{column}</CardTitle>
+        <CardDescription>{formattedTotal} Total</CardDescription>
       </CardHeader>
-      <ChartContainer config={chartConfig} className="aspect-[4/1] w-full">
+      <ChartContainer config={chartConfig} className="aspect-[1/0.35]">
         <AreaChart
           accessibilityLayer
           data={data.rows}
           margin={{
             left: 0,
-            right: 0,
-            top: 8,
-            bottom: 0
+            right: 0
           }}
         >
           <ChartTooltip
@@ -66,10 +62,9 @@ export function ChartCard({ data, settings, column, columnIndex }: ChartCardProp
           <Area
             dataKey={column}
             type="linear"
-            fill={color}
+            fill={`var(--color-${column})`}
             fillOpacity={0.4}
-            stroke={color}
-            strokeWidth={2}
+            stroke={`var(--color-${column})`}
           />
         </AreaChart>
       </ChartContainer>
