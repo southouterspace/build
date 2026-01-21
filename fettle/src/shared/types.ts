@@ -20,9 +20,34 @@ export type Role = z.infer<typeof RoleEnum>;
 export const FieldTypeEnum = z.enum(["text", "textarea", "number", "select", "multi_select", "date", "boolean"]);
 export type FieldType = z.infer<typeof FieldTypeEnum>;
 
+// ============ ORGANIZATION SCHEMAS ============
+
+export const CreateOrganizationSchema = z.object({
+  name: z.string().min(1).max(100),
+  slug: z.string().min(1).max(50).regex(/^[a-z0-9-]+$/),
+});
+export type CreateOrganizationInput = z.infer<typeof CreateOrganizationSchema>;
+
+export const UpdateOrganizationSchema = CreateOrganizationSchema.partial();
+export type UpdateOrganizationInput = z.infer<typeof UpdateOrganizationSchema>;
+
+// ============ INBOX SCHEMAS ============
+
+export const CreateInboxSchema = z.object({
+  name: z.string().min(1).max(100),
+  slug: z.string().min(1).max(50).regex(/^[a-z0-9-]+$/),
+  description: z.string().optional(),
+  isDefault: z.boolean().optional(),
+});
+export type CreateInboxInput = z.infer<typeof CreateInboxSchema>;
+
+export const UpdateInboxSchema = CreateInboxSchema.partial();
+export type UpdateInboxInput = z.infer<typeof UpdateInboxSchema>;
+
 // ============ REQUEST SCHEMAS ============
 
 export const CreateRequestSchema = z.object({
+  inboxId: z.string().uuid(),
   title: z.string().min(1).max(200),
   description: z.string().min(1),
   category: CategoryEnum.nullable().optional(),
@@ -58,6 +83,7 @@ export type CreateTagInput = z.infer<typeof CreateTagSchema>;
 // ============ CUSTOM FIELD SCHEMAS ============
 
 export const CreateCustomFieldSchema = z.object({
+  inboxId: z.string().uuid().nullable().optional(), // null = org-wide field
   name: z.string().min(1).max(50).regex(/^[a-z_]+$/),
   label: z.string().min(1).max(100),
   description: z.string().optional(),
@@ -80,6 +106,14 @@ export const CreateCommentSchema = z.object({
 });
 export type CreateCommentInput = z.infer<typeof CreateCommentSchema>;
 
+// ============ MEMBERSHIP SCHEMAS ============
+
+export const InviteMemberSchema = z.object({
+  email: z.string().email(),
+  role: RoleEnum,
+});
+export type InviteMemberInput = z.infer<typeof InviteMemberSchema>;
+
 // ============ AI EXTRACTION SCHEMA ============
 
 export const AiExtractionResultSchema = z.object({
@@ -95,8 +129,41 @@ export type AiExtractionResult = z.infer<typeof AiExtractionResultSchema>;
 
 // ============ API RESPONSE TYPES ============
 
+export interface Organization {
+  id: string;
+  name: string;
+  slug: string;
+  createdAt: Date;
+}
+
+export interface Inbox {
+  id: string;
+  orgId: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  isDefault: boolean;
+  createdAt: Date;
+  emailAddress?: string; // Computed: {slug}@{org.slug}.fettle.app
+}
+
+export interface OrgMembership {
+  id: string;
+  userId: string;
+  orgId: string;
+  role: Role;
+  createdAt: Date;
+  user?: {
+    id: string;
+    name: string;
+    email: string;
+  };
+}
+
 export interface RequestWithDetails {
   id: string;
+  orgId: string;
+  inboxId: string;
   title: string;
   description: string;
   requesterEmail: string;
@@ -113,6 +180,7 @@ export interface RequestWithDetails {
   targetQuarter: string | null;
   createdAt: Date;
   updatedAt: Date;
+  inbox?: Inbox;
   tags: { id: string; name: string; color: string }[];
   customFields: { fieldId: string; name: string; label: string; value: string | null }[];
   hasUpvoted?: boolean;
@@ -120,6 +188,8 @@ export interface RequestWithDetails {
 
 export interface CustomFieldDefinition {
   id: string;
+  orgId: string;
+  inboxId: string | null;
   name: string;
   label: string;
   description: string | null;
@@ -128,4 +198,19 @@ export interface CustomFieldDefinition {
   isRequired: boolean;
   isAiExtracted: boolean;
   displayOrder: number;
+}
+
+// ============ SESSION CONTEXT ============
+
+export interface SessionContext {
+  user: {
+    id: string;
+    email: string;
+    name: string;
+  };
+  org: Organization;
+  membership: {
+    id: string;
+    role: Role;
+  };
 }

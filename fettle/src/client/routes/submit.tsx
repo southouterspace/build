@@ -1,8 +1,8 @@
 import { createFileRoute, useNavigate, Navigate } from "@tanstack/react-router";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "../lib/auth-client";
-import { requestsApi, tagsApi, customFieldsApi } from "../lib/api";
+import { requestsApi, tagsApi, customFieldsApi, inboxesApi } from "../lib/api";
 import type { CustomFieldDefinition } from "@shared/types";
 
 function DynamicField({
@@ -110,6 +110,7 @@ function SubmitPage() {
   const navigate = useNavigate();
   const { data: session, isPending: sessionPending } = useSession();
 
+  const [inboxId, setInboxId] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -119,21 +120,42 @@ function SubmitPage() {
   const [customFieldValues, setCustomFieldValues] = useState<Record<string, unknown>>({});
   const [error, setError] = useState("");
 
+  // Fetch inboxes
+  const { data: inboxesData } = useQuery({
+    queryKey: ["inboxes"],
+    queryFn: () => inboxesApi.list(),
+    enabled: !!session?.user,
+  });
+
+  // Auto-select default inbox
+  useEffect(() => {
+    if (inboxesData?.inboxes && !inboxId) {
+      const defaultInbox = inboxesData.inboxes.find((i) => i.isDefault);
+      if (defaultInbox) {
+        setInboxId(defaultInbox.id);
+      } else if (inboxesData.inboxes.length > 0) {
+        setInboxId(inboxesData.inboxes[0].id);
+      }
+    }
+  }, [inboxesData, inboxId]);
+
   const { data: tagsData } = useQuery({
     queryKey: ["tags"],
     queryFn: () => tagsApi.list(),
     enabled: !!session?.user,
   });
 
+  // Fetch custom fields for selected inbox
   const { data: customFieldsData } = useQuery({
-    queryKey: ["custom-fields"],
-    queryFn: () => customFieldsApi.list(),
-    enabled: !!session?.user,
+    queryKey: ["custom-fields", inboxId],
+    queryFn: () => customFieldsApi.list(inboxId || undefined),
+    enabled: !!session?.user && !!inboxId,
   });
 
   const submitMutation = useMutation({
     mutationFn: () =>
       requestsApi.create({
+        inboxId,
         title,
         description,
         category: category || null,
@@ -162,6 +184,7 @@ function SubmitPage() {
     return <Navigate to="/login" />;
   }
 
+  const inboxes = inboxesData?.inboxes || [];
   const tags = tagsData?.tags || [];
   const customFields = customFieldsData?.fields || [];
 
@@ -169,6 +192,10 @@ function SubmitPage() {
     e.preventDefault();
     setError("");
 
+    if (!inboxId) {
+      setError("Please select an inbox");
+      return;
+    }
     if (!title.trim()) {
       setError("Title is required");
       return;
@@ -203,6 +230,32 @@ function SubmitPage() {
           {error && (
             <div className="rounded-md bg-red-50 p-4">
               <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
+
+          {/* Inbox Selection */}
+          {inboxes.length > 1 && (
+            <div>
+              <label htmlFor="inbox" className="block text-sm font-medium text-gray-700">
+                Inbox <span className="text-red-500">*</span>
+              </label>
+              <select
+                id="inbox"
+                value={inboxId}
+                onChange={(e) => {
+                  setInboxId(e.target.value);
+                  setCustomFieldValues({}); // Reset custom fields when inbox changes
+                }}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              >
+                <option value="">Select inbox...</option>
+                {inboxes.map((inbox) => (
+                  <option key={inbox.id} value={inbox.id}>
+                    {inbox.name}
+                    {inbox.description && ` - ${inbox.description}`}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 

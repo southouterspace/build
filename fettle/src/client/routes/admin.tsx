@@ -2,11 +2,13 @@ import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useSession } from "../lib/auth-client";
-import { tagsApi, customFieldsApi } from "../lib/api";
+import { tagsApi, customFieldsApi, inboxesApi } from "../lib/api";
+import { useTenant } from "./__root";
 import type { FieldType } from "@shared/types";
 
 function AdminPage() {
   const { data: session, isPending: sessionPending } = useSession();
+  const { isAdmin, isLoading: tenantLoading } = useTenant();
   const queryClient = useQueryClient();
 
   // Tags state
@@ -22,6 +24,13 @@ function AdminPage() {
   const [fieldOptions, setFieldOptions] = useState("");
   const [fieldRequired, setFieldRequired] = useState(false);
   const [fieldAiExtracted, setFieldAiExtracted] = useState(true);
+  const [fieldInboxId, setFieldInboxId] = useState<string>("");
+
+  // Inbox state
+  const [showInboxForm, setShowInboxForm] = useState(false);
+  const [inboxName, setInboxName] = useState("");
+  const [inboxSlug, setInboxSlug] = useState("");
+  const [inboxDescription, setInboxDescription] = useState("");
 
   const { data: tagsData } = useQuery({
     queryKey: ["tags"],
@@ -32,6 +41,12 @@ function AdminPage() {
   const { data: fieldsData } = useQuery({
     queryKey: ["custom-fields"],
     queryFn: () => customFieldsApi.list(),
+    enabled: !!session?.user,
+  });
+
+  const { data: inboxesData } = useQuery({
+    queryKey: ["inboxes"],
+    queryFn: () => inboxesApi.list(),
     enabled: !!session?.user,
   });
 
@@ -54,13 +69,18 @@ function AdminPage() {
   const createFieldMutation = useMutation({
     mutationFn: () =>
       customFieldsApi.create({
+        inboxId: fieldInboxId || null,
         name: fieldName,
         label: fieldLabel,
         description: fieldDescription || undefined,
         fieldType,
-        options: fieldType === "select" || fieldType === "multi_select"
-          ? fieldOptions.split(",").map((o) => o.trim()).filter(Boolean)
-          : undefined,
+        options:
+          fieldType === "select" || fieldType === "multi_select"
+            ? fieldOptions
+                .split(",")
+                .map((o) => o.trim())
+                .filter(Boolean)
+            : undefined,
         isRequired: fieldRequired,
         isAiExtracted: fieldAiExtracted,
       }),
@@ -78,6 +98,27 @@ function AdminPage() {
     },
   });
 
+  const createInboxMutation = useMutation({
+    mutationFn: () =>
+      inboxesApi.create({
+        name: inboxName,
+        slug: inboxSlug,
+        description: inboxDescription || undefined,
+      }),
+    onSuccess: () => {
+      setShowInboxForm(false);
+      resetInboxForm();
+      queryClient.invalidateQueries({ queryKey: ["inboxes"] });
+    },
+  });
+
+  const deleteInboxMutation = useMutation({
+    mutationFn: (id: string) => inboxesApi.delete(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["inboxes"] });
+    },
+  });
+
   const resetFieldForm = () => {
     setFieldName("");
     setFieldLabel("");
@@ -86,9 +127,16 @@ function AdminPage() {
     setFieldOptions("");
     setFieldRequired(false);
     setFieldAiExtracted(true);
+    setFieldInboxId("");
   };
 
-  if (sessionPending) {
+  const resetInboxForm = () => {
+    setInboxName("");
+    setInboxSlug("");
+    setInboxDescription("");
+  };
+
+  if (sessionPending || tenantLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-gray-500">Loading...</div>
@@ -100,16 +148,156 @@ function AdminPage() {
     return <Navigate to="/login" />;
   }
 
-  if (session.user.role !== "admin") {
+  if (!isAdmin) {
     return <Navigate to="/requests" />;
   }
 
   const tags = tagsData?.tags || [];
   const fields = fieldsData?.fields || [];
+  const inboxes = inboxesData?.inboxes || [];
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-8">Admin Settings</h1>
+
+      {/* Inboxes Section */}
+      <div className="bg-white shadow sm:rounded-lg mb-8">
+        <div className="px-4 py-5 sm:px-6 border-b border-gray-200 flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-medium text-gray-900">Inboxes</h2>
+            <p className="mt-1 text-sm text-gray-500">
+              Each inbox has its own email address and can have custom fields.
+            </p>
+          </div>
+          <button
+            onClick={() => setShowInboxForm(true)}
+            className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+          >
+            Add Inbox
+          </button>
+        </div>
+        <div className="px-4 py-5 sm:px-6">
+          {inboxes.length === 0 ? (
+            <p className="text-sm text-gray-500">No inboxes yet.</p>
+          ) : (
+            <ul className="divide-y divide-gray-200">
+              {inboxes.map((inbox) => (
+                <li key={inbox.id} className="py-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">
+                      {inbox.name}
+                      {inbox.isDefault && (
+                        <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                          Default
+                        </span>
+                      )}
+                    </p>
+                    <p className="text-xs text-gray-500">{inbox.emailAddress}</p>
+                    {inbox.description && (
+                      <p className="text-xs text-gray-400 mt-1">{inbox.description}</p>
+                    )}
+                  </div>
+                  {!inbox.isDefault && inboxes.length > 1 && (
+                    <button
+                      onClick={() => deleteInboxMutation.mutate(inbox.id)}
+                      className="text-red-600 hover:text-red-800 text-sm"
+                    >
+                      Delete
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* Add Inbox Modal */}
+        {showInboxForm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">Add Inbox</h3>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  createInboxMutation.mutate();
+                }}
+                className="space-y-4"
+              >
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Name</label>
+                  <input
+                    type="text"
+                    value={inboxName}
+                    onChange={(e) => setInboxName(e.target.value)}
+                    placeholder="Product Requests"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Slug (for email address)
+                  </label>
+                  <input
+                    type="text"
+                    value={inboxSlug}
+                    onChange={(e) =>
+                      setInboxSlug(
+                        e.target.value
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")
+                          .replace(/[^a-z0-9-]/g, "")
+                      )
+                    }
+                    placeholder="product"
+                    pattern="^[a-z0-9-]+$"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">
+                    Email will be: {inboxSlug || "slug"}@yourorg.fettle.app
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Description (optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={inboxDescription}
+                    onChange={(e) => setInboxDescription(e.target.value)}
+                    placeholder="Requests for the product team"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div className="flex justify-end space-x-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowInboxForm(false);
+                      resetInboxForm();
+                    }}
+                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={createInboxMutation.isPending}
+                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
+                  >
+                    {createInboxMutation.isPending ? "Creating..." : "Create Inbox"}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Tags Section */}
       <div className="bg-white shadow sm:rounded-lg mb-8">
@@ -128,10 +316,7 @@ function AdminPage() {
                 style={{ backgroundColor: `${tag.color}20`, color: tag.color }}
               >
                 {tag.name}
-                <button
-                  onClick={() => deleteTagMutation.mutate(tag.id)}
-                  className="ml-2 hover:opacity-70"
-                >
+                <button onClick={() => deleteTagMutation.mutate(tag.id)} className="ml-2 hover:opacity-70">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
@@ -197,16 +382,21 @@ function AdminPage() {
               {fields.map((field) => (
                 <li key={field.id} className="py-4 flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{field.label}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {field.label}
+                      {field.inboxId && (
+                        <span className="ml-2 text-xs text-gray-400">
+                          (Inbox: {inboxes.find((i) => i.id === field.inboxId)?.name || "Unknown"})
+                        </span>
+                      )}
+                    </p>
                     <p className="text-xs text-gray-500">
                       {field.name} · {field.fieldType}
                       {field.isRequired && " · Required"}
                       {field.isAiExtracted && " · AI extracted"}
                     </p>
                     {field.options && (
-                      <p className="text-xs text-gray-400 mt-1">
-                        Options: {field.options.join(", ")}
-                      </p>
+                      <p className="text-xs text-gray-400 mt-1">Options: {field.options.join(", ")}</p>
                     )}
                   </div>
                   <button
@@ -235,9 +425,23 @@ function AdminPage() {
                 className="space-y-4"
               >
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Field Name (snake_case)
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700">Scope</label>
+                  <select
+                    value={fieldInboxId}
+                    onChange={(e) => setFieldInboxId(e.target.value)}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  >
+                    <option value="">All Inboxes (org-wide)</option>
+                    {inboxes.map((inbox) => (
+                      <option key={inbox.id} value={inbox.id}>
+                        {inbox.name} only
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Field Name (snake_case)</label>
                   <input
                     type="text"
                     value={fieldName}
@@ -291,9 +495,7 @@ function AdminPage() {
 
                 {(fieldType === "select" || fieldType === "multi_select") && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                      Options (comma-separated)
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700">Options (comma-separated)</label>
                     <input
                       type="text"
                       value={fieldOptions}

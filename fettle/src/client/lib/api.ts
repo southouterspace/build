@@ -7,6 +7,13 @@ import type {
   UpdateCustomFieldInput,
   CreateCommentInput,
   CustomFieldDefinition,
+  Organization,
+  Inbox,
+  OrgMembership,
+  CreateInboxInput,
+  UpdateInboxInput,
+  InviteMemberInput,
+  Role,
 } from "@shared/types";
 
 const API_BASE = "/api";
@@ -29,6 +36,86 @@ async function fetchApi<T>(path: string, options?: RequestInit): Promise<T> {
   return response.json();
 }
 
+// Organization & Tenant Context
+export const orgApi = {
+  get: () => fetchApi<{ org: Organization; membership: OrgMembership }>("/admin/org"),
+
+  update: (data: { name?: string; slug?: string }) =>
+    fetchApi<{ org: Organization }>("/admin/org", {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    }),
+
+  create: (data: { name: string; slug: string }) =>
+    fetchApi<{ org: Organization }>("/admin/orgs", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+};
+
+// Members
+export const membersApi = {
+  list: () =>
+    fetchApi<{
+      members: {
+        id: string;
+        userId: string;
+        role: Role;
+        createdAt: string;
+        user: { id: string; name: string; email: string };
+      }[];
+    }>("/admin/members"),
+
+  invite: (data: InviteMemberInput) =>
+    fetchApi<{
+      member: {
+        id: string;
+        userId: string;
+        role: Role;
+        createdAt: string;
+        user: { id: string; name: string; email: string };
+      };
+    }>("/admin/members", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+
+  updateRole: (id: string, role: Role) =>
+    fetchApi<{ member: OrgMembership }>(`/admin/members/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ role }),
+    }),
+
+  remove: (id: string) =>
+    fetchApi<{ success: boolean }>(`/admin/members/${id}`, {
+      method: "DELETE",
+    }),
+};
+
+// Inboxes
+export const inboxesApi = {
+  list: () => fetchApi<{ inboxes: (Inbox & { emailAddress: string })[] }>("/inboxes"),
+
+  get: (id: string) => fetchApi<{ inbox: Inbox & { emailAddress: string } }>(`/inboxes/${id}`),
+
+  create: (data: CreateInboxInput) =>
+    fetchApi<{ inbox: Inbox }>("/inboxes", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+
+  update: (id: string, data: UpdateInboxInput) =>
+    fetchApi<{ inbox: Inbox }>(`/inboxes/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    }),
+
+  delete: (id: string) =>
+    fetchApi<{ success: boolean }>(`/inboxes/${id}`, {
+      method: "DELETE",
+    }),
+};
+
 // Requests
 export const requestsApi = {
   list: (params?: {
@@ -37,6 +124,7 @@ export const requestsApi = {
     tag?: string;
     search?: string;
     sort?: string;
+    inboxId?: string;
     limit?: number;
     offset?: number;
   }) => {
@@ -105,7 +193,10 @@ export const tagsApi = {
 
 // Custom Fields
 export const customFieldsApi = {
-  list: () => fetchApi<{ fields: CustomFieldDefinition[] }>("/custom-fields"),
+  list: (inboxId?: string) => {
+    const query = inboxId ? `?inboxId=${inboxId}` : "";
+    return fetchApi<{ fields: CustomFieldDefinition[] }>(`/custom-fields${query}`);
+  },
 
   create: (data: CreateCustomFieldInput) =>
     fetchApi<{ field: CustomFieldDefinition }>("/custom-fields", {
