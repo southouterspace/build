@@ -16,6 +16,7 @@ import {
   type ChartConfig
 } from '@/components/ui/chart'
 import { calculateYAxisDomain } from '@/lib/chart-utils'
+import { getColumnColor } from '@/lib/chart-colors'
 import type { ParsedData, ChartSettings } from '@/types'
 
 interface BarChartProps {
@@ -24,21 +25,13 @@ interface BarChartProps {
   isMobile?: boolean
 }
 
-const CHART_COLORS = [
-  'var(--chart-1)',
-  'var(--chart-2)',
-  'var(--chart-3)',
-  'var(--chart-4)',
-  'var(--chart-5)'
-]
-
 export function BarChartComponent({ data, settings, isMobile = false }: BarChartProps) {
-  const { variant, categoryColumn, valueColumns } = settings
+  const { variant, categoryColumn, valueColumns, columnColors } = settings
 
   const chartConfig: ChartConfig = valueColumns.reduce((acc, col, index) => {
     acc[col] = {
       label: col,
-      color: CHART_COLORS[index % CHART_COLORS.length]
+      color: getColumnColor(col, index, columnColors)
     }
     return acc
   }, {} as ChartConfig)
@@ -103,12 +96,14 @@ export function BarChartComponent({ data, settings, isMobile = false }: BarChart
             return [4, 4, 0, 0]
           }
 
+          const color = getColumnColor(col, index, columnColors)
+
           return (
             <Bar
               key={col}
               dataKey={col}
               stackId={isStacked ? 'stack' : undefined}
-              fill={CHART_COLORS[index % CHART_COLORS.length]}
+              fill={color}
               radius={getRadius()}
             >
               {showLabels && (

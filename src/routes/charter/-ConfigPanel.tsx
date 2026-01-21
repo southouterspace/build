@@ -1,9 +1,17 @@
+import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
+import { Field, FieldLabel, FieldDescription } from '@/components/ui/field'
 import { Select } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle
+} from '@/components/ui/drawer'
+import { ColorPicker, DEFAULT_CHART_COLORS } from '@/components/ui/color-picker'
 import { RotateCcw } from 'lucide-react'
-import type { ChartType, ChartVariant, ChartSettings, ParsedData } from '@/types'
+import type { ChartType, ChartVariant, ChartSettings, ParsedData, DisplayMode } from '@/types'
 import { CHART_VARIANTS, CHART_TYPE_REQUIREMENTS } from '@/types'
 
 interface ConfigPanelProps {
@@ -21,8 +29,11 @@ export function ConfigPanel({
   onReset,
   variant: panelVariant = 'default'
 }: ConfigPanelProps) {
-  const { type, variant, categoryColumn, valueColumns } = settings
+  const { type, variant, categoryColumn, valueColumns, columnColors, displayMode } = settings
   const { numericColumns, categoricalColumns, headers } = data
+
+  const [colorDrawerOpen, setColorDrawerOpen] = useState(false)
+  const [selectedColumn, setSelectedColumn] = useState<string | null>(null)
 
   // Check if data has negative values in numeric columns
   const hasNegativeValues = numericColumns.some((col) =>
@@ -60,6 +71,11 @@ export function ConfigPanel({
     label: v.charAt(0).toUpperCase() + v.slice(1)
   }))
 
+  const displayModeOptions = [
+    { value: 'combined', label: 'Combined Chart' },
+    { value: 'cards', label: 'Individual Cards' }
+  ]
+
   const categoryOptions = [...categoricalColumns, ...headers].filter(
     (col, index, self) => self.indexOf(col) === index
   ).map((col) => ({ value: col, label: col }))
@@ -82,20 +98,39 @@ export function ConfigPanel({
     onSettingsChange({ ...settings, valueColumns: newValueColumns })
   }
 
+  const getColumnColor = (column: string, index: number): string => {
+    return columnColors[column] || DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
+  }
+
+  const handleColorChange = (column: string, color: string) => {
+    onSettingsChange({
+      ...settings,
+      columnColors: {
+        ...columnColors,
+        [column]: color
+      }
+    })
+  }
+
+  const openColorPicker = (column: string) => {
+    setSelectedColumn(column)
+    setColorDrawerOpen(true)
+  }
+
   const configContent = (
     <>
-      <div className="space-y-2">
-        <Label htmlFor="chart-type">Chart Type</Label>
+      <Field>
+        <FieldLabel htmlFor="chart-type">Chart Type</FieldLabel>
         <Select
           id="chart-type"
           value={type}
           onChange={(e) => handleTypeChange(e.target.value as ChartType)}
           options={chartTypeOptions}
         />
-      </div>
+      </Field>
 
-      <div className="space-y-2">
-        <Label htmlFor="chart-variant">Variant</Label>
+      <Field>
+        <FieldLabel htmlFor="chart-variant">Variant</FieldLabel>
         <Select
           id="chart-variant"
           value={variant}
@@ -107,10 +142,25 @@ export function ConfigPanel({
           }
           options={variantOptions}
         />
-      </div>
+      </Field>
 
-      <div className="space-y-2">
-        <Label htmlFor="category-column">Category (X-Axis)</Label>
+      <Field>
+        <FieldLabel htmlFor="display-mode">Display Mode</FieldLabel>
+        <Select
+          id="display-mode"
+          value={displayMode}
+          onChange={(e) =>
+            onSettingsChange({
+              ...settings,
+              displayMode: e.target.value as DisplayMode
+            })
+          }
+          options={displayModeOptions}
+        />
+      </Field>
+
+      <Field>
+        <FieldLabel htmlFor="category-column">Category (X-Axis)</FieldLabel>
         <Select
           id="category-column"
           value={categoryColumn}
@@ -119,27 +169,54 @@ export function ConfigPanel({
           }
           options={categoryOptions}
         />
-      </div>
+      </Field>
 
-      <div className="space-y-3">
-        <Label>Value Columns</Label>
-        <div className="space-y-2">
-          {numericColumns.map((col) => (
-            <label
-              key={col}
-              className="flex cursor-pointer items-center gap-2 rounded-md border p-2 hover:bg-accent"
-            >
-              <input
-                type="checkbox"
-                checked={valueColumns.includes(col)}
-                onChange={() => handleValueColumnToggle(col)}
-                className="h-4 w-4 rounded border-gray-300"
-              />
-              <span className="text-sm">{col}</span>
-            </label>
-          ))}
+      <Field>
+        <FieldLabel>Value Columns</FieldLabel>
+        <FieldDescription>
+          Select columns to display and click the color to customize
+        </FieldDescription>
+        <div className="space-y-2 pt-1">
+          {numericColumns.map((col, index) => {
+            const isSelected = valueColumns.includes(col)
+            const columnIndex = valueColumns.indexOf(col)
+            const color = getColumnColor(col, columnIndex >= 0 ? columnIndex : index)
+
+            return (
+              <div
+                key={col}
+                className="flex items-center gap-2 rounded-md border p-2 hover:bg-accent"
+              >
+                <label className="flex flex-1 cursor-pointer items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={isSelected}
+                    onChange={() => handleValueColumnToggle(col)}
+                    className="h-4 w-4 rounded border-gray-300"
+                  />
+                  <span className="text-sm">{col}</span>
+                </label>
+                {isSelected && (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 p-0"
+                    onClick={() => openColorPicker(col)}
+                    title={`Change color for ${col}`}
+                    aria-label={`Change color for ${col}`}
+                  >
+                    <span
+                      className="h-5 w-5 rounded-full border border-border"
+                      style={{ backgroundColor: color }}
+                    />
+                  </Button>
+                )}
+              </div>
+            )
+          })}
         </div>
-      </div>
+      </Field>
 
       <div className="rounded-md bg-muted p-3">
         <p className="text-xs text-muted-foreground">
@@ -152,6 +229,25 @@ export function ConfigPanel({
           {categoricalColumns.length} categorical columns
         </p>
       </div>
+
+      <Drawer open={colorDrawerOpen} onOpenChange={setColorDrawerOpen}>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Choose Color for "{selectedColumn}"</DrawerTitle>
+          </DrawerHeader>
+          <div className="px-4 pb-6">
+            {selectedColumn && (
+              <ColorPicker
+                value={columnColors[selectedColumn]}
+                onValueChange={(color) => {
+                  handleColorChange(selectedColumn, color)
+                  setColorDrawerOpen(false)
+                }}
+              />
+            )}
+          </div>
+        </DrawerContent>
+      </Drawer>
     </>
   )
 

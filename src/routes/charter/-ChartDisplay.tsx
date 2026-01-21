@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Settings2 } from 'lucide-react'
 import {
@@ -7,7 +7,8 @@ import {
   LineChartComponent,
   PieChartComponent,
   RadarChartComponent,
-  RadialChartComponent
+  RadialChartComponent,
+  ChartCard
 } from '@/components/charts'
 import type { ParsedData, ChartSettings } from '@/types'
 
@@ -19,7 +20,7 @@ interface ChartDisplayProps {
 }
 
 export function ChartDisplay({ data, settings, isMobile = false, onSettingsClick }: ChartDisplayProps) {
-  const { type, variant } = settings
+  const { type, displayMode, valueColumns } = settings
 
   const renderChart = () => {
     switch (type) {
@@ -40,16 +41,44 @@ export function ChartDisplay({ data, settings, isMobile = false, onSettingsClick
     }
   }
 
+  // Cards mode: render individual cards for each value column
+  if (displayMode === 'cards') {
+    return (
+      <div className="flex h-full flex-col gap-4">
+        {onSettingsClick && (
+          <div className="flex justify-end">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onSettingsClick}
+              aria-label="Open chart settings"
+            >
+              <Settings2 style={{ width: 20, height: 20 }} />
+            </Button>
+          </div>
+        )}
+        <div className="grid flex-1 gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          {valueColumns.map((column, index) => (
+            <ChartCard
+              key={column}
+              data={data}
+              settings={settings}
+              column={column}
+              columnIndex={index}
+            />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // Combined mode: render single chart with all columns
   const chartTitle = `${type.charAt(0).toUpperCase() + type.slice(1)} Chart`
-  const chartDescription = `Variant: ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
 
   return (
     <Card className="flex h-full flex-col">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <div>
-          <CardTitle>{chartTitle}</CardTitle>
-          <CardDescription>{chartDescription}</CardDescription>
-        </div>
+        <CardTitle>{chartTitle}</CardTitle>
         {onSettingsClick && (
           <Button
             variant="ghost"

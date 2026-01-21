@@ -15,6 +15,7 @@ import {
   type ChartConfig
 } from '@/components/ui/chart'
 import { calculateYAxisDomain } from '@/lib/chart-utils'
+import { getColumnColor } from '@/lib/chart-colors'
 import type { ChartVariant, ParsedData, ChartSettings } from '@/types'
 
 interface AreaChartProps {
@@ -23,21 +24,13 @@ interface AreaChartProps {
   isMobile?: boolean
 }
 
-const CHART_COLORS = [
-  'var(--chart-1)',
-  'var(--chart-2)',
-  'var(--chart-3)',
-  'var(--chart-4)',
-  'var(--chart-5)'
-]
-
 export function AreaChartComponent({ data, settings, isMobile = false }: AreaChartProps) {
-  const { variant, categoryColumn, valueColumns } = settings
+  const { variant, categoryColumn, valueColumns, columnColors } = settings
 
   const chartConfig: ChartConfig = valueColumns.reduce((acc, col, index) => {
     acc[col] = {
       label: col,
-      color: CHART_COLORS[index % CHART_COLORS.length]
+      color: getColumnColor(col, index, columnColors)
     }
     return acc
   }, {} as ChartConfig)
@@ -100,17 +93,20 @@ export function AreaChartComponent({ data, settings, isMobile = false }: AreaCha
         {showLegend && (
           <ChartLegend content={<ChartLegendContent />} />
         )}
-        {valueColumns.map((col, index) => (
-          <Area
-            key={col}
-            type={getCurveType(variant)}
-            dataKey={col}
-            stackId={getStackId(variant)}
-            fill={CHART_COLORS[index % CHART_COLORS.length]}
-            stroke={CHART_COLORS[index % CHART_COLORS.length]}
-            fillOpacity={getFillOpacity()}
-          />
-        ))}
+        {valueColumns.map((col, index) => {
+          const color = getColumnColor(col, index, columnColors)
+          return (
+            <Area
+              key={col}
+              type={getCurveType(variant)}
+              dataKey={col}
+              stackId={getStackId(variant)}
+              fill={color}
+              stroke={color}
+              fillOpacity={getFillOpacity()}
+            />
+          )
+        })}
       </RechartsAreaChart>
     </ChartContainer>
   )
