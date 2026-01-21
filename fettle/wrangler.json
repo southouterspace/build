@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fettle",
+  "compatibility_date": "2025-01-01",
+  "main": "src/server/index.ts",
+  "assets": {
+    "directory": "dist/client",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "fettle-db",
+      "database_id": "local"
+    }
+  ],
+  "vars": {
+    "BETTER_AUTH_SECRET": "",
+    "BETTER_AUTH_URL": "http://localhost:5173",
+    "RESEND_API_KEY": "",
+    "ANTHROPIC_API_KEY": ""
+  }
+}
