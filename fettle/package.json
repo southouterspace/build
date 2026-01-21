@@ -23,6 +23,7 @@
     "better-auth": "^1.4.17",
     "drizzle-orm": "^0.45.1",
     "hono": "^4.11.4",
+    "postal-mime": "^2.7.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "resend": "^6.8.0",

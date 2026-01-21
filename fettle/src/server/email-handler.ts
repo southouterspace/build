@@ -1,80 +1,65 @@
-import { Hono } from "hono";
-import { Resend } from "resend";
-import type { Env } from "../lib/auth";
-import type { Database } from "../lib/db";
-import { createDb } from "../lib/db";
-import { createAiClient, extractRequestFromEmail } from "../lib/ai";
-import { resolveInboxFromEmail, getFieldsForInbox } from "../lib/tenant";
+import PostalMime from "postal-mime";
+import type { Env } from "./lib/auth";
+import { createDb } from "./lib/db";
+import { createAiClient, extractRequestFromEmail } from "./lib/ai";
+import { resolveInboxFromEmail, getFieldsForInbox } from "./lib/tenant";
 import * as schema from "@shared/schema";
 import { eq, and, inArray } from "drizzle-orm";
 import type { CustomFieldDefinition } from "@shared/types";
+import { Resend } from "resend";
 
-type Variables = {
-  db: Database;
-};
+// Cloudflare Email Message type
+interface EmailMessage {
+  readonly from: string;
+  readonly to: string;
+  readonly raw: ReadableStream<Uint8Array>;
+  readonly rawSize: number;
+  readonly headers: Headers;
+  setReject(reason: string): void;
+  forward(to: string, headers?: Headers): Promise<void>;
+}
 
-export const webhooksRoutes = new Hono<{ Bindings: Env; Variables: Variables }>();
+/**
+ * Cloudflare Email Worker handler
+ * Receives emails and processes them into requests
+ */
+export async function handleEmail(message: EmailMessage, env: Env): Promise<void> {
+  const db = createDb(env.DB);
+  const appDomain = env.APP_DOMAIN || "fettle.app";
 
-// Resend inbound email webhook
-webhooksRoutes.post("/inbound", async (c) => {
-  const db = createDb(c.env.DB);
-
-  // Parse webhook payload
-  const payload = await c.req.json<{
-    type: string;
-    data: {
-      id: string;
-      from: string;
-      to: string[];
-      subject: string;
-      created_at: string;
-    };
-  }>();
-
-  if (payload.type !== "email.received") {
-    return c.json({ received: true });
-  }
-
-  const { id: emailId, from, to, subject } = payload.data;
-
-  // Resolve org and inbox from email address
-  const toAddress = to[0]; // Primary recipient
-  const appDomain = c.env.APP_DOMAIN || "fettle.app";
-  const resolved = await resolveInboxFromEmail(db, toAddress, appDomain);
+  // Parse the email address to determine org/inbox
+  const resolved = await resolveInboxFromEmail(db, message.to, appDomain);
 
   if (!resolved) {
-    console.error(`Could not resolve inbox for email: ${toAddress}`);
-    return c.json({ error: "Unknown recipient" }, 400);
+    console.error(`Could not resolve inbox for email: ${message.to}`);
+    message.setReject(`Unknown recipient: ${message.to}`);
+    return;
   }
 
   const { org, inbox } = resolved;
 
-  // Fetch full email body from Resend API
-  const resend = new Resend(c.env.RESEND_API_KEY);
+  // Parse the raw email content
+  const parser = new PostalMime();
+  const rawEmail = await new Response(message.raw).arrayBuffer();
+  const parsed = await parser.parse(rawEmail);
 
-  let emailBody = "";
-  try {
-    const response = await fetch(`https://api.resend.com/emails/${emailId}`, {
-      headers: {
-        Authorization: `Bearer ${c.env.RESEND_API_KEY}`,
-      },
-    });
+  const from = message.from;
+  const subject = parsed.subject || "(no subject)";
+  const emailBody = parsed.text || parsed.html || "";
 
-    if (response.ok) {
-      const emailData = (await response.json()) as { text?: string; html?: string };
-      emailBody = emailData.text || emailData.html || "";
-    }
-  } catch (error) {
-    console.error("Failed to fetch email body:", error);
-    emailBody = `Subject: ${subject}`;
-  }
+  // Generate a unique ID for this email
+  const emailId = `cf-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 
   // Get custom field definitions for AI extraction (org-wide + inbox-specific)
   const customFieldDefs = await getFieldsForInbox(db, org.id, inbox.id);
 
   // Extract request data using AI
-  const aiClient = createAiClient(c.env.ANTHROPIC_API_KEY);
-  const extracted = await extractRequestFromEmail(aiClient, { from, subject, body: emailBody }, customFieldDefs as CustomFieldDefinition[]);
+  const aiClient = createAiClient(env.ANTHROPIC_API_KEY);
+  const extracted = await extractRequestFromEmail(
+    aiClient,
+    { from, subject, body: emailBody },
+    customFieldDefs as CustomFieldDefinition[]
+  );
 
   // Create the request
   const [request] = await db
@@ -158,19 +143,24 @@ webhooksRoutes.post("/inbound", async (c) => {
     .limit(1);
 
   if (existingMember) {
-    await db.update(schema.requests).set({ requesterUserId: existingMember.userId }).where(eq(schema.requests.id, request.id));
+    await db
+      .update(schema.requests)
+      .set({ requesterUserId: existingMember.userId })
+      .where(eq(schema.requests.id, request.id));
   }
 
-  // Send confirmation email
-  try {
-    const fromEmail = `${inbox.slug}@${org.slug}.${appDomain}`;
-    const trackingUrl = `${c.env.BETTER_AUTH_URL}/${org.slug}/requests/${request.id}`;
+  // Send confirmation email via Resend
+  if (env.RESEND_API_KEY) {
+    try {
+      const resend = new Resend(env.RESEND_API_KEY);
+      const fromEmail = `${inbox.slug}@${org.slug}.${appDomain}`;
+      const trackingUrl = `${env.BETTER_AUTH_URL}/requests/${request.id}`;
 
-    await resend.emails.send({
-      from: fromEmail,
-      to: from,
-      subject: `Re: ${subject}`,
-      text: `Thank you for your request. We've received it and assigned it ID: ${request.id}.
+      await resend.emails.send({
+        from: fromEmail,
+        to: from,
+        subject: `Re: ${subject}`,
+        text: `Thank you for your request. We've received it and assigned it ID: ${request.id}.
 
 Title: ${extracted.title}
 Category: ${extracted.category || "Uncategorized"}
@@ -179,10 +169,11 @@ You can track your request at: ${trackingUrl}
 
 Best regards,
 ${org.name}`,
-    });
-  } catch (error) {
-    console.error("Failed to send confirmation email:", error);
+      });
+    } catch (error) {
+      console.error("Failed to send confirmation email:", error);
+    }
   }
 
-  return c.json({ received: true, requestId: request.id });
-});
+  console.log(`Processed email from ${from} -> request ${request.id} in ${org.slug}/${inbox.slug}`);
+}

@@ -10,8 +10,8 @@ import { requestsRoutes } from "./routes/requests";
 import { tagsRoutes } from "./routes/tags";
 import { customFieldsRoutes } from "./routes/custom-fields";
 import { inboxesRoutes } from "./routes/inboxes";
-import { webhooksRoutes } from "./routes/webhooks";
 import { adminRoutes } from "./routes/admin";
+import { handleEmail } from "./email-handler";
 
 // Extend Hono context with our types
 export type Variables = {
@@ -49,10 +49,13 @@ app.route("/api/requests", requestsRoutes);
 app.route("/api/tags", tagsRoutes);
 app.route("/api/custom-fields", customFieldsRoutes);
 app.route("/api/inboxes", inboxesRoutes);
-app.route("/api/webhooks", webhooksRoutes);
 app.route("/api/admin", adminRoutes);
 
 // Health check
 app.get("/api/health", (c) => c.json({ status: "ok" }));
 
-export default app;
+// Export both fetch and email handlers for Cloudflare Workers
+export default {
+  fetch: app.fetch,
+  email: handleEmail,
+};
