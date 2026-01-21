@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/drawer'
 import { ColorPicker, DEFAULT_CHART_COLORS } from '@/components/ui/color-picker'
 import { RotateCcw } from 'lucide-react'
-import type { ChartType, ChartVariant, ChartSettings, ParsedData } from '@/types'
+import type { ChartType, ChartVariant, ChartSettings, ParsedData, DisplayMode } from '@/types'
 import { CHART_VARIANTS, CHART_TYPE_REQUIREMENTS } from '@/types'
 
 interface ConfigPanelProps {
@@ -29,7 +29,7 @@ export function ConfigPanel({
   onReset,
   variant: panelVariant = 'default'
 }: ConfigPanelProps) {
-  const { type, variant, categoryColumn, valueColumns, columnColors } = settings
+  const { type, variant, categoryColumn, valueColumns, columnColors, displayMode } = settings
   const { numericColumns, categoricalColumns, headers } = data
 
   const [colorDrawerOpen, setColorDrawerOpen] = useState(false)
@@ -70,6 +70,11 @@ export function ConfigPanel({
     value: v,
     label: v.charAt(0).toUpperCase() + v.slice(1)
   }))
+
+  const displayModeOptions = [
+    { value: 'combined', label: 'Combined Chart' },
+    { value: 'cards', label: 'Individual Cards' }
+  ]
 
   const categoryOptions = [...categoricalColumns, ...headers].filter(
     (col, index, self) => self.indexOf(col) === index
@@ -136,6 +141,21 @@ export function ConfigPanel({
             })
           }
           options={variantOptions}
+        />
+      </Field>
+
+      <Field>
+        <FieldLabel htmlFor="display-mode">Display Mode</FieldLabel>
+        <Select
+          id="display-mode"
+          value={displayMode}
+          onChange={(e) =>
+            onSettingsChange({
+              ...settings,
+              displayMode: e.target.value as DisplayMode
+            })
+          }
+          options={displayModeOptions}
         />
       </Field>
 

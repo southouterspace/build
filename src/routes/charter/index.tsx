@@ -22,7 +22,8 @@ const DEFAULT_SETTINGS: ChartSettings = {
   variant: 'default',
   categoryColumn: '',
   valueColumns: [],
-  columnColors: {}
+  columnColors: {},
+  displayMode: 'combined'
 }
 
 function useMediaQuery(query: string): boolean {
@@ -93,7 +94,8 @@ function CharterPage() {
         variant: 'default',
         categoryColumn,
         valueColumns,
-        columnColors: {}
+        columnColors: {},
+        displayMode: 'combined'
       }
 
       setParsedData(data)

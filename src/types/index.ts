@@ -26,12 +26,15 @@ export interface ParsedData {
   categoricalColumns: string[]
 }
 
+export type DisplayMode = 'combined' | 'cards'
+
 export interface ChartSettings {
   type: ChartType
   variant: ChartVariant
   categoryColumn: string
   valueColumns: string[]
   columnColors: Record<string, string>
+  displayMode: DisplayMode
 }
 
 export interface AppState {
