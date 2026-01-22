@@ -7,7 +7,7 @@ export const Route = createFileRoute('/shift/')({
 
 function ShiftPage() {
   return (
-    <div className="fixed inset-0 bg-black">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-black">
       <CubeScene />
     </div>
   )

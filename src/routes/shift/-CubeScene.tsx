@@ -13,7 +13,11 @@ export function CubeScene() {
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 75 }}
-      style={{ background: 'transparent' }}
+      style={{
+        width: '100%',
+        height: '100%',
+        touchAction: 'none',
+      }}
     >
       <Cube autoRotate={autoRotate} />
       <OrbitControls
