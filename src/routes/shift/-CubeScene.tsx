@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { TrackballControls } from '@react-three/drei'
 import { Cube } from './-Cube'
 
 export function CubeScene() {
@@ -20,12 +20,12 @@ export function CubeScene() {
       }}
     >
       <Cube autoRotate={autoRotate} />
-      <OrbitControls
-        enablePan={false}
-        enableDamping
-        dampingFactor={0.05}
+      <TrackballControls
+        noPan
+        noZoom={false}
         minDistance={2.5}
         maxDistance={10}
+        dynamicDampingFactor={0.05}
         onStart={handleInteractionStart}
       />
     </Canvas>

@@ -1,25 +1,29 @@
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import type { Mesh } from 'three'
+import { Edges } from '@react-three/drei'
+import type { Group } from 'three'
 
 interface CubeProps {
   autoRotate: boolean
 }
 
 export function Cube({ autoRotate }: CubeProps) {
-  const meshRef = useRef<Mesh>(null)
+  const groupRef = useRef<Group>(null)
 
   useFrame((_, delta) => {
-    if (meshRef.current && autoRotate) {
-      meshRef.current.rotation.x += delta * 0.2
-      meshRef.current.rotation.y += delta * 0.3
+    if (groupRef.current && autoRotate) {
+      groupRef.current.rotation.x += delta * 0.2
+      groupRef.current.rotation.y += delta * 0.3
     }
   })
 
   return (
-    <mesh ref={meshRef}>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshBasicMaterial wireframe color="#ffffff" />
-    </mesh>
+    <group ref={groupRef}>
+      <mesh>
+        <boxGeometry args={[2, 2, 2]} />
+        <meshBasicMaterial transparent opacity={0} />
+        <Edges color="#ffffff" />
+      </mesh>
+    </group>
   )
 }
