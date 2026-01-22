@@ -19,6 +19,9 @@ export function CubeScene() {
         touchAction: 'none',
       }}
     >
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
+      <directionalLight position={[-5, -5, -5]} intensity={0.5} />
       <Cube autoRotate={autoRotate} />
       <TrackballControls
         noPan
