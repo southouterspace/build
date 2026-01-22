@@ -31,7 +31,8 @@ export function Cube({ autoRotate }: CubeProps) {
       if (isSolid) {
         return new MeshStandardMaterial({ color: '#ffffff' })
       }
-      return new MeshStandardMaterial({ transparent: true, opacity: 0 })
+      // Small opacity so raycasting still detects the face for taps
+      return new MeshStandardMaterial({ transparent: true, opacity: 0.001 })
     })
   }, [solidFaces])
 
