@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShiftIndexRouteImport } from './routes/shift/index'
 import { Route as CharterIndexRouteImport } from './routes/charter/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShiftIndexRoute = ShiftIndexRouteImport.update({
+  id: '/shift/',
+  path: '/shift/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CharterIndexRoute = CharterIndexRouteImport.update({
@@ -26,27 +32,31 @@ const CharterIndexRoute = CharterIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/charter/': typeof CharterIndexRoute
+  '/shift/': typeof ShiftIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/charter': typeof CharterIndexRoute
+  '/shift': typeof ShiftIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/charter/': typeof CharterIndexRoute
+  '/shift/': typeof ShiftIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/charter/'
+  fullPaths: '/' | '/charter/' | '/shift/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/charter'
-  id: '__root__' | '/' | '/charter/'
+  to: '/' | '/charter' | '/shift'
+  id: '__root__' | '/' | '/charter/' | '/shift/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CharterIndexRoute: typeof CharterIndexRoute
+  ShiftIndexRoute: typeof ShiftIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shift/': {
+      id: '/shift/'
+      path: '/shift'
+      fullPath: '/shift/'
+      preLoaderRoute: typeof ShiftIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/charter/': {
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CharterIndexRoute: CharterIndexRoute,
+  ShiftIndexRoute: ShiftIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
