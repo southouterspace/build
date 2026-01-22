@@ -25,6 +25,17 @@ function HomePage() {
             bar, line, radar, and radial charts with multiple variants.
           </p>
         </Link>
+        <Link
+          to="/shift"
+          className="group rounded-lg border bg-card p-6 transition-colors hover:border-primary"
+        >
+          <h2 className="text-xl font-semibold group-hover:text-primary">
+            Shift
+          </h2>
+          <p className="mt-2 text-muted-foreground">
+            A 3-D fidget experience.
+          </p>
+        </Link>
       </div>
     </div>
   )
