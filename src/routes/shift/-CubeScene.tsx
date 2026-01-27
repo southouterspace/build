@@ -22,7 +22,7 @@ export function CubeScene() {
       <ambientLight intensity={0.3} />
       <directionalLight position={[5, 5, 5]} intensity={1} />
       <directionalLight position={[-5, -5, -5]} intensity={0.5} />
-      <Cube autoRotate={autoRotate} />
+      <Cube autoRotate={autoRotate} onInteraction={handleInteractionStart} />
       <TrackballControls
         noPan
         noZoom={false}
