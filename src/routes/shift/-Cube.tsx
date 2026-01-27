@@ -2,6 +2,7 @@ import { useRef, useState, useMemo, useEffect, useCallback } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import {
   BoxGeometry,
+  DoubleSide,
   EdgesGeometry,
   LineBasicMaterial,
   LineSegments,
@@ -49,12 +50,16 @@ export function Cube({ autoRotate, onInteraction }: CubeProps) {
   const materials = useMemo(() => {
     return solidFaces.map((isSolid) => {
       if (isSolid) {
-        return new MeshStandardMaterial({ color: '#ffffff' })
+        return new MeshStandardMaterial({
+          color: '#ffffff',
+          side: DoubleSide,
+        })
       }
       return new MeshStandardMaterial({
         transparent: true,
         opacity: 0,
         depthWrite: false,
+        side: DoubleSide,
       })
     })
   }, [solidFaces])
