@@ -38,7 +38,7 @@ tenant's Google Business Profile penalized and to put both of you in front of a 
   violation. The FTC has already brought suppression cases (Fashion Nova, $4.2M, 2022). A
   platform that ships gating as a feature is a far more attractive target than any one plumber.
 - **Incentivized reviews are separately prohibited by Google.** This constrains the referral
-  program in §16 — rewards must attach to *referred customers*, never to *reviews left*.
+  program in §17 — rewards must attach to *referred customers*, never to *reviews left*.
 
 I want to be precise about what's a policy violation versus a legal question: the Google policy
 part is unambiguous and is enough on its own to kill the feature. The FTC exposure is real but
@@ -251,8 +251,30 @@ them. It's also sticky in a way nothing else on this list is.
   address," "who is this." Route inbound SMS into a per-tenant thread in the CRM. This is not
   optional at Tier 1+; an unanswered reply is worse than no text.
 
-**Email** goes through Resend (already the pattern in `fettle`). Per-tenant verified sending
-domains on paid tiers, platform domain with visible "via Chotter" on free.
+### Email: Resend
+
+Confirmed as the email rail, matching the pattern already in `fettle/`.
+
+- **React Email for templates.** Components and design tokens shared with the web app, so the
+  invoice email and the pay page don't drift apart. One place to change the logo treatment.
+- **Per-tenant verified sending domains** on paid tiers, provisioned programmatically through
+  Resend's domain API with the required DNS records surfaced in onboarding. Free tier sends from
+  the platform domain with a visible "via Chotter."
+- **Separate the reputations of invoices and nudges.** Send transactional invoices and review
+  follow-ups from *different subdomains*. A review nudge is the message most likely to draw
+  complaints; an invoice is the message that absolutely must land in the inbox. Don't let one
+  burn the other. Same principle as the SMS consent scopes above.
+- **Idempotency keys on send**, so a Queue retry doesn't email the same invoice twice. Cheap to
+  add, embarrassing to omit.
+- **Webhooks into one message model.** Resend delivery/bounce/complaint events and Telnyx SMS
+  status events both write `messages.status`. The office sees "delivered," "bounced," "opened
+  link" in one timeline regardless of channel.
+- **Bounces and complaints feed the consent record.** A hard bounce or spam complaint revokes the
+  email channel for that contact automatically, and Resend's suppression list stays in sync with
+  `consents`.
+- **Reply-to is the tenant's real address**, so a customer replying to an invoice reaches a human.
+  On paid tiers, route inbound through Cloudflare Email Workers — already the pattern in
+  `fettle/` — into the same CRM thread as inbound SMS.
 
 ---
 
@@ -367,7 +389,8 @@ bar of signal. Design constraints follow from that, not from the desktop dashboa
 
 - **Offline-first drafts.** Basements and crawlspaces have no signal. Invoice drafts persist
   locally and sync when connectivity returns. This is the difference between software techs
-  tolerate and software techs abandon.
+  tolerate and software techs abandon, and it's the main thing pulling toward a native client
+  (§13) — though the web app should use the same sync design first.
 - **Service library:** name, description, default price, taxable flag, category, estimated
   duration, internal cost (for margin reporting), and optional good/better/best tiers. Tiered
   pricing is standard practice in HVAC and plumbing and its absence reads as amateur.
@@ -380,10 +403,11 @@ bar of signal. Design constraints follow from that, not from the desktop dashboa
   dispute evidence later.
 - **The QR handoff** (§3): tech shows a code, customer pays on their own phone. Make this the
   hero of the in-person flow.
-- **What you cannot do on the web:** Tap to Pay on iPhone/Android requires Stripe's native
-  Terminal SDK. A pure Cloudflare Workers + React app can't offer it without shipping a native
-  wrapper. Worth knowing before someone promises it to a customer — and worth noting that the
-  QR handoff is better for review capture anyway, so this is a deferral rather than a gap.
+- **Tap to Pay needs the native client.** It requires Stripe's Terminal SDK, so a pure Workers +
+  React app can't offer it — which is one of the arguments for the Expo app in §13. Note the
+  tension resolved there: the QR handoff is *better* for review capture, because it lands the
+  customer on their own phone with their own Google account. Tap to Pay is for the card-in-hand
+  and no-smartphone cases, not the default.
 - **Touch targets, contrast, numeric keypads, minimal typing.** Assume gloves and glare.
 
 ---
@@ -547,7 +571,139 @@ half the logins will happen on a phone.
 
 ---
 
-## 13. Security and privacy
+## 13. Native app and offline sync (Expo + SQLite)
+
+### What native actually buys you
+
+Four things the web app cannot do, in order of how much they matter:
+
+1. **Real offline.** Basements, crawlspaces, mechanical rooms, rural service areas. This is the
+   reason the app exists; everything else is a bonus.
+2. **Tap to Pay on iPhone and Android** via Stripe Terminal's React Native SDK — which resolves
+   the limitation flagged in §8. Needs a development build with the config plugin, an Apple
+   entitlement obtained through Stripe, and iPhone XS or later. **Start the entitlement request
+   early**; it has lead time and it is not something you can compress at the end.
+3. **A deterministic share sheet.** Tier 0 messaging (§5) works on the web through
+   `navigator.share`, but behavior varies by browser and body prefill is unreliable. Native makes
+   the free tier's delivery mechanism dependable — which matters, because it *is* the free tier.
+4. **Push notifications.** Payment received, review posted, customer replied. The office cares
+   about this considerably more than the techs do.
+
+Plus the smaller wins: camera with capture-time compression, native signature gestures, phone
+contacts import, geo-stamped photos, property auto-detect by location, biometric app lock.
+
+### The scope trap, said plainly
+
+**A native app is not a stretch goal on top of a web app. It is a second product surface with its
+own build pipeline, release cadence, store review, and QA matrix.** Carrying it as "MVP if we have
+time" is the standard way an MVP slips a quarter.
+
+Two ways to have it without that outcome:
+
+**Recommended — build the sync protocol in Phase 0, ship the app in Phase 1.** The web field UX
+uses the same outbox / mutation-queue design against IndexedDB. That gets you most of the offline
+behavior *and*, more importantly, proves the protocol. The Expo app then becomes a client of
+something already working rather than the thing that has to invent it. This costs almost nothing
+extra, because offline drafts were already on the list (§8).
+
+**If native must be in the MVP, cut its scope to one flow.** The app does the field job and
+nothing else: create invoice → add items from the library → photos → signature → generate link →
+share. No dashboard, no reporting, no settings, no CRM browsing, no tenant admin. All of that
+stays on the web where it already works. A field-only app is a genuinely achievable MVP addition;
+a native port of the product is not.
+
+**The customer-facing pay page stays web, always.** No homeowner is installing an app to pay a
+plumbing invoice. The native app is a tech-and-office tool. That single boundary halves the scope.
+
+### Sync architecture
+
+**Payments are never offline.** Stripe requires connectivity. What works offline is everything up
+to the link: drafts, service library, contacts, properties, photos, signatures. Say so explicitly
+in the UI — a tech who believes they collected payment in a basement and didn't is a support
+incident with money attached.
+
+> Stripe Terminal does have an offline card-present mode that stores encrypted payments and
+> forwards them later. It shifts decline liability to the business and carries amount caps.
+> **Don't enable it in the MVP.** An SMB eating a declined $9,000 transaction they thought was
+> collected is not a recoverable relationship.
+
+**Server-authoritative outbox, not bidirectional sync.** Not CRDTs, not last-write-wins across
+whole records. Two techs don't co-edit one invoice, ownership is naturally partitioned by
+assignment, and money must have exactly one authority.
+
+- **Down (pull):** service library, tenant branding, tax rates, the tech's own invoices, and
+  contacts/properties *scoped to their route and recent history* — not the entire customer book,
+  which can be tens of thousands of rows. Cursor pull on an `updated_at` watermark, with tombstone
+  rows so deletes propagate.
+- **Up (push):** an `outbox` table of intent-level mutations (`invoice.create`, `line.add`,
+  `line.set_qty`, `media.attach`), each carrying a client-generated ULID and an idempotency key.
+  Replay in order; the server is authoritative and its response overwrites local state.
+
+**Client-generated IDs, server-generated numbers.** Records get client-side ULIDs so nothing needs
+reconciling on sync. But the human-facing sequential invoice *number* must be server-assigned or
+two offline devices will collide. Offline drafts display "Draft" and get numbered on first sync.
+
+**Photos do not go in SQLite.** Write to the filesystem, queue an upload record alongside the
+mutation, upload to R2 through a presigned URL when connectivity returns, resumable with retry.
+Compress at capture — a tech will take twelve photos of one water heater and none of them need to
+be 4032px wide.
+
+| Conflict | Resolution |
+|---|---|
+| Tech edits a draft offline; the office edited it too | Field-level merge with a visible "the office changed this" marker on the affected fields |
+| Invoice was paid while the tech was offline | Server wins absolutely. Discard local edits to amounts with a clear message. An offline edit must never alter a paid invoice's total |
+| Service price changed since the line was added | Nothing to resolve — `invoice_lines` snapshots `unit_price` at add time rather than pointing at the live library |
+| Contact created offline duplicates a server contact | Dedupe on phone/email at sync with a merge prompt, never a silent merge |
+| Outbox mutation fails permanently (validation, deleted parent) | Surface it as a reviewable item in the app. Never drop it silently |
+
+### Stack specifics
+
+- **Drizzle with the `expo-sqlite` driver.** Same ORM and authoring style as the Worker's Postgres
+  schema — different dialect, shared TypeScript types through the shared package. `useLiveQuery`
+  gives reactive local reads, which is what makes an offline UI feel instant rather than merely
+  functional.
+- **Encryption at rest.** The local database holds names, addresses, phone numbers, and gate codes
+  on a phone that lives in a truck. The MVP can rest on platform full-disk encryption plus a
+  biometric app lock; if that isn't enough for a franchise customer, the upgrade path is
+  `op-sqlite` with SQLCipher — so don't couple the data layer tightly to `expo-sqlite`'s API.
+- **Monorepo on Bun workspaces:** `apps/web`, `apps/native`, `apps/api`, `packages/shared`. Genuinely
+  shared: Zod schemas, invoice and tax math, TanStack Query hooks, the API client, design tokens.
+  Not shared: routers (TanStack Router vs. Expo Router) and components. **NativeWind** gets you the
+  same Tailwind token vocabulary on both sides without pretending the components are portable.
+- **EAS Build + EAS Update.** JS changes ship over the air; anything touching native config — the
+  Terminal plugin, entitlements, permissions — needs a store submission. Plan the release cadence
+  around that split, and keep anything likely to change fast on the JS side of the line.
+
+### The App Store trap
+
+**Apple takes no cut of payments for real-world goods and services** — collecting for a water
+heater install is explicitly outside the in-app purchase rules. But **selling the Chotter
+subscription inside the app would require IAP** at 15–30%.
+
+**Sell the subscription on the web only.** The app links out to billing or simply displays plan
+status. Getting this wrong means either a rejected build or handing Apple a cut of your entire
+revenue line.
+
+Worth pre-empting too: the app asks customers for *Google* reviews. Keep that visually and
+verbally distinct from an App Store review prompt, in the UI and in the store screenshots.
+
+### Tap to Pay versus the QR handoff
+
+These are in tension, and the tension should be resolved deliberately rather than by whichever
+gets built first.
+
+The QR handoff (§3) puts the customer on **their own phone, signed into their own Google account**
+— the only place a review can actually happen. Tap to Pay puts the card on the *tech's* device:
+lower friction for the payment, higher friction for everything after it.
+
+**Default to the QR handoff.** Use Tap to Pay for the cases it's genuinely for — the customer
+wants to hand over a physical card, has no smartphone, or is struggling with the link. And when
+Tap to Pay is used, the review ask has to be delivered as a follow-up to the customer's own
+device; it cannot appear on the tech's screen and count for anything.
+
+---
+
+## 14. Security and privacy
 
 - **PCI: stay SAQ-A.** Stripe Elements in an iframe, card data never touches your origin. This is
   non-negotiable and shapes the whole payment page.
@@ -568,7 +724,7 @@ half the logins will happen on a phone.
 
 ---
 
-## 14. Edge cases that will otherwise become support tickets
+## 15. Edge cases that will otherwise become support tickets
 
 | Case | Handling |
 |---|---|
@@ -587,7 +743,7 @@ half the logins will happen on a phone.
 
 ---
 
-## 15. Metrics
+## 16. Metrics
 
 **The two headline numbers**, which are also the sales pitch:
 
@@ -604,7 +760,7 @@ governor cap, ACH adoption rate on large invoices, tip attach rate, mode A/B del
 
 ---
 
-## 16. Referrals — design now, ship later
+## 17. Referrals — design now, ship later
 
 The mechanics are straightforward. The compliance and payout questions are not.
 
@@ -625,27 +781,34 @@ The mechanics are straightforward. The compliance and payout questions are not.
 
 ---
 
-## 17. Suggested phasing
+## 18. Suggested phasing
 
 **Phase 0 — the loop works (~6 weeks).** Tenants + auth, service library, invoice creation,
 payment links, Stripe Connect Express, card + Apple/Google Pay, post-payment review ask with
-GBP-or-manual Place ID, email delivery via Resend, share-sheet SMS handoff, basic contacts.
+GBP-or-manual Place ID, email delivery via Resend, share-sheet SMS handoff, basic contacts,
+**and the outbox sync protocol running on the web against IndexedDB** (§13) so the native app
+inherits a proven design rather than inventing one.
 *Goal: a real plumber sends a real invoice and gets a real review.*
+
+*If the native app is held as an MVP stretch goal, it enters here scoped to the field flow only —
+create, itemize, photograph, sign, share — with everything else staying on the web (§13).*
 
 **Phase 1 — it's a business.** Telnyx Tier 1 messaging with 10DLC, dunning + review follow-ups,
 velocity governor, GBP OAuth + attribution, transaction CSV + payout reconciliation, properties
-model, consent capture, field capture forms.
+model, consent capture, field capture forms, **the Expo app on SQLite** if it didn't land in
+Phase 0.
 
 **Phase 2 — it's differentiated.** ACH + Financial Connections, BNPL, deposits and progress
 payments, tips, dedicated numbers, custom domains via Cloudflare for SaaS, inbound SMS threads,
-mode A/B experimentation, dispute evidence packets, offline drafts.
+mode A/B experimentation, dispute evidence packets, **Tap to Pay** (entitlement permitting),
+push notifications.
 
 **Phase 3 — it's sticky.** Recurring service plans and memberships, referrals, QBO API sync,
 multi-location and franchise roles, tech leaderboards, reputation reporting.
 
 ---
 
-## 18. Open questions
+## 19. Open questions
 
 1. **Vertical focus for v1.** HVAC/plumbing/electrical (high ticket, ACH and financing matter,
    fewer jobs) vs. cleaning/lawn/pest (low ticket, high frequency, recurring plans matter). These
@@ -662,3 +825,10 @@ multi-location and franchise roles, tech leaderboards, reputation reporting.
    just read.
 6. **GBP API access approval** — start the application now (§4). The attribution feature is
    blocked on Google's timeline, not yours.
+7. **Is the native app in the MVP, or Phase 1?** §13 recommends shipping the sync protocol in
+   Phase 0 and the app in Phase 1. If it has to be in the MVP, the scope has to shrink to the
+   field flow alone — that's the trade, and it should be made explicitly rather than discovered
+   in week five.
+8. **Who owns the mobile release loop?** Store review, TestFlight distribution to pilot
+   customers, and the OTA-versus-submission split are ongoing operational work, not a one-time
+   setup cost. Worth naming an owner before the first build.
