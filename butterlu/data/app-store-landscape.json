@@ -1,0 +1,195 @@
+{
+  "provenance": "Shopify App Store category 'Custom products' (apps.shopify.com/categories/selling-products-custom-products), page 1, scraped 2026-08-22. Ratings/review counts as displayed.",
+  "summary": {
+    "appsOnPageOne": 27,
+    "totalReviewsRepresented": 28694,
+    "appsWith1000PlusReviews": 11,
+    "appsWithFreeTier": 23,
+    "ratingRange": [
+      3.7,
+      5
+    ]
+  },
+  "apps": [
+    {
+      "name": "Globo Product Options, Variant",
+      "rating": 4.9,
+      "reviews": 4823,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Easify Custom Product Options",
+      "rating": 4.9,
+      "reviews": 2930,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Color Swatch King: Variants",
+      "rating": 5,
+      "reviews": 2836,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Infinite Options: Product opt",
+      "rating": 4.7,
+      "reviews": 2434,
+      "pricing": "Free trial available"
+    },
+    {
+      "name": "OPTIS Product Options, Variant",
+      "rating": 4.9,
+      "reviews": 2267,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "GLO Color Swatch Variant Image",
+      "rating": 5,
+      "reviews": 1715,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Aris Product Options, Variants",
+      "rating": 4.9,
+      "reviews": 1620,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Zepto Product Personalizer",
+      "rating": 4.9,
+      "reviews": 1311,
+      "pricing": "Free trial available"
+    },
+    {
+      "name": "Hulk Product Options",
+      "rating": 4.8,
+      "reviews": 1147,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "PC - Custom Product Options",
+      "rating": 4.7,
+      "reviews": 1142,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Kiwi Size Chart & Recommender",
+      "rating": 4.8,
+      "reviews": 1107,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Qikify Custom Product Options",
+      "rating": 4.9,
+      "reviews": 913,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "MP Size Chart & Size Guide",
+      "rating": 5,
+      "reviews": 822,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "SA Variant Image Automator",
+      "rating": 4.8,
+      "reviews": 692,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Variant Option Product Options",
+      "rating": 4.7,
+      "reviews": 605,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "King Product Options, Variants",
+      "rating": 4.7,
+      "reviews": 456,
+      "pricing": "Free"
+    },
+    {
+      "name": "Rubik Variant Images & Swatch",
+      "rating": 5,
+      "reviews": 432,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Ymq Product Options, Variants",
+      "rating": 5,
+      "reviews": 379,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Customily Product Personalizer",
+      "rating": 4.8,
+      "reviews": 245,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Variant Image Wizard + Swatch",
+      "rating": 4.7,
+      "reviews": 213,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Upload-Lift Image Upload",
+      "rating": 4.9,
+      "reviews": 150,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Textbox & Textfield by Textify",
+      "rating": 4.8,
+      "reviews": 135,
+      "pricing": "Free trial available"
+    },
+    {
+      "name": "File Upload & Image - Uploadly",
+      "rating": 4.8,
+      "reviews": 130,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "BF Size Chart & Size Guide",
+      "rating": 4.7,
+      "reviews": 128,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Shopify Combined Listings",
+      "rating": 3.7,
+      "reviews": 35,
+      "pricing": "Free"
+    },
+    {
+      "name": "Options Price Calculator",
+      "rating": 5,
+      "reviews": 22,
+      "pricing": "Free plan available"
+    },
+    {
+      "name": "Charm Bar",
+      "rating": 4.6,
+      "reviews": 5,
+      "pricing": "Free trial available"
+    }
+  ],
+  "livePreviewIsTableStakes": [
+    "LPO Live Product Options",
+    "Live Preview Options by Webyze",
+    "Zepto Product Personalizer",
+    "Globo Product Options, Variant",
+    "Customily Product Personalizer",
+    "Inkybay - Product Personalizer"
+  ],
+  "etsyImportApps": {
+    "note": "All import Etsy listings 1:1. None consolidate a flooded Etsy catalog into a Shopify product/variant/collection model - they are the upstream cause of the mess documented in 01-store-facts.md.",
+    "apps": [
+      "Easy:Import - Etsy Import",
+      "SP Etsy Importer & Sync",
+      "Salestio - eBay & Etsy Import",
+      "Etsy Integration by shopUpz ($14.99/mo unlimited)",
+      "Etsy Integration - InfoShore"
+    ]
+  }
+}

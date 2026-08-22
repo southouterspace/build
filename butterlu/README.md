@@ -16,6 +16,7 @@ write test (see `01-store-facts.md`).
 | `04-collections-taxonomy.md` | Workstream: rebuild the discovery layer. |
 | `05-seo-program.md` | Workstream: SEO recon + drafting pipeline. |
 | `06-personalization.md` | Workstream: capture customer personalization. **Revenue-blocking.** |
+| `07-app-productization.md` | Market research on selling the customizer as a Shopify App Store app. |
 
 ## Data files
 
@@ -24,6 +25,7 @@ write test (see `01-store-facts.md`).
 | `data/catalog.json` | All 243 products. Full metadata, `descriptionHtml` length + SHA-256 (HTML itself excluded). |
 | `data/clusters.json` | 26 duplicate/near-duplicate clusters. **Advisory only** — see the warning below. |
 | `data/keyword-assets.json` | Etsy-era keyword map mined from archived listings, plus the variant/collection defect lists. |
+| `data/app-store-landscape.json` | Shopify App Store *Custom products* category: 27 competitors, ratings, review counts, pricing. |
 
 ## Ground rules for any agent working from these docs
 
@@ -41,3 +43,7 @@ write test (see `01-store-facts.md`).
    were checked. Re-derive rather than inherit.
 5. **Counts in these docs are exact**, computed from `data/catalog.json`, not
    estimated. If you change the catalog, regenerate the data files.
+6. **Corrections are recorded in place, not silently edited.** Where earlier
+   advice was disproven by later evidence, the doc says so and points at the
+   data. See the correction block in `06-personalization.md` and the top of
+   `07-app-productization.md`.

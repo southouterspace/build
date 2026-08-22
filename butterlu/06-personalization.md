@@ -59,20 +59,25 @@ code. Reasonable if the owner wants to configure fields without a developer.
 
 ### Rung 3 — build it
 
-Justified **only** for something the apps do not do. The candidate that
-genuinely differentiates against PersonalizationMall and Amazon:
+> **CORRECTED 2026-08-22.** An earlier version of this doc claimed live preview
+> was a gap in the market and "the only reason to justify custom build cost."
+> **That was wrong.** Live preview is the category standard — Zepto, Globo,
+> Customily, LPO and Webyze all lead their App Store listings with it, and 23
+> of 27 apps in the category have a free tier. See `07-app-productization.md`
+> for the data.
 
-> **Live preview** — render the customer's actual text, in the chosen font, on
-> the chosen background colour, on a frame mockup, before they add to cart.
+For Butterlu specifically, **buying beats building**. Globo (4,823 reviews) and
+Zepto (1,311 reviews) both ship live preview on a free or low-cost plan. There
+is no Butterlu-internal justification for custom build cost.
 
-That is a real competitive advantage for a made-to-order shop and the only
-reason to justify custom build cost.
+Custom build is justified only by a *product* thesis — selling the result — and
+`07-app-productization.md` argues the general-purpose options category is the
+wrong place to enter. Read that before committing engineering time.
 
-Architecture: a **Shopify theme app extension** (an app block the merchant
-drops into the product page template), not a theme hack. This survives theme
-updates and is the supported modern path.
+If something is built anyway, the shape is a **Shopify theme app extension**
+(an app block the merchant drops into the product page template), not a theme
+hack — it survives theme updates and is the supported path. It would need:
 
-The preview component would need:
 - the canonical colour palette (blocked on `03-variant-normalization.md` —
   today the palette is defined six different ways and its values are bare
   numbers `1`..`41` with no colour mapping)
