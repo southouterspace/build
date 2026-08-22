@@ -1,0 +1,2624 @@
+{
+  "generatedFor": "da0e1b-6c.myshopify.com (www.butterlu.com)",
+  "method": {
+    "relation_1_identical_title": "title trimmed + internal whitespace collapsed, byte-identical",
+    "relation_2_near_title": "case-normalised word-level Levenshtein distance <= 2 (non-identical)",
+    "relation_3_identical_description": "identical SHA-256 of descriptionHtml",
+    "clustering": "connected components over the union of relations 1-3",
+    "survivor_ranking": "ACTIVE > DRAFT > ARCHIVED, then most collections, then fewest variants, then title-quality score (unique-word ratio, en-dash bonus, ALL-CAPS penalty), then handle"
+  },
+  "disposition": "ADVISORY ONLY. Nothing was archived, merged, redirected or modified.",
+  "clusterCount": 26,
+  "productsInAnyCluster": 188,
+  "productsNotInAnyCluster": 55,
+  "clusters": [
+    {
+      "clusterId": "C01",
+      "size": 53,
+      "relations": [
+        "identical_description",
+        "identical_title",
+        "near_title_<=2_words"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 35,
+      "sharedDescriptionSha256": "9be8ab0ea7cb593b0b760ac3b0276ecd3eae507140878a65acc2163c12785bd9",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2778,
+      "sharedDescriptionExcerpt": "Personalized Godparent Picture Frame – Custom Baptism, Dedication, or First Communion Gift ✝️💖 A godparent is more than just a title—it’s a lifelong promise of love, faith, and guidance. This personal",
+      "statusBreakdown": {
+        "ACTIVE": 2,
+        "DRAFT": 1,
+        "ARCHIVED": 50
+      },
+      "members": [
+        {
+          "handle": "will-you-be-my-godfather-frame-02766",
+          "title": "Will You Be My Godfather Frame – Godfather Proposal Gift, I Love My Godfather Picture Frame, Baptism Gift, Personalized Godparent Frame",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": "2025-04-15T18:46:30Z"
+        },
+        {
+          "handle": "godfathers-are-a-blessing-gift-for-92874",
+          "title": "Godfathers Are A Blessing  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift   Gift Godfather",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": "2025-04-15T18:48:44Z"
+        },
+        {
+          "handle": "baptism-frame-baptism-gift-baptism-98553",
+          "title": "Baptism Frame, Baptism Gift, Baptism Picture Frame, Personalized Baptism Gift, Custom Baptism Keepsake, Christening Gift for Baby",
+          "status": "DRAFT",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmothers-are-special-because-they-are-77440",
+          "title": "Godmothers Are Special Because They Are Chosen  Personalized Gift For Godmother  Baptism Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-37753",
+          "title": "Gift For Godfather  Godfather Picture Frame  Personalized Baptism Frame  Godfathers Are A Blessing Fathers Day Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-proposal-gift-will-you-be-my-30745",
+          "title": "Godfather Proposal Gift  Will You Be My Godfather?   I Love My Godfather  Godfather Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "will-you-be-my-godfather-godfather-96852",
+          "title": "Will You Be My Godfather?  Godfather Proposal Gift  I Love My Godfather  Godfather Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "baptism-gift-for-godfather-godfather-88748",
+          "title": "Baptism Gift For Godfather  Godfather Picture Frame  Personalized Baptism Frame  Godfathers Are A Blessing Fathers Day Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "personalized-gift-for-godfather-28667",
+          "title": "Personalized  Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift for Godfathers Are A Blessing Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "personalized-gift-for-godfather-33747",
+          "title": "Personalized  Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift for Godfathers Are A Blessing Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "will-you-be-my-godparents-godparents-94180",
+          "title": "Will You Be My Godparents  Godparents Proposal Gift  I Love My Godparents  Godparents Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-07251",
+          "title": "Gift for Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift for Godfathers Are A Blessing Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-17366",
+          "title": "Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift for Godfathers Are A Blessing Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-69022",
+          "title": "Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift for Godfathers Are A Blessing Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "personalized-baptism-gift-for-godparents-56113",
+          "title": "Personalized Baptism Gift For Godparents Godparents Picture Frame  Personalized Baptism Frame  Godparents Are A Blessing Baptism Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-gift-godfathers-are-a-blessing-63691",
+          "title": "Godfather Gift  Godfathers Are A Blessing Picture Frame  Personalized Frame  Baptism Gift for Godfathers Godparents I Love My Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godparents-godparents-picture-44719",
+          "title": "Gift for Godparents  Godparents Picture Frame  Personalized Frame Baptism Gift Godparents Are A Blessing From Godchild Godson Goddaughter",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-baptism-dedication-keepsake-76891",
+          "title": "Godparents Baptism Dedication Keepsake Gift Godparents Personalized Gift For Godparents From Godchild For Godmother Godfather 4x6 Personal",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-proposal-godfather-picture-28824",
+          "title": "Godfather Proposal  Godfather Picture Frame  Personalized Frame Baptism Gift  Godfathers Are A Blessing   Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfathers-are-a-blessing-gift-for-13476",
+          "title": "Godfathers Are A Blessing  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift  Fathers Day Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfathers-are-a-blessing-gift-for-21463",
+          "title": "Godfathers Are A Blessing  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift  Fathers Day Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfathers-are-a-blessing-gift-for-39506",
+          "title": "Godfathers Are A Blessing  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift  Fathers Day Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfathers-are-a-blessing-gift-for-62397",
+          "title": "Godfathers Are A Blessing  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift  Fathers Day Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparent-gifts-keepsake-gift-from-86324",
+          "title": "Godparent Gifts Keepsake Gift From Godchild Godparents Personalized Gift For Godparents From Godchild For Godmother Godfather 4x6 Personal",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-proposal-gift-will-you-be-my-54899",
+          "title": "Godfather Proposal Gift  Will You Be My Godfather?   I Love My Godfather  Godfather Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfathers-are-a-blessing-gift-for-66612",
+          "title": "Godfathers Are A Blessing  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift   Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-09184",
+          "title": "Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift  Godfathers Are A Blessing  Fathers Day Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-25735",
+          "title": "Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift  Godfathers Are A Blessing  Fathers Day Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-53040",
+          "title": "Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift  Godfathers Are A Blessing  Fathers Day Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-65293",
+          "title": "Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift  Godfathers Are A Blessing  Fathers Day Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-godfather-picture-83265",
+          "title": "Gift for Godfather  Godfather Picture Frame  Personalized Frame Baptism Gift  Godfathers Are A Blessing  Fathers Day Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-are-a-blessing-gift-for-47521",
+          "title": "Godparents Are A Blessing  Gift For Godparents  Godparents Picture Frame  Personalized Frame  Baptism Gift   Gift Godparents",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-personalized-keepsake-gift-87008",
+          "title": "Godparents Personalized Keepsake Gift Godparents Personalized Gift For Godparents From Godchild Godmother Godfather 4x6 Personalized Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "christian-gifts-baptism-gift-godfather-80820",
+          "title": "Christian Gifts  Baptism Gift  Godfather Gift  Uncle Gift  Gift For Godfather  Godfather Picture Frame | Personalized Frame |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-personalized-godfather-12504",
+          "title": "Gift for Godfather Personalized Godfather Picture Frame Personalized Frame Baptism Gift Godfathers Are A Blessing Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-personalized-godfather-13523",
+          "title": "Gift for Godfather Personalized Godfather Picture Frame Personalized Frame Baptism Gift Godfathers Are A Blessing Gift for Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-picture-frames-4x6-gift-for-57335",
+          "title": "Godfather Picture Frames 4x6  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift  Fathers Day Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-gift-gift-for-godfather-57583",
+          "title": "Godfather Gift  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift  Fathers Day Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-gift-uncle-gift-gift-for-56225",
+          "title": "Godfather Gift  Uncle Gift  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Uncle Promoted to Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-gift-uncle-gift-gift-for-59715",
+          "title": "Godfather Gift Uncle Gift Gift For Godfather Godfather Picture Frame Personalized Frame Uncle Promoted to Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-gift-uncle-gift-gift-for-73106",
+          "title": "Godfather Gift  Uncle Gift  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Uncle Promoted to Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-gift-i-love-my-godfather-gift-60769",
+          "title": "Godfather Gift I Love My Godfather  Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift   Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-gift-godparents-personalized-90678",
+          "title": "Godparents Gift Godparents Personalized Baptism Communion Gift  Personalized Baptism Gift  Gift From Godchild",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-frame-baptism-gift-for-31569",
+          "title": "Godfather Frame  Baptism Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift  Godparents  Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-frame-baptism-gift-for-82064",
+          "title": "Godfather Frame  Baptism Gift For Godfather  Godfather Picture Frame  Personalized Frame  Baptism Gift  Fathers Day Gift Godfather",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-frame-baptism-gift-for-21415",
+          "title": "Godparents Frame  Baptism Gift For Godparents  Godparents Picture Frame  Personalized Frame  Baptism Gift  Godparents  Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-frame-baptism-gift-for-42083",
+          "title": "Godparents Frame  Baptism Gift For Godparents  Godparents Picture Frame  Personalized Frame  Baptism Gift  Godparents  Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-frame-baptism-gift-for-65681",
+          "title": "Godparents Frame  Baptism Gift For Godparents  Godparents Picture Frame  Personalized Frame  Baptism Gift  Godparents  Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-frame-baptism-gift-for-72252",
+          "title": "Godparents Frame  Baptism Gift For Godparents  Godparents Picture Frame  Personalized Frame  Baptism Gift  Godparents  Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "uncle-brother-godfather-gift-only-the-93079",
+          "title": "Uncle Brother Godfather Gift  Only The Best Brothers Get Promoted To Godfather  Godfather Personalized Picture Frame Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godfather-proposal-gift-will-you-be-my-61376",
+          "title": "Godfather Proposal  Gift  Will You Be My Godfather?  Godfather Gift  I Love My Godfather Godfathers Are A Blessing",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-i-love-my-godmother-68891",
+          "title": "Godmother Gift  I Love My Godmother   Gift for Godmother  Godparents Frame  Godmother From Godchild Personalized Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godfather-personalized-39255",
+          "title": "Gift for Godfather  Personalized Godfather Gift For Baptism  Godparents Frame  Godmother From Godchild Personalized Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "9be8ab0ea7cb",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "will-you-be-my-godfather-frame-02766",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 41 variants (cluster range 41-84). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C02",
+      "size": 20,
+      "relations": [
+        "identical_description",
+        "identical_title",
+        "near_title_<=2_words"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 17,
+      "sharedDescriptionSha256": null,
+      "distinctDescriptions": 4,
+      "sharedDescriptionLength": null,
+      "sharedDescriptionExcerpt": null,
+      "statusBreakdown": {
+        "ACTIVE": 7,
+        "ARCHIVED": 13
+      },
+      "members": [
+        {
+          "handle": "birthday-gift-for-great-grandma-49865",
+          "title": "Birthday Gift For Great Grandma  Personalized Gift For Great Grandma  Gift From Grandchild  I Love My Great Grandma  4x6 Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "8de510cbaef2",
+          "publishedAt": "2025-04-15T18:47:30Z"
+        },
+        {
+          "handle": "thank-you-for-raising-the-woman-of-my-77714",
+          "title": "Thank You For Raising The Woman Of My Dreams  Wedding Thank You Gift For Mother Of The Bride Father Of The Bride Parents Of The Bride Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "wedding-thank-you-frames"
+          ],
+          "descriptionHtmlSha256": "8de510cbaef2",
+          "publishedAt": "2025-05-13T00:51:32Z"
+        },
+        {
+          "handle": "gigi-grandma-gg-gift-gigi-frame-gift-50911",
+          "title": "Gigi Grandma GG Gift  Gigi Frame  Gift for Grandma   Gift For Grandma  Personalized Picture Frame Grandma Personalized Gift",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "8de510cbaef2",
+          "publishedAt": "2025-05-13T00:46:19Z"
+        },
+        {
+          "handle": "personalized-great-grandma-gift-custom-06763",
+          "title": "Personalized Great Grandma Gift Custom Gift For Great Grandma Great Grandma Picture Frame Personalized Picture Frame Great Grandma",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "edef97603dda",
+          "publishedAt": "2025-05-13T00:45:03Z"
+        },
+        {
+          "handle": "birthday-gift-for-gg-gigi-grandma-gg-gift-62795",
+          "title": "Birthday Gift For GG Gigi Grandma GG Gift Gigi Frame Gift for Grandma Gift For Grandma Personalized Picture Frame Grandma Personalized Gift",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "8de510cbaef2",
+          "publishedAt": "2025-05-13T00:44:24Z"
+        },
+        {
+          "handle": "gift-for-great-grandma-personalized-gift-43378",
+          "title": "Gift For Great Grandma  Personalized Gift For Great Grandma  Gift From Grandchild  I Love My Great Grandma  4x6 Frame",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "edef97603dda",
+          "publishedAt": "2025-05-13T00:49:44Z"
+        },
+        {
+          "handle": "grandma-gift-grandma-and-me-frame-gift-44080",
+          "title": "Grandma Gift  Grandma and Me Frame  Gift for Grandma   Grandma Gift  Personalized Picture Frame Grandma Personalized Gift",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "8de510cbaef2",
+          "publishedAt": "2025-05-13T00:45:58Z"
+        },
+        {
+          "handle": "godmother-birthday-gift-godmothers-are-a-13833",
+          "title": "Godmother Birthday Gift Godmothers Are A Blessing Christian Baptism Gifts Gift For Godmother Godmother Picture Frame Personalized Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "edef97603dda",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godmother-birthday-gift-14445",
+          "title": "Gift For Godmother Birthday Gift Godmothers Are A Blessing Christian Baptism Gifts Gift For Godmother Godmother Picture Frame Personalized",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "edef97603dda",
+          "publishedAt": null
+        },
+        {
+          "handle": "birthday-gift-godmother-godmothers-are-a-48017",
+          "title": "Birthday Gift Godmother  Godmothers Are A Blessing  Gift For Godmother  Godmother Picture Frame  Personalized Frame  Baptism Gift |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "20afd0dc1895",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-godmother-godmothers-are-a-blessing-85731",
+          "title": "Gift Godmother  Godmothers Are A Blessing  Gift For Godmother  Godmother Picture Frame  Personalized Frame  Baptism Gift |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "efdfa63ebe07",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmothers-are-a-blessing-44417",
+          "title": "Godmother Gift  Godmothers Are A Blessing  Gift For Godmother  Godmother Picture Frame  Personalized Frame  Baptism Gift |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "8de510cbaef2",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmothers-are-a-blessing-88538",
+          "title": "Godmother Gift  Godmothers Are A Blessing  Gift For Godmother  Godmother Picture Frame  Personalized Frame  Baptism Gift |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "edef97603dda",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godmother-godmothers-are-a-04202",
+          "title": "Gift For Godmother  Godmothers Are A Blessing  Gift For Godmother  Godmother Picture Frame  Personalized Frame  Baptism Gift |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "efdfa63ebe07",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godmother-godmothers-are-a-08316",
+          "title": "Gift For Godmother  Godmothers Are A Blessing  Gift For Godmother  Godmother Picture Frame  Personalized Frame  Baptism Gift |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "8de510cbaef2",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godmother-godmothers-are-a-60193",
+          "title": "Gift For Godmother  Godmothers Are A Blessing  Gift For Godmother  Godmother Picture Frame  Personalized Frame  Baptism Gift |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "20afd0dc1895",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godmother-godmothers-are-a-21721",
+          "title": "Gift For Godmother  Godmothers Are A Blessing  Gift For Godmother  Godmother Picture Frame  Personalized Frame  Baptism Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "8de510cbaef2",
+          "publishedAt": null
+        },
+        {
+          "handle": "catholic-godmother-gift-godmother-gift-76451",
+          "title": "Catholic Godmother Gift Godmother Gift Godmothers Are A Blessing  Gift For Godmother Godmother Picture Frame Personalized Frame Baptism Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "edef97603dda",
+          "publishedAt": null
+        },
+        {
+          "handle": "will-you-be-my-godmother-frame-36079",
+          "title": "Will You Be My Godmother Frame – Godmother Proposal Gift with Bow, Personalized Baby Keepsake, Baptism Gift, Custom Photo Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 100,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "edef97603dda",
+          "publishedAt": null
+        },
+        {
+          "handle": "will-you-be-my-godmother-godmother-50688",
+          "title": "Will You Be My Godmother? Godmother Proposal Gift I Love My Godmother Personalized Keepsake For Godmother Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 100,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "edef97603dda",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "birthday-gift-for-great-grandma-49865",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 42 variants (cluster range 42-100). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C03",
+      "size": 20,
+      "relations": [
+        "identical_description",
+        "identical_title",
+        "near_title_<=2_words"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 18,
+      "sharedDescriptionSha256": null,
+      "distinctDescriptions": 2,
+      "sharedDescriptionLength": null,
+      "sharedDescriptionExcerpt": null,
+      "statusBreakdown": {
+        "ARCHIVED": 19,
+        "ACTIVE": 1
+      },
+      "members": [
+        {
+          "handle": "dog-loss-gift-rainbow-bridge-dog-18510",
+          "title": "Dog Loss Gift Rainbow Bridge  Dog Memorial Gift  Personalized Gift For Pet Memorial  Dog Mom  Pet Loss Picture Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": "2025-04-15T18:47:11Z"
+        },
+        {
+          "handle": "when-tomorrow-starts-without-me-11963",
+          "title": "When Tomorrow Starts Without Me – Personalized Pet Memorial Frame, Dog Loss Gift, Pet Remembrance Keepsake, Custom Dog Mom Sympathy Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "personalized-pet-memorial-frame-dog-34854",
+          "title": "Personalized Pet Memorial Frame – Dog Loss Gift, Dog Mom Sympathy Gift, Fur Baby Remembrance, Pet Loss Keepsake, Custom Dog Memoria",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-forever-loved-dog-memorial-17225",
+          "title": "Pet Loss Gift  Forever Loved Dog Memorial Gift  Personalized Gift For Pet Memorial Dog Mom You Were My Favorite Hello And Hardest Goodbye",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-dog-memorial-gift-07222",
+          "title": "Pet Loss Gift  Dog Memorial Gift  Personalized Gift For Pet Memorial  Dog Mom  You Were My Favorite Hello And Hardest Goodbye",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-dog-memorial-gift-49574",
+          "title": "Pet Loss Gift  Dog Memorial Gift  Personalized Gift For Pet Memorial  Dog Mom  You Were My Favorite Hello And Hardest Goodbye",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-dog-memorial-gift-88223",
+          "title": "Pet Loss Gift  Dog Memorial Gift  Personalized Gift For Pet Memorial  Dog Mom  You Were My Favorite Hello And Hardest Goodbye",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-sympathy-gift-dog-memorial-gift-75625",
+          "title": "Pet Sympathy Gift  Dog Memorial Gift  Personalized Gift For Pet Memorial  Dog Mom  You Were My Favorite Hello And Hardest Goodbye",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-dog-loss-memorial-gift-24088",
+          "title": "Pet Loss Gift  Dog Loss Memorial Gift  Personalized Gift For Pet Memorial  Dog Mom  When Tomorrow Starts Without Me Personalized Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "dog-lover-gift-golden-retriever-dog-mom-21189",
+          "title": "Dog Lover Gift Golden Retriever Dog Mom Gift Dog Memorial Gift  Personalized Gift For Pet Dog Mom Fur Baby Fur Child",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "1b65f0897b3e",
+          "publishedAt": null
+        },
+        {
+          "handle": "dog-lover-gift-dog-loss-gift-rainbow-17968",
+          "title": "Dog Lover Gift Dog Loss Gift Rainbow Bridge Dog Memorial Gift Personalized Gift For Pet Memorial Dog Mom Pet Loss Picture Frame 4x6",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-best-dog-memorial-dog-loss-78117",
+          "title": "Pet Loss Gift Best Dog Memorial Dog Loss Dog Mom Gift Personalized Gift For Pet Memorial  Dog Mom When Tomorrow Starts Without Me",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "1b65f0897b3e",
+          "publishedAt": null
+        },
+        {
+          "handle": "dog-mom-gift-for-her-pet-loss-gift-dog-17857",
+          "title": "Dog Mom Gift For Her Pet Loss Gift Dog Loss Memorial Gift Personalized Gift For Pet Memorial  Dog Mom When Tomorrow Starts Without Me Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-fur-baby-dog-mom-dog-81758",
+          "title": "Pet Loss Gift  Fur Baby  Dog Mom  Dog Memorial Gift  Fur Child Personalized Gift For Pet Memorial  Dog Mom |",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-dog-memorial-dog-loss-dog-63268",
+          "title": "Pet Loss Gift Dog Memorial Dog Loss Dog Mom Gift Personalized Gift For Pet Memorial  Dog Mom When Tomorrow Starts Without Me",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "rainbow-bridge-dog-lover-gift-dog-loss-34313",
+          "title": "Rainbow Bridge Dog Lover Gift Dog Loss Gift  Dog Memorial Gift  Personalized Gift For Pet Memorial  Dog Mom  Pet Loss Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "dog-lover-dog-mom-gift-for-her-pet-lover-74413",
+          "title": "Dog Lover Dog Mom Gift For Her Pet Lover Gift Fur Baby Gift Personalized Gift For Pet Dog Mom Personalized Pet Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "1b65f0897b3e",
+          "publishedAt": null
+        },
+        {
+          "handle": "dog-lover-gift-for-dog-mom-gift-for-her-76554",
+          "title": "Dog Lover Gift For Dog Mom Gift For Her Pet Lover Gift Fur Baby Gift Personalized Gift For Pet Dog Mom Personalized Pet Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "1b65f0897b3e",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gift-dog-loss-dog-memorial-gift-67645",
+          "title": "Pet Loss Gift Dog Loss Dog Memorial Gift Personalized Gift For Pet Memorial Dog Mom Custom Dog Memorial Dog Cat Loss Gift For Cat Memorial",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        },
+        {
+          "handle": "dog-loss-dog-memorial-dog-lover-gift-dog-36321",
+          "title": "Dog Loss Dog Memorial Dog Lover Gift Dog Loss Gift Dog Memorial Gift  Personalized Gift For Pet Memorial  Dog Mom  Pet Loss Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "49a58e118603",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "dog-loss-gift-rainbow-bridge-dog-18510",
+      "survivorRationale": "Preferred: status ACTIVE (only ACTIVE candidate); 1 collection(s); 42 variants (cluster range 42-84). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C04",
+      "size": 15,
+      "relations": [
+        "identical_description",
+        "identical_title",
+        "near_title_<=2_words"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 14,
+      "sharedDescriptionSha256": "6c814df1fb20a732123be289a761dea628757faaa26123ce7f7ea7ceb6710b95",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2965,
+      "sharedDescriptionExcerpt": "Thank you so much for your support of our family owned business! ❤️Hello! Welcome to Boutique ButterLu! Our frames are personalized and handmade for each client, while providing the utmost attention t",
+      "statusBreakdown": {
+        "ARCHIVED": 4,
+        "ACTIVE": 11
+      },
+      "members": [
+        {
+          "handle": "personalized-wedding-thank-you-gift-for-26252",
+          "title": "Personalized Wedding Thank You Gift For Parents Of Bride & Groom  There Are Two Gifts That Parents Give Children...",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [
+            "wedding-thank-you-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:49:59Z"
+        },
+        {
+          "handle": "new-grandma-gift-grandma-gift-the-best-04811",
+          "title": "New Grandma Gift  Grandma Gift  The Best Moms Get Promoted To ...  4x6 Picture Frame Gift For Grandma",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:49:25Z"
+        },
+        {
+          "handle": "maid-of-honor-gift-today-my-maid-of-00948",
+          "title": "Maid of Honor Gift  Today my Maid of Honor Forever my Sister  4x6 Frame Bridesmaid Gift Wedding Thank You Gift Best Friend",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [
+            "wedding-thank-you-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:51:02Z"
+        },
+        {
+          "handle": "all-that-we-are-and-hope-to-be-parents-52539",
+          "title": "All That We Are And Hope To Be Parents Gift Parents Of The Groom Parents Of The Bride Wedding Thank You For Parents Of The Bride & Groom",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [
+            "wedding-thank-you-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:51:22Z"
+        },
+        {
+          "handle": "thank-you-for-raising-the-man-of-my-39896",
+          "title": "Thank You For Raising The Man Of My Dreams  Wedding Thank You Gift For Mother Of The Groom Parents Of The Groom Picture Frame",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [
+            "wedding-thank-you-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:42:59Z"
+        },
+        {
+          "handle": "today-a-bride-tomorrow-a-wife-forever-66288",
+          "title": "Today A Bride Tomorrow A Wife  Forever And Always Your Little Girl  Parents Of The Bride Gift  Wedding Thank You Gift For Parents",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "wedding-thank-you-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:51:41Z"
+        },
+        {
+          "handle": "gigi-birthday-gift-for-gigi-personalized-69186",
+          "title": "Gigi Birthday Gift For Gigi Personalized Picture Frame Gigi 4x6 Gigi Gift From Grandkids Gigi Personalized Christmas Gift I Love My Gigi",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:50:08Z"
+        },
+        {
+          "handle": "grammie-gift-for-grammie-birthday-gift-57688",
+          "title": "Grammie Gift for Grammie Birthday Gift for Grandma Custom Frame Grammie Gift Personalized Picture Frame for Grammie",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:42:08Z"
+        },
+        {
+          "handle": "personalized-great-grandma-gift-gift-49561",
+          "title": "Personalized Great Grandma Gift – Gift from Grandchild, I Love My Great Grandma Frame, Custom 4x6 Picture Frame, Grandparent Keepsake",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-12T23:09:15Z"
+        },
+        {
+          "handle": "the-best-grandmas-get-promoted-to-great-07916",
+          "title": "The Best Grandmas Get Promoted To Great Grandmas  Personalized Picture Frame For Grandma  Great Grandma Gift",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-12T23:08:37Z"
+        },
+        {
+          "handle": "ill-love-you-forever-ill-like-you-for-66545",
+          "title": "I'll Love You Forever I'll Like You For Always As Long As I'm Living Your Baby I'll Be Personalized Frame  Wedding Gift For Father Of Bride",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "wedding-thank-you-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": "2025-05-13T00:50:32Z"
+        },
+        {
+          "handle": "godmother-gift-only-the-best-26743",
+          "title": "Godmother Gift  Only The Best Friends/Aunts/Sisters Get Promoted To Godmother  Godmother Personalized Picture Frame Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-only-the-best-51508",
+          "title": "Godmother Gift  Only The Best Friends/Sisters/Aunts Get Promoted To Godmother  Godmother Personalized Picture Frame Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-only-the-best-62133",
+          "title": "Godmother Gift  Only The Best Friends/Sisters/Aunts Get Promoted To Godmother  Godmother Personalized Picture Frame Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-only-the-best-sisters-get-92787",
+          "title": "Godmother Gift  Only The Best Sisters Get Promoted To Godmother  Godmother Personalized Picture Frame Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "6c814df1fb20",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "personalized-wedding-thank-you-gift-for-26252",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 41 variants (cluster range 41-100). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C05",
+      "size": 10,
+      "relations": [
+        "identical_description",
+        "identical_title",
+        "near_title_<=2_words"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 6,
+      "sharedDescriptionSha256": "3b4630c72e85309230346412d8e5c58e5b82fd4b6552da55a1fb47173b449f85",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 3362,
+      "sharedDescriptionExcerpt": "Personalized Pet Memorial Picture Frame – Custom Dog Loss & Cat Loss Gift 🐾💙 Losing a beloved pet is never easy, but their love stays with us forever. Our custom pet memorial picture frames are design",
+      "statusBreakdown": {
+        "ACTIVE": 6,
+        "ARCHIVED": 4
+      },
+      "members": [
+        {
+          "handle": "personalized-cat-memorial-frame-pet-36160",
+          "title": "Personalized Cat Memorial Frame | Pet Loss Gift for Cat Lovers | Rainbow Bridge Pet Sympathy Gift | Custom Pet Bereavement Keepsake",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": "2025-04-15T20:14:58Z"
+        },
+        {
+          "handle": "pet-memorial-dog-memorial-gift-pet-loss-84805",
+          "title": "Pet Memorial, Dog Memorial Gift, Pet Loss Gifts, Pet Memorial Gift, Loss of Dog, Dog Remembrance Gift, Dog Sympathy Gift, Pet Memorial Frame",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": "2025-04-15T20:16:08Z"
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-26738",
+          "title": "Pet Loss Gifts  Personalized Pet Memorial Frame | Cat Loss Gift | Dog Loss Gift | Pet Bereavement Gift | Pet Sympathy Gift | Pet Loss Frame",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": "2025-04-15T20:16:19Z"
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-49914",
+          "title": "Pet Loss Gifts  Personalized Pet Memorial Frame | Cat Loss Gift | Dog Loss Gift | Pet Bereavement Gift | Pet Sympathy Gift | Pet Loss Frame",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": "2025-04-15T20:16:44Z"
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-77661",
+          "title": "Pet Loss Gifts  Personalized Pet Memorial Frame | Cat Loss Gift | Dog Loss Gift | Pet Bereavement Gift | Pet Sympathy Gift | Pet Loss Frame",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": "2025-04-15T20:16:32Z"
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-77909",
+          "title": "Pet Loss Gifts  Personalized Pet Memorial Frame | Cat Loss Gift | Dog Loss Gift | Pet Bereavement Gift | Pet Sympathy Gift | Pet Loss Frame",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": "2025-04-15T20:16:55Z"
+        },
+        {
+          "handle": "personalized-dog-memorial-frame-pet-06847",
+          "title": "Personalized Dog Memorial Frame | Pet Loss Gift for Dog Lovers | Rainbow Bridge Pet Sympathy Gift | Custom Pet Bereavement Keepsake",
+          "status": "ARCHIVED",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-memorial-frame-personalized-rainbow-83484",
+          "title": "Pet Memorial Frame Personalized Rainbow Bridge Memorial Dog Memorial Gift Pet Loss Frame Pet Sympathy Gift Custom Picture Display Pet Parent",
+          "status": "ARCHIVED",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": null
+        },
+        {
+          "handle": "cat-loss-gifts-cat-personalized-cat-loss-54666",
+          "title": "Cat Loss Gifts Cat Personalized Cat Loss Pet Memorial Frame Cat Loss Gift Pet Bereavement Gift Pet Sympathy Gift Pet Loss 4x6 Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-01323",
+          "title": "Pet Loss Gifts  Personalized Pet Memorial Frame | Cat Loss Gift | Dog Loss Gift | Pet Bereavement Gift | Pet Sympathy Gift | Pet Loss Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 100,
+          "collections": [
+            "pet-loss-memorial"
+          ],
+          "descriptionHtmlSha256": "3b4630c72e85",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "personalized-cat-memorial-frame-pet-36160",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 100 variants (cluster range 100-100). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C06",
+      "size": 8,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 8,
+      "sharedDescriptionSha256": "0cb22712ec7ee5ba41c61bdf3882748af9f72b29b4afd6cce368535b6126ff0f",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2445,
+      "sharedDescriptionExcerpt": "Personalized Picture Frame – Custom Gift for Grandpa, Papa, Dad, or Bonus Dad 💙 Looking for a thoughtful, heartfelt gift for Grandpa, Papa, Dad, or a special father figure in your life? Our custom pic",
+      "statusBreakdown": {
+        "ACTIVE": 8
+      },
+      "members": [
+        {
+          "handle": "gift-for-grandpa-birthday-personalized-89326",
+          "title": "Gift for Grandpa Birthday Personalized Frame for New Grandpa Grandpas Little Girl Custom 4x6 Picture Frame Special Grandpa Gift",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandpa-papa-pop"
+          ],
+          "descriptionHtmlSha256": "0cb22712ec7e",
+          "publishedAt": "2025-05-13T00:44:44Z"
+        },
+        {
+          "handle": "first-fathers-day-as-grandpa-gift-44651",
+          "title": "First Father’s Day as Grandpa Gift    Gift Grandpa  I Love My Grandpa  Grandpa Personalized Gift  4x6 Picture Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandpa-papa-pop"
+          ],
+          "descriptionHtmlSha256": "0cb22712ec7e",
+          "publishedAt": "2025-05-13T00:47:39Z"
+        },
+        {
+          "handle": "grandpa-personalized-gift-birthday-gift-42979",
+          "title": "Grandpa Personalized Gift Birthday Gift For Grandpa  Grandpa's Buddy  Grandpa Personalized Gift  4x6 Picture Frame Custom",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandpa-papa-pop"
+          ],
+          "descriptionHtmlSha256": "0cb22712ec7e",
+          "publishedAt": "2025-04-15T18:47:43Z"
+        },
+        {
+          "handle": "abuelo-gift-for-abuelo-birthday-grandpa-52843",
+          "title": "Abuelo Gift for Abuelo Birthday Grandpa Gift  Grandpa’s Little Girl  New Grandpa Personalized Gift  Personalized Gift 4x6 Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandpa-papa-pop"
+          ],
+          "descriptionHtmlSha256": "0cb22712ec7e",
+          "publishedAt": "2025-05-13T00:47:24Z"
+        },
+        {
+          "handle": "grandpa-personalized-birthday-gift-90021",
+          "title": "Grandpa Personalized Birthday Gift  Christmas Gift Grandpa  I Love My Grandpa  Grandpa Personalized Gift  4x6 Picture Frame Custom",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandpa-papa-pop"
+          ],
+          "descriptionHtmlSha256": "0cb22712ec7e",
+          "publishedAt": "2025-05-13T00:49:16Z"
+        },
+        {
+          "handle": "great-grandpa-fathers-day-personalized-93242",
+          "title": "Great Grandpa Father's Day Personalized Gift Christmas Gift Great Grandpa I Love My Grandpa Grandpa Personalized Gift 4x6 Picture Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandpa-papa-pop"
+          ],
+          "descriptionHtmlSha256": "0cb22712ec7e",
+          "publishedAt": "2025-05-13T00:47:07Z"
+        },
+        {
+          "handle": "grandpa-gift-birthday-gift-for-grandpa-i-43785",
+          "title": "Grandpa Gift Birthday Gift For Grandpa I Love My Grandpa Picture Grandpa Personalized Gift 4x6 Picture Frame Custom For Dad Grandpa",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandpa-papa-pop"
+          ],
+          "descriptionHtmlSha256": "0cb22712ec7e",
+          "publishedAt": "2025-05-13T00:48:03Z"
+        },
+        {
+          "handle": "birthday-gift-for-grandpa-personalized-10682",
+          "title": "Birthday Gift for Grandpa Personalized Grandpa Gift Grandpa's Little Girl New Grandpa Personalized Gift Grandpa Gift 4x6 Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandpa-papa-pop"
+          ],
+          "descriptionHtmlSha256": "0cb22712ec7e",
+          "publishedAt": "2025-04-15T18:47:52Z"
+        }
+      ],
+      "suggestedSurvivor": "gift-for-grandpa-birthday-personalized-89326",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C07",
+      "size": 8,
+      "relations": [
+        "identical_description",
+        "identical_title"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 6,
+      "sharedDescriptionSha256": "318ab3405855b5a6632189853a014824a98906d04a78acca85649fa665f2f3b4",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 3298,
+      "sharedDescriptionExcerpt": "Thank you so much for your support of our family owned business! ❤️Hello! Welcome to Boutique ButterLu! Our frames are personalized and handmade for each client, while providing the utmost attention t",
+      "statusBreakdown": {
+        "ARCHIVED": 7,
+        "ACTIVE": 1
+      },
+      "members": [
+        {
+          "handle": "new-parents-to-be-gift-pregnancy-10739",
+          "title": "New Parents To Be Gift  Pregnancy Countdown To Baby  Chalkboard Frame  Weeks Until We're Parents Ultrasound Frame",
+          "status": "ACTIVE",
+          "variantsCount": 84,
+          "collections": [
+            "baby-frames"
+          ],
+          "descriptionHtmlSha256": "318ab3405855",
+          "publishedAt": "2025-05-13T00:50:43Z"
+        },
+        {
+          "handle": "the-best-sisters-get-promoted-to-87968",
+          "title": "The Best Sisters Get Promoted to Godmother  Godmother Gift  Godmother Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "318ab3405855",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmother-picture-frame-17014",
+          "title": "Godmother Gift  Godmother Picture Frame  Godmothers Are Special Gift  Baptism Confirmation First Communion Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "318ab3405855",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmother-picture-frame-49438",
+          "title": "Godmother Gift  Godmother Picture Frame  Godmothers Are Special Gift  Baptism Confirmation First Communion Gift  I Love My Godmother",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "318ab3405855",
+          "publishedAt": null
+        },
+        {
+          "handle": "will-you-be-my-godparents-godparent-55993",
+          "title": "Will You Be My Godparents?  Godparent Proposal Gift  I Love My Godparents  Personalized Godparents Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "318ab3405855",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmother-baptism-gift-33109",
+          "title": "Godmother Gift  Godmother Baptism Gift  Godmothers Are Special Personalized 4x6 Frame  Godmother Confirmation Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "318ab3405855",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmother-baptism-gift-55188",
+          "title": "Godmother Gift  Godmother Baptism Gift  Godmothers Are Special Personalized 4x6 Frame  Godmother Confirmation Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "318ab3405855",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmother-baptism-gift-69651",
+          "title": "Godmother Gift  Godmother Baptism Gift  Godmothers Are Special Personalized 4x6 Frame  Godmother Confirmation Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 84,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "318ab3405855",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "new-parents-to-be-gift-pregnancy-10739",
+      "survivorRationale": "Preferred: status ACTIVE (only ACTIVE candidate); 1 collection(s); 84 variants (cluster range 41-84). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C08",
+      "size": 5,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 5,
+      "sharedDescriptionSha256": "d1dec6ff12a89959433643b3f35c37171652c45448fb278e66ff60bb33c2fdfc",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2761,
+      "sharedDescriptionExcerpt": "Personalized Engagement Picture Frame – Custom Gifts For The Couple 💍💕 Celebrate the moment they said YES with this personalized engagement picture frame! Whether you're counting down to the big day o",
+      "statusBreakdown": {
+        "ACTIVE": 5
+      },
+      "members": [
+        {
+          "handle": "engagement-countdown-chalkboard-frame-95999",
+          "title": "Engagement Countdown Chalkboard Frame  Countdown To Wedding Day  Picture Frame Gift For Bride To Be",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [],
+          "descriptionHtmlSha256": "d1dec6ff12a8",
+          "publishedAt": "2025-05-13T00:52:02Z"
+        },
+        {
+          "handle": "engagement-gifts-for-couple-picture-83500",
+          "title": "Engagement Gifts For Couple  Picture Frame  Engagement Gift  She Said Yes Frame  Personalized Wedding Frame  Picture Frame Bride To Be",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [],
+          "descriptionHtmlSha256": "d1dec6ff12a8",
+          "publishedAt": "2025-05-13T00:52:27Z"
+        },
+        {
+          "handle": "engagement-picture-frame-bridal-shower-85618",
+          "title": "Engagement Picture Frame Bridal Shower Gift Meaningful Engagement Gift She Said Yes Frame  Personalized Wedding Frame Bride To Be Gift",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [],
+          "descriptionHtmlSha256": "d1dec6ff12a8",
+          "publishedAt": "2025-05-13T00:48:56Z"
+        },
+        {
+          "handle": "engagement-picture-frame-engagement-gift-08461",
+          "title": "Engagement Picture Frame  Engagement Gift  She Said Yes Frame  Personalized Wedding Frame  Announcement Picture Frame Bride To Be Gift",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [],
+          "descriptionHtmlSha256": "d1dec6ff12a8",
+          "publishedAt": "2025-05-13T00:46:47Z"
+        },
+        {
+          "handle": "engagement-gift-personalized-engagement-53456",
+          "title": "Engagement Gift Personalized Engagement Picture Frame Gift for Girlfriend Boyfriend Engagement Gift Valentines Day Gift",
+          "status": "ACTIVE",
+          "variantsCount": 84,
+          "collections": [],
+          "descriptionHtmlSha256": "d1dec6ff12a8",
+          "publishedAt": "2025-05-13T00:51:50Z"
+        }
+      ],
+      "suggestedSurvivor": "engagement-countdown-chalkboard-frame-95999",
+      "survivorRationale": "Preferred: status ACTIVE; 0 collection(s); 41 variants (cluster range 41-84). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C09",
+      "size": 4,
+      "relations": [
+        "identical_description",
+        "near_title_<=2_words"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 4,
+      "sharedDescriptionSha256": null,
+      "distinctDescriptions": 2,
+      "sharedDescriptionLength": null,
+      "sharedDescriptionExcerpt": null,
+      "statusBreakdown": {
+        "ARCHIVED": 3,
+        "ACTIVE": 1
+      },
+      "members": [
+        {
+          "handle": "gifts-for-uncle-birthday-gift-for-uncle-01435",
+          "title": "Gifts For Uncle  Birthday Gift For Uncle Personalized Picture Frame  Christmas Gift For Uncle  Personalized Gift From Niece Nephew",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "aunt-uncle-frames"
+          ],
+          "descriptionHtmlSha256": "b77fa55d1205",
+          "publishedAt": "2025-05-13T00:46:38Z"
+        },
+        {
+          "handle": "godmother-gift-from-godchild-godmother-95009",
+          "title": "Godmother Gift From Godchild  Godmother Picture Frame  Personalized Frame Baptism Gift for Godmothers Are A Blessing Gift for Godmother",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "b77fa55d1205",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godmother-godmother-picture-52799",
+          "title": "Gift for Godmother  Godmother Picture Frame  Personalized Frame Baptism Gift for Godmothers Are A Blessing Gift for Godmother",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "e1203f32cc38",
+          "publishedAt": null
+        },
+        {
+          "handle": "gift-for-godmother-for-baptism-godmother-05889",
+          "title": "Gift For Godmother For Baptism Godmother Picture Frame  Personalized Frame Baptism Gift for Godmothers Are A Blessing Gift for Godmother",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "b77fa55d1205",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "gifts-for-uncle-birthday-gift-for-uncle-01435",
+      "survivorRationale": "Preferred: status ACTIVE (only ACTIVE candidate); 1 collection(s); 42 variants (cluster range 41-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C10",
+      "size": 4,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 4,
+      "sharedDescriptionSha256": "878c8379fea2e5fbdc2c50e8d26197af8f6d7b6c9b8cd3c450e1013ba8d64994",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2984,
+      "sharedDescriptionExcerpt": "Thank you so much for your support of our family owned business! ❤️Hello! Welcome to Boutique ButterLu! Our frames are personalized and handmade for each client, while providing the utmost attention t",
+      "statusBreakdown": {
+        "ARCHIVED": 3,
+        "ACTIVE": 1
+      },
+      "members": [
+        {
+          "handle": "i-love-you-a-bushel-and-a-peck-grandma-41861",
+          "title": "I Love You A Bushel And A Peck Grandma Gift  Gift For Grandma   Personalized Picture Frame Gift From Grandchild",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "878c8379fea2",
+          "publishedAt": "2025-05-13T00:47:53Z"
+        },
+        {
+          "handle": "godparents-gift-first-communion-baptism-86285",
+          "title": "Godparents Gift First Communion Baptism Gift  Godmothers Are Special  Personalized  Gift for Godmother",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "878c8379fea2",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-baptism-gift-godmothers-are-29958",
+          "title": "Godmother Baptism Gift  Godmothers Are Special  Personalized  Gift for Godmother",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "878c8379fea2",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-gift-from-godchild-07612",
+          "title": "Godmother Gift  Gift From Godchild  Godmothers Are Special  Personalized  Gift for Godmother",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "878c8379fea2",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "i-love-you-a-bushel-and-a-peck-grandma-41861",
+      "survivorRationale": "Preferred: status ACTIVE (only ACTIVE candidate); 1 collection(s); 42 variants (cluster range 41-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C11",
+      "size": 4,
+      "relations": [
+        "identical_description",
+        "identical_title"
+      ],
+      "sharedTitle": "Godmother Gift Godmother Frame I Love My Godmother 4 x 6 Personalized Frame Godmother Frame Baptism Gift 1st Communion",
+      "distinctTitles": 1,
+      "sharedDescriptionSha256": null,
+      "distinctDescriptions": 2,
+      "sharedDescriptionLength": null,
+      "sharedDescriptionExcerpt": null,
+      "statusBreakdown": {
+        "ACTIVE": 1,
+        "ARCHIVED": 3
+      },
+      "members": [
+        {
+          "handle": "godmother-gift-godmother-frame-i-love-40447",
+          "title": "Godmother Gift   Godmother Frame  I Love My Godmother 4 x 6 Personalized Frame  Godmother Frame Baptism Gift 1st Communion",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "7aeaf07e79e6",
+          "publishedAt": "2025-04-15T18:48:34Z"
+        },
+        {
+          "handle": "godmother-gift-godmother-frame-i-love-06817",
+          "title": "Godmother Gift   Godmother Frame  I Love My Godmother 4 x 6 Personalized Frame  Godmother Frame Baptism Gift 1st Communion",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "bea03ad60bbf",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmother-frame-i-love-14693",
+          "title": "Godmother Gift   Godmother Frame  I Love My Godmother 4 x 6 Personalized Frame  Godmother Frame Baptism Gift 1st Communion",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "bea03ad60bbf",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmother-frame-i-love-38419",
+          "title": "Godmother Gift   Godmother Frame  I Love My Godmother 4 x 6 Personalized Frame  Godmother Frame Baptism Gift 1st Communion",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "bea03ad60bbf",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "godmother-gift-godmother-frame-i-love-40447",
+      "survivorRationale": "Preferred: status ACTIVE (only ACTIVE candidate); 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C12",
+      "size": 4,
+      "relations": [
+        "identical_description",
+        "identical_title"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": null,
+      "distinctDescriptions": 2,
+      "sharedDescriptionLength": null,
+      "sharedDescriptionExcerpt": null,
+      "statusBreakdown": {
+        "ARCHIVED": 4
+      },
+      "members": [
+        {
+          "handle": "godmother-proposal-gift-will-you-be-my-27456",
+          "title": "Godmother Proposal Gift  Will You Be My Godmother?   I Love My Godmother  Godmother Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "4989268b276e",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-proposal-gift-will-you-be-my-79360",
+          "title": "Godmother Proposal Gift  Will You Be My Godmother?   I Love My Godmother  Godmother Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "33a669c841ee",
+          "publishedAt": null
+        },
+        {
+          "handle": "will-you-be-my-godmother-godmother-04239",
+          "title": "Will You Be My Godmother?  Godmother Proposal Gift  I Love My Godmother  Godmother Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "4989268b276e",
+          "publishedAt": null
+        },
+        {
+          "handle": "will-you-be-my-godmother-godmother-62061",
+          "title": "Will You Be My Godmother?  Godmother Proposal Gift  I Love My Godmother  Godmother Gift",
+          "status": "ARCHIVED",
+          "variantsCount": 41,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "4989268b276e",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "godmother-proposal-gift-will-you-be-my-27456",
+      "survivorRationale": "Preferred: status ARCHIVED; 1 collection(s); 41 variants (cluster range 41-41). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C13",
+      "size": 4,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 4,
+      "sharedDescriptionSha256": "c1276a0a55671edb4dc43bde9ccb911a7b888519dda4967483691c6d3583c518",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2853,
+      "sharedDescriptionExcerpt": "Personalized Baby Announcement Picture Frame – Grandparent Pregnancy Reveal Gift 👣💕 Surprise the soon-to-be Grandma, Grandpa, Mimi, or Papa with a personalized baby announcement frame! Whether you're ",
+      "statusBreakdown": {
+        "ACTIVE": 4
+      },
+      "members": [
+        {
+          "handle": "grandparents-est-2025-frame-14141",
+          "title": "Grandparents EST. 2025 Frame – First-Time Grandparent Gift, Pregnancy Reveal, Baby Announcement, Custom Grandparent Keepsake",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [
+            "new-grandparent-to-be"
+          ],
+          "descriptionHtmlSha256": "c1276a0a5567",
+          "publishedAt": "2025-05-13T00:43:30Z"
+        },
+        {
+          "handle": "pregnancy-reveal-grandma-to-be-gift-48009",
+          "title": "Pregnancy Reveal Grandma To Be Gift Pregnancy Reveal to Parents  Baby Bump  Grandparents Picture Frame  New Grandma Picture",
+          "status": "ACTIVE",
+          "variantsCount": 41,
+          "collections": [
+            "new-grandparent-to-be"
+          ],
+          "descriptionHtmlSha256": "c1276a0a5567",
+          "publishedAt": "2025-05-13T00:46:57Z"
+        },
+        {
+          "handle": "new-grandparent-gift-expecting-74460",
+          "title": "New Grandparent Gift Expecting Grandparent Picture Frame New Grandparents Gifts Personalized Gift from Grandkids Grandchildren 4x6",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "new-grandparent-to-be"
+          ],
+          "descriptionHtmlSha256": "c1276a0a5567",
+          "publishedAt": "2025-05-13T00:46:29Z"
+        },
+        {
+          "handle": "new-grandparents-gift-grandparents-gift-30698",
+          "title": "New Grandparents Gift  Grandparents Gift  Best Parents Get Promoted To Grandparents Picture Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "new-grandparent-to-be"
+          ],
+          "descriptionHtmlSha256": "c1276a0a5567",
+          "publishedAt": "2025-05-13T00:45:48Z"
+        }
+      ],
+      "suggestedSurvivor": "grandparents-est-2025-frame-14141",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 41 variants (cluster range 41-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C14",
+      "size": 4,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 4,
+      "sharedDescriptionSha256": "bf339a834c49c5ff553910ac06ad3816fbdec351801010f0420175f2311a40cb",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2637,
+      "sharedDescriptionExcerpt": "Personalized Pet Picture Frame – Custom Photo Frame for Dog & Cat Lovers 🐾📸 Show off your furry best friend with a personalized pet picture frame! Whether you’re a proud dog mom, cat dad, or pet lover",
+      "statusBreakdown": {
+        "ACTIVE": 1,
+        "ARCHIVED": 3
+      },
+      "members": [
+        {
+          "handle": "mothers-day-dog-mom-gift-just-a-72946",
+          "title": "Mother’s Day Dog Mom Gift – Just a Girl and Her Dog Picture Frame, Personalized Dog Lover Gift, Custom Pet Photo Keepsake Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "bf339a834c49",
+          "publishedAt": "2025-04-15T18:46:10Z"
+        },
+        {
+          "handle": "just-a-girl-and-her-dog-frame-83335",
+          "title": "Just a Girl and Her Dog Frame – Personalized Pet Picture Frame, Custom Dog Mom Gift, Dog Lover Keepsake, Pet Photo Display, Fur Baby Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "bf339a834c49",
+          "publishedAt": null
+        },
+        {
+          "handle": "just-a-girl-and-her-dog-picture-frame-92704",
+          "title": "Just a Girl and Her Dog Picture Frame – Custom Pet Photo Frame, Dog Mom Gift, Personalized Dog Lover Frame, Fur Baby Keepsake, Pet Decor",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "bf339a834c49",
+          "publishedAt": null
+        },
+        {
+          "handle": "personalized-dog-lover-picture-frame-gift-72236",
+          "title": "Personalized Dog Lover Picture Frame Gift – Just a Girl and Her Dog Frame, Dog Mom Decor, Custom Pet Photo Keepsake, Dog Lover Gift Idea",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "bf339a834c49",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "mothers-day-dog-mom-gift-just-a-72946",
+      "survivorRationale": "Preferred: status ACTIVE (only ACTIVE candidate); 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C15",
+      "size": 3,
+      "relations": [
+        "identical_description",
+        "identical_title"
+      ],
+      "sharedTitle": "Godparents Baptism Gift Godparents Proposal Gift I Love My Godparents Godparent Dedication Picture Frame",
+      "distinctTitles": 1,
+      "sharedDescriptionSha256": "8fb313e6ee0f3029241dcf78da1ddc6013a3d4d76f64a8ca500b249d4e4f0bd2",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 3052,
+      "sharedDescriptionExcerpt": "Thank you so much for your support of our family owned business! ❤️Hello! Godparents gift from God child Welcome to Boutique ButterLu! Our frames are personalized and handmade for each client, while p",
+      "statusBreakdown": {
+        "ARCHIVED": 3
+      },
+      "members": [
+        {
+          "handle": "godparents-baptism-gift-godparents-10933",
+          "title": "Godparents Baptism Gift  Godparents Proposal Gift  I Love My Godparents  Godparent Dedication Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "8fb313e6ee0f",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-baptism-gift-godparents-23767",
+          "title": "Godparents Baptism Gift  Godparents Proposal Gift  I Love My Godparents  Godparent Dedication Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "8fb313e6ee0f",
+          "publishedAt": null
+        },
+        {
+          "handle": "godparents-baptism-gift-godparents-49474",
+          "title": "Godparents Baptism Gift  Godparents Proposal Gift  I Love My Godparents  Godparent Dedication Picture Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "8fb313e6ee0f",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "godparents-baptism-gift-godparents-10933",
+      "survivorRationale": "Preferred: status ARCHIVED; 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C16",
+      "size": 2,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": "a3bf76f25fb8a30e23070c4c91461ebea0cb3929989b8a12d48bf31c4abaa66c",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2674,
+      "sharedDescriptionExcerpt": "Personalized Multi-Photo Picture Frame – Handmade Custom Clip Frame 📸✨ Welcome to our family-owned shop, where every frame is made with love! Our handmade, personalized picture frames are designed wit",
+      "statusBreakdown": {
+        "ACTIVE": 2
+      },
+      "members": [
+        {
+          "handle": "great-aunt-gift-personalized-picture-34861",
+          "title": "Great Aunt Gift Personalized Picture Frame Board For Great Aunt Only The Best Aunts Get Promoted To Great Aunt",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "photo-blocks-clip-frames"
+          ],
+          "descriptionHtmlSha256": "a3bf76f25fb8",
+          "publishedAt": "2025-05-12T23:08:57Z"
+        },
+        {
+          "handle": "aunt-uncle-gift-personalized-picture-02182",
+          "title": "Aunt & Uncle  Gift  Personalized Picture Frame Board For Aunt And Uncle  Gift For Brother and Sister From Niece and Nephew",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "photo-blocks-clip-frames"
+          ],
+          "descriptionHtmlSha256": "a3bf76f25fb8",
+          "publishedAt": "2025-05-13T00:47:16Z"
+        }
+      ],
+      "suggestedSurvivor": "great-aunt-gift-personalized-picture-34861",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 100 variants (cluster range 100-100). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C17",
+      "size": 2,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": "a9b8f68663d3159a1881337e9e5e6398973aa4f3fb1d0fcb7b1be678a35c02a1",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2969,
+      "sharedDescriptionExcerpt": "Thank you so much for your support of our family owned business! ❤️Hello! Welcome to Boutique ButterLu! Our frames are personalized and handmade for each client, while providing the utmost attention t",
+      "statusBreakdown": {
+        "ACTIVE": 2
+      },
+      "members": [
+        {
+          "handle": "auntie-photo-frame-aunties-bestie-20613",
+          "title": "Auntie Photo Frame Auntie's Bestie Picture Frame Aunt Picture Frame Birthday Gift Aunt Picture Frame New Aunt Gift Christmas Gift for Aunt",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "aunt-uncle-frames"
+          ],
+          "descriptionHtmlSha256": "a9b8f68663d3",
+          "publishedAt": "2025-05-13T00:44:14Z"
+        },
+        {
+          "handle": "aunties-bestie-picture-frame-aunt-29399",
+          "title": "Auntie's Bestie Picture Frame  Aunt Picture Frame   Gift Aunt  Aunt Picture Frame  New Aunt Gift  Birthday Gift for Aunt",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "aunt-uncle-frames"
+          ],
+          "descriptionHtmlSha256": "a9b8f68663d3",
+          "publishedAt": "2025-04-15T18:47:21Z"
+        }
+      ],
+      "suggestedSurvivor": "auntie-photo-frame-aunties-bestie-20613",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C18",
+      "size": 2,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": "da31cbf415973cc74744084f9d726e799bafa9974a397e9c05111ad1ba90818b",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2626,
+      "sharedDescriptionExcerpt": "Welcome to our family owned shop! Our frames are personalized and handmade for each client, while providing the utmost attention to quality and detail. Quotes and colors can be changed to fit your nee",
+      "statusBreakdown": {
+        "ACTIVE": 2
+      },
+      "members": [
+        {
+          "handle": "mimi-gift-grandma-gift-birthday-mimi-01379",
+          "title": "Mimi Gift Grandma Gift Birthday  Mimi Frame  Gift for Grandma  Mimi Gift  Personalized Picture Frame Grandma Personalized Gift",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "da31cbf41597",
+          "publishedAt": "2025-05-13T00:48:22Z"
+        },
+        {
+          "handle": "baby-loss-gift-miscarriage-gift-55825",
+          "title": "Baby Loss Gift  Miscarriage Gift  Bereavement Gift  We Will Hold You In Our Hearts Until We Hold You In Heaven  Ultrasound Picture Frame",
+          "status": "ACTIVE",
+          "variantsCount": 100,
+          "collections": [
+            "pregnancy-baby"
+          ],
+          "descriptionHtmlSha256": "da31cbf41597",
+          "publishedAt": "2025-05-13T00:48:34Z"
+        }
+      ],
+      "suggestedSurvivor": "mimi-gift-grandma-gift-birthday-mimi-01379",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 42 variants (cluster range 42-100). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C19",
+      "size": 2,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": "fccb70b1872a7ced31581cfabe53096645f9441876a775e66bfee585477951c3",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 1982,
+      "sharedDescriptionExcerpt": "Personalized Teacher Picture Frame – A Thoughtful Gift for an Amazing Teacher 🍎📚 Teachers change lives every day—show your appreciation with a custom teacher picture frame that celebrates their dedica",
+      "statusBreakdown": {
+        "ACTIVE": 2
+      },
+      "members": [
+        {
+          "handle": "best-teacher-gift-personalized-49984",
+          "title": "Best Teacher Gift – Personalized Picture Frame, Custom Teacher Appreciation, Gift for Preschool or Elementary Teacher, 4x6 Frame",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "teacher-nanny-coach"
+          ],
+          "descriptionHtmlSha256": "fccb70b1872a",
+          "publishedAt": "2025-05-13T00:45:21Z"
+        },
+        {
+          "handle": "teacher-appreciation-gift-custom-45184",
+          "title": "Teacher Appreciation Gift – Custom Teacher Photo Frame, Preschool or Elementary Teacher Gift, End of Year Thank You Gift",
+          "status": "ACTIVE",
+          "variantsCount": 42,
+          "collections": [
+            "teacher-nanny-coach"
+          ],
+          "descriptionHtmlSha256": "fccb70b1872a",
+          "publishedAt": "2025-05-13T00:45:30Z"
+        }
+      ],
+      "suggestedSurvivor": "best-teacher-gift-personalized-49984",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C20",
+      "size": 2,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": "ff4dcb4f1de1a240c7ba123dd0a53002fad3fd27faa19bd8b57511cc65f5d32f",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 1770,
+      "sharedDescriptionExcerpt": "Daddy’s Little Girl Personalized Picture Frame – First Father’s Day or Birthday Gift 💙 Celebrate the sweet bond between a father and his daughter with this Daddy’s Little Girl personalized picture fra",
+      "statusBreakdown": {
+        "DRAFT": 2
+      },
+      "members": [
+        {
+          "handle": "daddys-little-girl-frame-37447",
+          "title": "Daddy’s Little Girl Frame – Personalized Father’s Day Gift, Birthday Gift for Dad, Custom Papa or Grandpa Frame, 4x6 Photo Keepsake",
+          "status": "DRAFT",
+          "variantsCount": 42,
+          "collections": [
+            "mom-dad-frames-1"
+          ],
+          "descriptionHtmlSha256": "ff4dcb4f1de1",
+          "publishedAt": null
+        },
+        {
+          "handle": "daddys-little-girl-personalized-frame-34444",
+          "title": "Daddy’s Little Girl Personalized Frame – First Father’s Day Gift, Birthday Gift for Dad or Grandpa, Custom Papa Picture Frame 4x6 Keepsake",
+          "status": "DRAFT",
+          "variantsCount": 42,
+          "collections": [
+            "mom-dad-frames"
+          ],
+          "descriptionHtmlSha256": "ff4dcb4f1de1",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "daddys-little-girl-frame-37447",
+      "survivorRationale": "Preferred: status DRAFT; 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C21",
+      "size": 2,
+      "relations": [
+        "identical_description",
+        "identical_title"
+      ],
+      "sharedTitle": "Godmother Gift Godmother Picture Frame Personalized Gift for Godmother I Love My Godmother Personalized Picture Frame Godmother Gift 4x6",
+      "distinctTitles": 1,
+      "sharedDescriptionSha256": "ec7dc5fec2316941aa35c94e9219960f2242b49cf93799880713b6e9da9eceeb",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2548,
+      "sharedDescriptionExcerpt": "Personalized Godmother Picture Frame – A Meaningful Gift for a Special Godmother 💖 A Godmother’s love is a lifelong gift, and this personalized Godmother picture frame is a beautiful way to celebrate ",
+      "statusBreakdown": {
+        "ARCHIVED": 2
+      },
+      "members": [
+        {
+          "handle": "godmother-gift-godmother-picture-frame-81416",
+          "title": "Godmother Gift Godmother Picture Frame Personalized Gift for Godmother I Love My Godmother  Personalized Picture Frame Godmother Gift 4x6",
+          "status": "ARCHIVED",
+          "variantsCount": 1,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "ec7dc5fec231",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-gift-godmother-picture-frame-83185",
+          "title": "Godmother Gift Godmother Picture Frame Personalized Gift for Godmother I Love My Godmother  Personalized Picture Frame Godmother Gift 4x6",
+          "status": "ARCHIVED",
+          "variantsCount": 1,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "ec7dc5fec231",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "godmother-gift-godmother-picture-frame-81416",
+      "survivorRationale": "Preferred: status ARCHIVED; 1 collection(s); 1 variants (cluster range 1-1). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C22",
+      "size": 2,
+      "relations": [
+        "identical_description",
+        "identical_title"
+      ],
+      "sharedTitle": "Godmother Proposal Will You Be My Godmother Gift for Godmother Godparents Gift Baptism Gift Godparents 4x6 Personalized Frame",
+      "distinctTitles": 1,
+      "sharedDescriptionSha256": "b144e8361d4f00d8a5385f070a4b054dcbb115fc1d60a2e83c4b1dbecbd9a99d",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 3111,
+      "sharedDescriptionExcerpt": "Thank you so much for your support of our family owned business! ❤️Hello! All that we are and hope to be frame wedding thank you gift for parents of the bride and groom personalized gift for parents w",
+      "statusBreakdown": {
+        "ARCHIVED": 2
+      },
+      "members": [
+        {
+          "handle": "godmother-proposal-will-you-be-my-05474",
+          "title": "Godmother Proposal  Will You Be My Godmother  Gift for Godmother  Godparents Gift  Baptism Gift  Godparents 4x6 Personalized Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "b144e8361d4f",
+          "publishedAt": null
+        },
+        {
+          "handle": "godmother-proposal-will-you-be-my-45947",
+          "title": "Godmother Proposal  Will You Be My Godmother  Gift for Godmother  Godparents Gift  Baptism Gift  Godparents 4x6 Personalized Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "b144e8361d4f",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "godmother-proposal-will-you-be-my-05474",
+      "survivorRationale": "Preferred: status ARCHIVED; 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C23",
+      "size": 2,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": "de74aa1df329332fb9853ac5e89d1d7830196395d707af21931eb86111f86b81",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 1635,
+      "sharedDescriptionExcerpt": "“Love at First Sight” Ultrasound Picture Frame – A Keepsake from the Very First Glimpse 💛 There’s nothing quite like seeing your baby for the first time. That moment—the flutter of excitement, the ins",
+      "statusBreakdown": {
+        "ACTIVE": 2
+      },
+      "members": [
+        {
+          "handle": "love-at-first-sight-picture-frame-97672",
+          "title": "Love At First Sight Picture Frame  Ultrasound Picture Frame  New Baby Gift  Sonogram Frame",
+          "status": "ACTIVE",
+          "variantsCount": 84,
+          "collections": [
+            "baby-frames"
+          ],
+          "descriptionHtmlSha256": "de74aa1df329",
+          "publishedAt": "2025-05-13T00:52:38Z"
+        },
+        {
+          "handle": "pregnancy-gift-sonogram-ultrasound-97805",
+          "title": "Pregnancy Gift Sonogram Ultrasound Picture Frame Sonogram Frame Pregnancy Announcement Grandparents Baby Countdown Frame Ultrasound Gifts",
+          "status": "ACTIVE",
+          "variantsCount": 84,
+          "collections": [
+            "baby-frames"
+          ],
+          "descriptionHtmlSha256": "de74aa1df329",
+          "publishedAt": "2025-04-15T18:46:58Z"
+        }
+      ],
+      "suggestedSurvivor": "love-at-first-sight-picture-frame-97672",
+      "survivorRationale": "Preferred: status ACTIVE; 1 collection(s); 84 variants (cluster range 84-84). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C24",
+      "size": 2,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": "47f35dc6805244df05e39a143fbcdd70056ebfbe0bfb7e1abb4fda87f233a473",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2859,
+      "sharedDescriptionExcerpt": "Thank you so much for your support of our family owned business! ❤️Hello! Welcome to Boutique ButterLu! Our frames are personalized and handmade for each client, while providing the utmost attention t",
+      "statusBreakdown": {
+        "DRAFT": 1,
+        "ACTIVE": 1
+      },
+      "members": [
+        {
+          "handle": "new-baby-girl-gift-personalized-baby-08486",
+          "title": "New Baby Girl Gift  Personalized Baby Girl Gift  Love At First Sight Frame  Ultrasound Picture Frame  Baby Shower Gift",
+          "status": "ACTIVE",
+          "variantsCount": 1,
+          "collections": [
+            "baby-frames"
+          ],
+          "descriptionHtmlSha256": "47f35dc68052",
+          "publishedAt": "2025-05-13T00:47:47Z"
+        },
+        {
+          "handle": "mimis-little-girl-picture-frame-17103",
+          "title": "Mimi’s Little Girl Picture Frame | Personalized Gift for Mimi | Grandmother and Granddaughter Frame | Custom Photo Frame for Mimi’s Girl",
+          "status": "DRAFT",
+          "variantsCount": 1,
+          "collections": [
+            "grandparent-frames"
+          ],
+          "descriptionHtmlSha256": "47f35dc68052",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "new-baby-girl-gift-personalized-baby-08486",
+      "survivorRationale": "Preferred: status ACTIVE (only ACTIVE candidate); 1 collection(s); 1 variants (cluster range 1-1). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C25",
+      "size": 2,
+      "relations": [
+        "identical_description"
+      ],
+      "sharedTitle": null,
+      "distinctTitles": 2,
+      "sharedDescriptionSha256": "b5788e02996769c9b00420bd39052124145e6151cb921c799084891bf398d7a0",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 1307,
+      "sharedDescriptionExcerpt": "When they cross the rainbow bridge, we’re left with an ache—and a million memories that deserve to be honored. This personalized pet memorial frame was created to hold more than just a photo. It holds",
+      "statusBreakdown": {
+        "ARCHIVED": 2
+      },
+      "members": [
+        {
+          "handle": "pet-memorial-frame-for-dog-loss-i-42357",
+          "title": "Pet Memorial Frame for Dog Loss – I Crossed the Rainbow Bridge – Custom Pet Remembrance Gift – 4x6 Personalized Photo Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "b5788e029967",
+          "publishedAt": null
+        },
+        {
+          "handle": "pet-memorial-picture-frame-i-crossed-07397",
+          "title": "Pet Memorial Picture Frame – I Crossed the Rainbow Bridge Knowing I Was Loved – Dog Loss Gift – Custom Pet Remembrance 4x6 Frame",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "pet-frames"
+          ],
+          "descriptionHtmlSha256": "b5788e029967",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "pet-memorial-frame-for-dog-loss-i-42357",
+      "survivorRationale": "Preferred: status ARCHIVED; 1 collection(s); 42 variants (cluster range 42-42). RECOMMENDATION ONLY - no action taken."
+    },
+    {
+      "clusterId": "C26",
+      "size": 2,
+      "relations": [
+        "identical_description",
+        "identical_title"
+      ],
+      "sharedTitle": "Will You Be My Godparents? Godparents Gift Godparents Proposal",
+      "distinctTitles": 1,
+      "sharedDescriptionSha256": "ad19c1bacb5095d846497aee468bdde433b19097c484c359cc3f8284869e649a",
+      "distinctDescriptions": 1,
+      "sharedDescriptionLength": 2999,
+      "sharedDescriptionExcerpt": "Thank you so much for your support of our family owned business! ❤️Hello! Will you be my godmother? Welcome to Boutique ButterLu! Our frames are personalized and handmade for each client, while provid",
+      "statusBreakdown": {
+        "ARCHIVED": 2
+      },
+      "members": [
+        {
+          "handle": "will-you-be-my-godparents-godparents-62633",
+          "title": "Will You Be My Godparents?  Godparents Gift  Godparents Proposal",
+          "status": "ARCHIVED",
+          "variantsCount": 42,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "ad19c1bacb50",
+          "publishedAt": null
+        },
+        {
+          "handle": "will-you-be-my-godparents-godparents-92063",
+          "title": "Will You Be My Godparents?  Godparents Gift  Godparents Proposal",
+          "status": "ARCHIVED",
+          "variantsCount": 100,
+          "collections": [
+            "godparent-frames"
+          ],
+          "descriptionHtmlSha256": "ad19c1bacb50",
+          "publishedAt": null
+        }
+      ],
+      "suggestedSurvivor": "will-you-be-my-godparents-godparents-62633",
+      "survivorRationale": "Preferred: status ARCHIVED; 1 collection(s); 42 variants (cluster range 42-100). RECOMMENDATION ONLY - no action taken."
+    }
+  ]
+}
