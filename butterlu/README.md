@@ -27,6 +27,7 @@ write test (see `01-store-facts.md`).
 | `data/clusters.json` | 26 duplicate/near-duplicate clusters. **Advisory only** — see the warning below. |
 | `data/keyword-assets.json` | Etsy-era keyword map mined from archived listings, plus the variant/collection defect lists. |
 | `data/app-store-landscape.json` | Shopify App Store *Custom products* category: 27 competitors, ratings, review counts, pricing. |
+| `data/etsy-recon.json` | 38 live Etsy listings recovered by fingerprint search. Sample, not a census. |
 | `data/app-pricing.json` | Real pricing tiers for Globo and Zepto — what the free tiers actually gate. |
 | `data/design-matrix.json` | Design template x relationship grid: 11 templates, 17 relationships, 187 cells. |
 
