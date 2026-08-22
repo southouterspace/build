@@ -1,0 +1,784 @@
+{
+  "provenance": "Derived from butterlu/data/catalog.json (243 products, read 2026-08-22). Counts are exact, not estimates.",
+  "keywordAssets": {
+    "note": "Archived listings encode the Etsy-era keyword map. Tag frequency is a demand signal from a marketplace where these listings actually sold.",
+    "archivedListings": 129,
+    "distinctTagsOnArchived": 208,
+    "topArchiveTags": [
+      {
+        "tag": "baptism gift",
+        "count": 99
+      },
+      {
+        "tag": "personalized frame",
+        "count": 87
+      },
+      {
+        "tag": "gift for baptism",
+        "count": 78
+      },
+      {
+        "tag": "godparents frame",
+        "count": 78
+      },
+      {
+        "tag": "baptism frame",
+        "count": 70
+      },
+      {
+        "tag": "godparents gift",
+        "count": 64
+      },
+      {
+        "tag": "picture frame",
+        "count": 55
+      },
+      {
+        "tag": "will you be my",
+        "count": 51
+      },
+      {
+        "tag": "godmother gift",
+        "count": 47
+      },
+      {
+        "tag": "godfather gift",
+        "count": 44
+      },
+      {
+        "tag": "godfather frame",
+        "count": 42
+      },
+      {
+        "tag": "godmother",
+        "count": 40
+      },
+      {
+        "tag": "godmother frame",
+        "count": 40
+      },
+      {
+        "tag": "godfather",
+        "count": 39
+      },
+      {
+        "tag": "gift from godchild",
+        "count": 27
+      },
+      {
+        "tag": "personalized",
+        "count": 26
+      },
+      {
+        "tag": "thank you for",
+        "count": 25
+      },
+      {
+        "tag": "dog mom gift",
+        "count": 24
+      },
+      {
+        "tag": "christmas gift",
+        "count": 24
+      },
+      {
+        "tag": "godfather picture",
+        "count": 24
+      },
+      {
+        "tag": "fathers day gift",
+        "count": 24
+      },
+      {
+        "tag": "personalized pet",
+        "count": 22
+      },
+      {
+        "tag": "dog loss gift",
+        "count": 21
+      },
+      {
+        "tag": "custom frame",
+        "count": 19
+      },
+      {
+        "tag": "cat loss gift",
+        "count": 18
+      },
+      {
+        "tag": "pet loss gift",
+        "count": 18
+      },
+      {
+        "tag": "godfathers blessing",
+        "count": 18
+      },
+      {
+        "tag": "godparents",
+        "count": 18
+      },
+      {
+        "tag": "pet memorial",
+        "count": 17
+      },
+      {
+        "tag": "cat loss",
+        "count": 16
+      },
+      {
+        "tag": "cat mom gift",
+        "count": 16
+      },
+      {
+        "tag": "dedication gift",
+        "count": 16
+      },
+      {
+        "tag": "godmother picture",
+        "count": 14
+      },
+      {
+        "tag": "hardest goodbye",
+        "count": 12
+      },
+      {
+        "tag": "personalized gift",
+        "count": 12
+      },
+      {
+        "tag": "favorite hello",
+        "count": 12
+      },
+      {
+        "tag": "godparent frame",
+        "count": 12
+      },
+      {
+        "tag": "being my godfather",
+        "count": 12
+      },
+      {
+        "tag": "being my godmother",
+        "count": 11
+      },
+      {
+        "tag": "godmothers blessing",
+        "count": 11
+      }
+    ],
+    "orphanedPhrases": {
+      "definition": "Appears 3+ times across archived listings and appears NOWHERE in any live product title or tag.",
+      "count": 28,
+      "phrases": [
+        {
+          "phrase": "dedication gift",
+          "archiveCount": 16
+        },
+        {
+          "phrase": "being my godmother",
+          "archiveCount": 11
+        },
+        {
+          "phrase": "godmothers blessing",
+          "archiveCount": 11
+        },
+        {
+          "phrase": "godmother proposal",
+          "archiveCount": 11
+        },
+        {
+          "phrase": "gift for godmother",
+          "archiveCount": 9
+        },
+        {
+          "phrase": "christening gift",
+          "archiveCount": 7
+        },
+        {
+          "phrase": "confirmation gift",
+          "archiveCount": 6
+        },
+        {
+          "phrase": "best friend promoted",
+          "archiveCount": 6
+        },
+        {
+          "phrase": "godparent gift",
+          "archiveCount": 6
+        },
+        {
+          "phrase": "godmother baptism",
+          "archiveCount": 5
+        },
+        {
+          "phrase": "sisters promoted",
+          "archiveCount": 5
+        },
+        {
+          "phrase": "to godmother",
+          "archiveCount": 5
+        },
+        {
+          "phrase": "baptism gifts",
+          "archiveCount": 5
+        },
+        {
+          "phrase": "best uncle gift",
+          "archiveCount": 4
+        },
+        {
+          "phrase": "godmother special",
+          "archiveCount": 4
+        },
+        {
+          "phrase": "first communion gift",
+          "archiveCount": 4
+        },
+        {
+          "phrase": "godparents christmas",
+          "archiveCount": 4
+        },
+        {
+          "phrase": "godchild gift",
+          "archiveCount": 4
+        },
+        {
+          "phrase": "gift for godparents",
+          "archiveCount": 4
+        },
+        {
+          "phrase": "godparents proposal",
+          "archiveCount": 4
+        },
+        {
+          "phrase": "dog memorial frame",
+          "archiveCount": 3
+        },
+        {
+          "phrase": "pet remembrance",
+          "archiveCount": 3
+        },
+        {
+          "phrase": "godmothers special",
+          "archiveCount": 3
+        },
+        {
+          "phrase": "godmother gifts",
+          "archiveCount": 3
+        },
+        {
+          "phrase": "baptism keepsake",
+          "archiveCount": 3
+        },
+        {
+          "phrase": "godparent gifts",
+          "archiveCount": 3
+        },
+        {
+          "phrase": "trendy gifts",
+          "archiveCount": 3
+        },
+        {
+          "phrase": "godparents are",
+          "archiveCount": 3
+        }
+      ]
+    }
+  },
+  "variantDefects": {
+    "optionNameCasingSplits": [
+      {
+        "canonical": "bow color",
+        "variants": [
+          {
+            "name": "Bow Color",
+            "products": 22
+          },
+          {
+            "name": "Bow color",
+            "products": 2
+          },
+          {
+            "name": "bow color",
+            "products": 6
+          }
+        ],
+        "totalProducts": 30
+      },
+      {
+        "canonical": "background color",
+        "variants": [
+          {
+            "name": "Background Color",
+            "products": 10
+          },
+          {
+            "name": "Background color",
+            "products": 2
+          }
+        ],
+        "totalProducts": 12
+      }
+    ],
+    "colorPaletteSizes": [
+      {
+        "optionValuesCount": 42,
+        "products": 157
+      },
+      {
+        "optionValuesCount": 41,
+        "products": 39
+      },
+      {
+        "optionValuesCount": 34,
+        "products": 11
+      },
+      {
+        "optionValuesCount": 25,
+        "products": 2
+      },
+      {
+        "optionValuesCount": 7,
+        "products": 12
+      },
+      {
+        "optionValuesCount": 2,
+        "products": 1
+      }
+    ],
+    "variantsAt100": {
+      "note": "Legacy artifact of Shopify's historic 100-variant cap, raised to 2048 for all merchants 2025-10-15. impliedCombinations > 100 means option values were truncated on import.",
+      "count": 25,
+      "products": [
+        {
+          "handle": "great-grandma-gift-picture-frame-for-14941",
+          "status": "ACTIVE",
+          "optionShape": [
+            25,
+            4
+          ],
+          "impliedCombinations": 100,
+          "variantsCount": 100
+        },
+        {
+          "handle": "personalized-cat-memorial-frame-pet-36160",
+          "status": "ACTIVE",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "personalized-dog-memorial-frame-pet-06847",
+          "status": "ARCHIVED",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-01323",
+          "status": "ARCHIVED",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "cat-loss-gifts-cat-personalized-cat-loss-54666",
+          "status": "ARCHIVED",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "pet-memorial-frame-personalized-rainbow-83484",
+          "status": "ARCHIVED",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "pet-memorial-dog-memorial-gift-pet-loss-84805",
+          "status": "ACTIVE",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-26738",
+          "status": "ACTIVE",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-77661",
+          "status": "ACTIVE",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-49914",
+          "status": "ACTIVE",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "pet-loss-gifts-personalized-pet-memorial-77909",
+          "status": "ACTIVE",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "will-you-be-my-godparents-godparents-92063",
+          "status": "ARCHIVED",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "will-you-be-my-godmother-godmother-50688",
+          "status": "ARCHIVED",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "will-you-be-my-godmother-frame-36079",
+          "status": "ARCHIVED",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "the-best-grandmas-get-promoted-to-great-07916",
+          "status": "ACTIVE",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "great-aunt-gift-personalized-picture-34861",
+          "status": "ACTIVE",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "personalized-great-grandma-gift-gift-49561",
+          "status": "ACTIVE",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "baby-boy-birth-announcement-picture-frame-34226",
+          "status": "ACTIVE",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "baby-girl-birth-announcement-picture-45202",
+          "status": "ACTIVE",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "great-aunt-gift-birthday-gift-for-great-40336",
+          "status": "ACTIVE",
+          "optionShape": [
+            25,
+            4
+          ],
+          "impliedCombinations": 100,
+          "variantsCount": 100
+        },
+        {
+          "handle": "grandma-gift-grandma-and-me-frame-gift-44080",
+          "status": "ACTIVE",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "aunt-uncle-gift-personalized-picture-02182",
+          "status": "ACTIVE",
+          "optionShape": [
+            7,
+            16
+          ],
+          "impliedCombinations": 112,
+          "variantsCount": 100
+        },
+        {
+          "handle": "baby-loss-gift-miscarriage-gift-55825",
+          "status": "ACTIVE",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "gift-for-great-grandma-personalized-gift-43378",
+          "status": "ACTIVE",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        },
+        {
+          "handle": "ill-love-you-forever-ill-like-you-for-66545",
+          "status": "ACTIVE",
+          "optionShape": [
+            34,
+            3
+          ],
+          "impliedCombinations": 102,
+          "variantsCount": 100
+        }
+      ]
+    },
+    "activeProductsWithNoColorOption": {
+      "count": 9,
+      "products": [
+        {
+          "handle": "personalized-baby-boy-picture-frame-68225",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        },
+        {
+          "handle": "just-a-girl-and-her-cat-frame-cute-97614",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        },
+        {
+          "handle": "just-a-girl-and-her-dog-frame-bright-68235",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        },
+        {
+          "handle": "new-baby-girl-gift-personalized-baby-81582",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        },
+        {
+          "handle": "funny-favorite-child-frame-gift-for-27592",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        },
+        {
+          "handle": "soul-sisters-picture-frame-best-70252",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        },
+        {
+          "handle": "print-out-photo-and-place-in-frame-25410",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        },
+        {
+          "handle": "new-baby-girl-gift-personalized-baby-08486",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        },
+        {
+          "handle": "test",
+          "status": "ACTIVE",
+          "options": [
+            "Title"
+          ]
+        }
+      ]
+    }
+  },
+  "collections": {
+    "count": 17,
+    "breakdown": [
+      {
+        "handle": "godparent-frames",
+        "total": 103,
+        "active": 3
+      },
+      {
+        "handle": "pet-frames",
+        "total": 28,
+        "active": 3
+      },
+      {
+        "handle": "grandparent-frames",
+        "total": 24,
+        "active": 20
+      },
+      {
+        "handle": "baby-frames",
+        "total": 14,
+        "active": 13
+      },
+      {
+        "handle": "pet-loss-memorial",
+        "total": 12,
+        "active": 8
+      },
+      {
+        "handle": "wedding-thank-you-frames",
+        "total": 12,
+        "active": 11
+      },
+      {
+        "handle": "grandpa-papa-pop",
+        "total": 9,
+        "active": 9
+      },
+      {
+        "handle": "pregnancy-baby",
+        "total": 9,
+        "active": 3
+      },
+      {
+        "handle": "aunt-uncle-frames",
+        "total": 6,
+        "active": 6
+      },
+      {
+        "handle": "new-grandparent-to-be",
+        "total": 5,
+        "active": 5
+      },
+      {
+        "handle": "mom-dad-frames-1",
+        "total": 2,
+        "active": 1
+      },
+      {
+        "handle": "pet-ornament-car-hugs",
+        "total": 2,
+        "active": 2
+      },
+      {
+        "handle": "photo-blocks-clip-frames",
+        "total": 2,
+        "active": 2
+      },
+      {
+        "handle": "teacher-nanny-coach",
+        "total": 2,
+        "active": 2
+      },
+      {
+        "handle": "frontpage",
+        "total": 1,
+        "active": 1
+      },
+      {
+        "handle": "healing-affirmation",
+        "total": 1,
+        "active": 1
+      },
+      {
+        "handle": "mom-dad-frames",
+        "total": 1,
+        "active": 0
+      }
+    ],
+    "activeInNoCollection": [
+      "graduation-picture-frame-for-college-52054",
+      "soul-sisters-picture-frame-best-70252",
+      "friends-frame-best-friend-gift-blonde-69290",
+      "engagement-picture-frame-engagement-gift-08461",
+      "print-out-photo-and-place-in-frame-25410",
+      "engagement-picture-frame-bridal-shower-85618",
+      "engagement-gift-personalized-engagement-53456",
+      "engagement-countdown-chalkboard-frame-95999",
+      "engagement-gifts-for-couple-picture-83500",
+      "test"
+    ],
+    "productsInMultipleCollections": [
+      "personalized-baby-boy-picture-frame-68225"
+    ]
+  },
+  "tagVocabulary": {
+    "distinctTags": 868,
+    "totalAssignments": 3122,
+    "usedOnce": 530
+  }
+}
