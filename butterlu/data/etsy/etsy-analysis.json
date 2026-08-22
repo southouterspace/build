@@ -1,0 +1,457 @@
+{
+  "_provenance": "Etsy 'Currently for Sale Listings' CSV export, 2026-08-22. 618 live listings. Authoritative.",
+  "listingCount": 618,
+  "price": {
+    "min": 0.2,
+    "median": 33.55,
+    "mean": 34.87,
+    "max": 134.2,
+    "note": "First price data available in this project."
+  },
+  "tags": {
+    "assignments": 7965,
+    "distinct": 2454,
+    "avgPerListing": 12.9,
+    "top100": [
+      {
+        "tag": "personalized_frame",
+        "count": 147
+      },
+      {
+        "tag": "personalized_gift",
+        "count": 95
+      },
+      {
+        "tag": "personalized",
+        "count": 87
+      },
+      {
+        "tag": "picture_frame",
+        "count": 87
+      },
+      {
+        "tag": "grandma_gift",
+        "count": 80
+      },
+      {
+        "tag": "baby_keepsake",
+        "count": 73
+      },
+      {
+        "tag": "grandparent_gift",
+        "count": 71
+      },
+      {
+        "tag": "baby_photo_frame",
+        "count": 68
+      },
+      {
+        "tag": "baby_announcement",
+        "count": 64
+      },
+      {
+        "tag": "baptism_gift",
+        "count": 59
+      },
+      {
+        "tag": "pregnancy_reveal",
+        "count": 55
+      },
+      {
+        "tag": "custom_photo_frame",
+        "count": 54
+      },
+      {
+        "tag": "sentimental_gift",
+        "count": 53
+      },
+      {
+        "tag": "grandma_frame",
+        "count": 53
+      },
+      {
+        "tag": "photo_frame_gift",
+        "count": 53
+      },
+      {
+        "tag": "custom_frame",
+        "count": 50
+      },
+      {
+        "tag": "baby_shower_gift",
+        "count": 47
+      },
+      {
+        "tag": "wedding_keepsake",
+        "count": 47
+      },
+      {
+        "tag": "new_baby_gift",
+        "count": 45
+      },
+      {
+        "tag": "grandpa_gift",
+        "count": 43
+      },
+      {
+        "tag": "godmother_gift",
+        "count": 42
+      },
+      {
+        "tag": "custom_photo_gift",
+        "count": 39
+      },
+      {
+        "tag": "baby_girl_gift",
+        "count": 38
+      },
+      {
+        "tag": "christmas_gift",
+        "count": 37
+      },
+      {
+        "tag": "nursery_decor",
+        "count": 36
+      },
+      {
+        "tag": "gift_for_grandma",
+        "count": 35
+      },
+      {
+        "tag": "christening_gift",
+        "count": 35
+      },
+      {
+        "tag": "godfather_gift",
+        "count": 34
+      },
+      {
+        "tag": "gift_for_grandpa",
+        "count": 34
+      },
+      {
+        "tag": "godparent_gift",
+        "count": 33
+      },
+      {
+        "tag": "newborn_gift",
+        "count": 31
+      },
+      {
+        "tag": "grandma_keepsake",
+        "count": 31
+      },
+      {
+        "tag": "grandparents",
+        "count": 31
+      },
+      {
+        "tag": "personalized_baby",
+        "count": 29
+      },
+      {
+        "tag": "ultrasound_frame",
+        "count": 27
+      },
+      {
+        "tag": "godparents_gift",
+        "count": 27
+      },
+      {
+        "tag": "gift_for_dad",
+        "count": 27
+      },
+      {
+        "tag": "family_keepsake",
+        "count": 26
+      },
+      {
+        "tag": "custom_baby_gift",
+        "count": 26
+      },
+      {
+        "tag": "wedding_gift",
+        "count": 25
+      },
+      {
+        "tag": "godfather_frame",
+        "count": 24
+      },
+      {
+        "tag": "grandpa_frame",
+        "count": 24
+      },
+      {
+        "tag": "dog_lover_gift",
+        "count": 24
+      },
+      {
+        "tag": "great_grandma_gift",
+        "count": 22
+      },
+      {
+        "tag": "thank_you_gift",
+        "count": 22
+      },
+      {
+        "tag": "grandpa_keepsake",
+        "count": 22
+      },
+      {
+        "tag": "dog_mom_gift",
+        "count": 22
+      },
+      {
+        "tag": "pregnancy_gift",
+        "count": 21
+      },
+      {
+        "tag": "grandparents_gift",
+        "count": 21
+      },
+      {
+        "tag": "baby_name_frame",
+        "count": 20
+      },
+      {
+        "tag": "engagement_gift",
+        "count": 20
+      },
+      {
+        "tag": "new_grandma_gift",
+        "count": 20
+      },
+      {
+        "tag": "mother's_day",
+        "count": 20
+      },
+      {
+        "tag": "wedding_thank_you",
+        "count": 20
+      },
+      {
+        "tag": "gigi_gift",
+        "count": 20
+      },
+      {
+        "tag": "baby_girl_frame",
+        "count": 20
+      },
+      {
+        "tag": "aunt_picture_frame",
+        "count": 19
+      },
+      {
+        "tag": "photo_frame",
+        "count": 19
+      },
+      {
+        "tag": "baby_reveal_gift",
+        "count": 19
+      },
+      {
+        "tag": "godmother_frame",
+        "count": 19
+      },
+      {
+        "tag": "baby_boy_gift",
+        "count": 19
+      },
+      {
+        "tag": "newborn_frame",
+        "count": 18
+      },
+      {
+        "tag": "godchild_gift",
+        "count": 18
+      },
+      {
+        "tag": "baby_picture_frame",
+        "count": 18
+      },
+      {
+        "tag": "baptism_frame",
+        "count": 18
+      },
+      {
+        "tag": "fathers_day_gift",
+        "count": 18
+      },
+      {
+        "tag": "christmas_grandma",
+        "count": 17
+      },
+      {
+        "tag": "mimi_gift",
+        "count": 17
+      },
+      {
+        "tag": "mothers_day_gift",
+        "count": 17
+      },
+      {
+        "tag": "grandchild_gift",
+        "count": 17
+      },
+      {
+        "tag": "wedding_frame",
+        "count": 17
+      },
+      {
+        "tag": "first_fathers_day",
+        "count": 17
+      },
+      {
+        "tag": "keepsake_frame",
+        "count": 16
+      },
+      {
+        "tag": "newborn_keepsake",
+        "count": 16
+      },
+      {
+        "tag": "gift_for_papa",
+        "count": 16
+      },
+      {
+        "tag": "grandma_picture",
+        "count": 16
+      },
+      {
+        "tag": "family_photo_frame",
+        "count": 16
+      },
+      {
+        "tag": "new_grandpa_gift",
+        "count": 16
+      },
+      {
+        "tag": "granddaughter_gift",
+        "count": 16
+      },
+      {
+        "tag": "personalized_aunt",
+        "count": 16
+      },
+      {
+        "tag": "grandkids_gift",
+        "count": 15
+      },
+      {
+        "tag": "father_of_the_bride",
+        "count": 15
+      },
+      {
+        "tag": "baby_boy_frame",
+        "count": 15
+      },
+      {
+        "tag": "grandpa_picture",
+        "count": 15
+      },
+      {
+        "tag": "dog_picture_frame",
+        "count": 15
+      },
+      {
+        "tag": "gift_for_parents",
+        "count": 15
+      },
+      {
+        "tag": "godparents",
+        "count": 14
+      },
+      {
+        "tag": "gift_for_mimi",
+        "count": 14
+      },
+      {
+        "tag": "personalized_grandma",
+        "count": 14
+      },
+      {
+        "tag": "grandparent_frame",
+        "count": 14
+      },
+      {
+        "tag": "grandpa_christmas",
+        "count": 14
+      },
+      {
+        "tag": "papa_gift",
+        "count": 14
+      },
+      {
+        "tag": "wedding_photo_frame",
+        "count": 14
+      },
+      {
+        "tag": "gift_for_aunt",
+        "count": 13
+      },
+      {
+        "tag": "custom_grandma_gift",
+        "count": 13
+      },
+      {
+        "tag": "nana_gift",
+        "count": 13
+      },
+      {
+        "tag": "great_grandma",
+        "count": 13
+      },
+      {
+        "tag": "grandmother_gift",
+        "count": 13
+      },
+      {
+        "tag": "baby_shower",
+        "count": 13
+      },
+      {
+        "tag": "first_grandchild",
+        "count": 13
+      }
+    ]
+  },
+  "variationNames": {
+    "variation1": {
+      "Primary color": 528,
+      "Frame Orientation": 25,
+      "background color": 6,
+      "DESIGN": 5,
+      "Color": 3,
+      "Bulk Discounts": 3,
+      "one sided print": 2,
+      "Background color": 1,
+      "Bow color": 1,
+      "BACKGROUND COLOR": 1
+    },
+    "variation2": {
+      "Bow Color": 64,
+      "Flowers": 43,
+      "Primary color": 24,
+      "Heart Color": 18,
+      "bow color": 17,
+      "Flower": 14,
+      "Flower/Bow": 12,
+      "Bow color": 5,
+      "Bow": 4,
+      "Flower Color": 4,
+      "Frame Orientation": 4,
+      "Heart color": 2,
+      "Burlap Color": 1,
+      "Bunny bow color": 1
+    },
+    "note": "Casing splits (bow color/Bow Color/Bow color, background color/Background color) ORIGINATE ON ETSY. Shopify inherited them via import. 'Frame Orientation' (25 listings) has no Shopify equivalent."
+  },
+  "personalizationIsNotAVariation": true,
+  "personalizationNote": "Zero listings use a personalization-like variation name. Etsy's personalization box is a separate field and is not exported as a variation. Confirms the line-item-property architecture in 02/06.",
+  "godparent": {
+    "liveOnEtsy": 70,
+    "liveOnShopify": 4,
+    "priceMin": 33.55,
+    "priceMax": 35.55
+  }
+}

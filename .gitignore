@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Etsy raw exports — contain PII (phone, SSN fragment, card + bank details, home address).
+# Only sanitized extracts belong in this repo.
+shop_settings.json
+**/shop_settings*.json
+!**/shop-profile.sanitized.json
+*-shop_settings.json

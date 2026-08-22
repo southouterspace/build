@@ -6,6 +6,17 @@ recon findings and build specs produced before a real project repo exists.
 Nothing here has been executed against the live store except one deliberate
 write test (see `01-store-facts.md`).
 
+## ⚠️ Data handling — read before adding any export
+
+The Etsy `shop_settings.json` export contains **a personal phone number, an SSN
+fragment, credit card details with a home billing address, and bank account
+details**. It is not in this repo and must never be committed.
+`.gitignore` blocks `**/shop_settings*.json`. Only the sanitized extract at
+`data/etsy/shop-profile.sanitized.json` is tracked.
+
+**PII-scan every new export before adding it.** The listings CSV was scanned
+(emails, phones, SSNs, card numbers, street addresses) and is clean.
+
 ## Read order
 
 | Doc | Purpose |
@@ -17,6 +28,7 @@ write test (see `01-store-facts.md`).
 | `05-seo-program.md` | Workstream: SEO recon + drafting pipeline. |
 | `06-personalization.md` | Workstream: capture customer personalization. **Revenue-blocking.** |
 | `07-app-productization.md` | Market research on selling the customizer as a Shopify App Store app. |
+| `09-etsy-actuals.md` | **Authoritative Etsy data** from the owner's export. Supersedes Etsy inferences in `08`. |
 | `08-listing-architecture.md` | **The design matrix** — how to model listings to capture keywords. Answers the godparent question. |
 
 ## Data files
@@ -27,6 +39,9 @@ write test (see `01-store-facts.md`).
 | `data/clusters.json` | 26 duplicate/near-duplicate clusters. **Advisory only** — see the warning below. |
 | `data/keyword-assets.json` | Etsy-era keyword map mined from archived listings, plus the variant/collection defect lists. |
 | `data/app-store-landscape.json` | Shopify App Store *Custom products* category: 27 competitors, ratings, review counts, pricing. |
+| `data/etsy/etsy-listings-2026-08-22.csv` | The real export: 618 live Etsy listings with tags, prices, variations. |
+| `data/etsy/etsy-analysis.json` | Derived stats: prices, top-100 tags, variation names, godparent counts. |
+| `data/etsy/shop-profile.sanitized.json` | Shop announcement and buyer message. Financial/identity fields stripped. |
 | `data/etsy-recon.json` | 38 live Etsy listings recovered by fingerprint search. Sample, not a census. |
 | `data/app-pricing.json` | Real pricing tiers for Globo and Zepto — what the free tiers actually gate. |
 | `data/design-matrix.json` | Design template x relationship grid: 11 templates, 17 relationships, 187 cells. |
