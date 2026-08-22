@@ -1,0 +1,92 @@
+{
+  "provenance": "Shopify App Store listing pages, scraped 2026-08-22. Prices as published (USD/month).",
+  "globo": {
+    "appName": "Globo Product Options, Variant",
+    "reviews": 4823,
+    "rating": 4.9,
+    "plans": [
+      {
+        "name": "Free",
+        "price": 0,
+        "notable": [
+          "Unlimited option sets, products, orders",
+          "15 option types",
+          "Text box, checkbox, colour/image swatch",
+          "Conditional logic",
+          "Options on orders, packing slips, emails",
+          "No watermark"
+        ]
+      },
+      {
+        "name": "Premium",
+        "price": 9.9,
+        "notable": [
+          "20 option types",
+          "Price add-ons",
+          "File upload up to 20MB",
+          "Character limits",
+          "Multi-language",
+          "Theme styling"
+        ]
+      },
+      {
+        "name": "Advanced",
+        "price": 19.9,
+        "notable": [
+          "30+ option types",
+          "**Product Personalizer - Live Preview**",
+          "File upload up to 20 files / 100MB",
+          "Edit options in cart",
+          "POS support",
+          "Custom order tags"
+        ]
+      }
+    ],
+    "livePreviewGatedAt": 19.9,
+    "note": "Free tier is genuinely generous for plain text capture - unlimited products AND orders. But LIVE PREVIEW, the feature Butterlu actually wants, is Advanced tier only."
+  },
+  "zepto": {
+    "appName": "Zepto Product Personalizer",
+    "reviews": 1311,
+    "rating": 4.9,
+    "plans": [
+      {
+        "name": "Starter",
+        "price": 9.99,
+        "productCap": 50,
+        "customOrdersPerMonth": 100
+      },
+      {
+        "name": "Basic",
+        "price": 19.99,
+        "productCap": 200,
+        "customOrdersPerMonth": 300
+      },
+      {
+        "name": "Pro",
+        "price": 29.99,
+        "productCap": 500,
+        "customOrdersPerMonth": 500
+      },
+      {
+        "name": "Unlimited",
+        "price": 49.99,
+        "productCap": null,
+        "customOrdersPerMonth": null
+      }
+    ],
+    "hasFreePlan": false,
+    "note": "Listed as 'Free trial available', NOT 'Free plan available'. Meters CUSTOM ORDERS PER MONTH - for a 100%-personalized store every order is a custom order, so the meter runs on core sales volume, not on an add-on feature."
+  },
+  "butterluCost": {
+    "note": "Butterlu has 96 live products, all personalized.",
+    "globoForLivePreview": 19.9,
+    "zeptoMinimumViable": 19.99,
+    "zeptoAtScale": 49.99,
+    "annualRange": [
+      238.8,
+      599.88
+    ],
+    "escalation": "Zepto cost rises with order volume. Success increases the bill."
+  }
+}

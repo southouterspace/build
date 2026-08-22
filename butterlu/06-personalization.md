@@ -76,9 +76,17 @@ code. Reasonable if the owner wants to configure fields without a developer.
 > of 27 apps in the category have a free tier. See `07-app-productization.md`
 > for the data.
 
-For Butterlu specifically, **buying beats building**. Globo (4,823 reviews) and
-Zepto (1,311 reviews) both ship live preview on a free or low-cost plan. There
-is no Butterlu-internal justification for custom build cost.
+> **AMENDED 2026-08-22.** An earlier revision said "buying beats building"
+> and pointed at free tiers. Pricing research disproved that for the feature
+> that matters: **Globo gates live preview behind its $19.90/mo Advanced
+> plan**, and **Zepto has no free plan at all** and meters custom orders per
+> month (100/mo at $9.99), which for a 100%-personalized store meters core
+> sales volume. See `data/app-pricing.json`.
+
+For Butterlu, buying beats building **for plain text capture only** — Globo's
+free tier covers that with unlimited products and orders. **Live preview is
+paywalled at $19.90/mo**, so there is a real, recurring cost to buying the
+feature Butterlu actually wants.
 
 Custom build is justified only by a *product* thesis — selling the result — and
 `07-app-productization.md` argues the general-purpose options category is the

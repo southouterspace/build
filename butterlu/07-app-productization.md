@@ -1,161 +1,188 @@
-# 07 — Selling the Customizer on the Shopify App Store
+# 07 — Building the Customizer as a Commercial Shopify App
 
-**Status:** market research complete, no build decision made.
-**Owner preference on record:** build the customizer as a commercial app for
-the Shopify App Store, with Butterlu as design partner / first install.
+**Status:** market + pricing research complete. Direction set by the owner.
+**Goal on record:** build the functionality Butterlu needs, then package and
+sell it as a Shopify app to **fund the development work**.
 
-## Correction to earlier advice in `06-personalization.md`
+That framing matters and is different from speculative market entry. The build
+cost is largely incurred either way; the app is a route to recouping it. This
+doc is written to that goal.
 
-An earlier version of `06` recommended building a customizer whose
-differentiator was **live preview** — rendering the customer's text on their
-chosen colour before add-to-cart — and called it "the one thing worth custom
-building."
+## The "free isn't really free" critique is correct
 
-**That was wrong, and the research below disproves it.** Live preview is not a
-gap in this category. It is the standard feature that market leaders lead
-their listing copy with. `06` has been amended.
+Verified against live listing pages 2026-08-22. Data: `data/app-pricing.json`.
 
-## Market reality
+### Globo Product Options (4,823 reviews, 4.9)
 
-Source: Shopify App Store category *Custom products*, page 1, scraped
-2026-08-22. Raw data in `data/app-store-landscape.json`.
+| Plan | Price | What you get |
+|---|---|---|
+| Free | $0 | Unlimited option sets, products **and orders**. 15 option types. Conditional logic. Options on orders/packing slips. No watermark. |
+| Premium | $9.90/mo | 20 option types, price add-ons, file upload 20MB, character limits, theme styling |
+| **Advanced** | **$19.90/mo** | 30+ option types, **Product Personalizer — Live Preview**, cart editing, POS |
+
+Globo's free tier is genuinely generous for **plain text capture**. But
+**live preview — the feature Butterlu actually wants — is Advanced only, at
+$19.90/mo.** Exactly the gate the owner predicted.
+
+### Zepto Product Personalizer (1,311 reviews, 4.9)
+
+| Plan | Price | Product cap | **Custom orders/month** |
+|---|---|---|---|
+| Starter | $9.99/mo | 50 | **100** |
+| Basic | $19.99/mo | 200 | **300** |
+| Pro | $29.99/mo | 500 | **500** |
+| Unlimited | $49.99/mo | unlimited | unlimited |
+
+**Zepto has no free plan at all** — the App Store label is "Free trial
+available", not "Free plan available". And it **meters custom orders per
+month**. For a 100%-personalized store, *every* order is a custom order, so
+the meter runs on core sales volume. Growth raises the bill.
+
+### What buying actually costs Butterlu
+
+96 live products, every one personalized:
+
+- Globo Advanced (for live preview): **$19.90/mo — $238.80/yr**
+- Zepto Basic minimum viable: **$19.99/mo**, rising to **$49.99/mo — $599.88/yr** at volume
+
+**Correction to earlier advice:** `06-personalization.md` said "buying beats
+building" and pointed at Globo's free tier. That was right for plain text
+capture and **wrong for live preview**, which is paywalled. `06` is amended.
+
+### The strategic read this changes
+
+Live preview is **not a differentiator** — every leader ships it. But it **is
+the paywall line** in this category. It is the feature incumbents monetise.
+
+That reframes it: building live preview is not "building something nobody has."
+It is "attacking the price line of a category where the leader has 4,823
+reviews." That is a real strategy — it is just a *price* strategy, not a
+*product* strategy, and it should be entered knowingly.
+
+## Market context (unchanged, still true)
+
+Source: App Store *Custom products* category page one. Data:
+`data/app-store-landscape.json`.
 
 | Metric | Value |
 |---|---|
-| Apps on page one alone | 27 |
-| Total reviews represented | 28,694 |
+| Apps on page one | 27 |
+| Total reviews | 28,694 |
 | Apps with 1,000+ reviews | 11 (81% of all reviews) |
-| Apps offering a free tier | **23 of 27** |
-| Rating range | 3.7 – 5.0, **median 4.8** |
+| Median rating | 4.8 |
 
-Top of category by review volume:
+Incumbents are entrenched and well-reviewed. Review count drives App Store
+ranking and compounds; a new entrant starts at zero.
 
-```
-4,823  4.9  Free plan       Globo Product Options, Variant
-2,930  4.9  Free plan       Easify Custom Product Options
-2,836  5.0  Free plan       Color Swatch King: Variants
-2,434  4.7  Free trial      Infinite Options
-2,267  4.9  Free plan       OPTIS Product Options, Variant
-1,715  5.0  Free plan       GLO Color Swatch Variant Image
-1,620  4.9  Free plan       Aris Product Options, Variants
-1,311  4.9  Free trial      Zepto Product Personalizer
-```
+## Funding arithmetic
 
-Apps that **already ship live preview** and say so in their tagline:
-LPO Live Product Options · Live Preview Options by Webyze · Zepto Product
-Personalizer · Globo Product Options · Customily Product Personalizer ·
-Inkybay.
+This is the number that should drive the decision. It uses **no invented
+install data** — Shopify does not publish installs, and review-to-install
+ratios are unknowable from outside. It is just the arithmetic of the price
+points above.
 
-Customily goes further than preview: *"Live Previews & **Auto Fulfillment**"*
-and *"print ready files"* — i.e. the production-output problem is also taken.
+| Dev budget | At $9.90/mo | At $19.90/mo | At $29.99/mo |
+|---|---|---|---|
+| $60k/yr (part-time) | 505 installs | 251 installs | 167 installs |
+| $120k/yr (full-time) | 1,010 installs | 503 installs | 333 installs |
 
-### Read on this
+**Sustained paying installs**, net of churn, minus Shopify's revenue share and
+hosting.
 
-Three signals, all bad for a general-purpose entrant:
+Stated once, plainly: **funding development this way requires hundreds of
+paying merchants.** That is a company with support obligations, not a
+byproduct of building a feature for one store. If the plan is to fund dev work,
+the plan is to run an app business. That is a legitimate choice — it should
+just be made with the number visible.
 
-1. **Saturation.** Eleven apps with four-figure review counts. Review count is
-   a proxy for install base and for App Store ranking, and it compounds — new
-   entrants start at zero against incumbents with a decade of accumulated
-   social proof.
-2. **No quality gap.** A median rating of 4.8 across 27 apps means merchants
-   are not dissatisfied. There is no "they're all bad, we'll do it properly"
-   opening.
-3. **Price floor is zero.** 23 of 27 have a free tier. Willingness to pay for
-   generic product options is approximately nil, so a paid general-purpose
-   entrant must be dramatically better *and* overcome free.
+## Choosing the wedge
 
-**Verdict: building a general-purpose product-options / personalization app to
-sell is a poor bet.** Not impossible, but the evidence does not support it, and
-it should not be entered into on the assumption that live preview is a wedge.
+Given the goal is to build what Butterlu needs *and* sell it, the wedge should
+satisfy three tests:
 
-## What the research does suggest
+1. **Butterlu genuinely needs it** (so the build is not speculative)
+2. **It is not already commoditised at $0–20/mo** (so it can be charged for)
+3. **A definable buyer has the same pain** (so it sells)
 
-A specific, evidenced gap surfaced while checking the adjacent category.
+| Candidate | Needs it | Not commoditised | Buyer exists | Verdict |
+|---|---|---|---|---|
+| Generic product options | Yes | **No** — free at Globo | Yes | Fails |
+| Live preview | Yes | **No** — $19.90 at Globo | Yes | Price play only |
+| Print-ready production output | Yes | Partly — Customily does it | Yes | Contested |
+| **Catalog generation from a design matrix** | **Yes** (see `08`) | **Yes — nobody does it** | Etsy migrators | **Strongest** |
+| **Post-import Etsy consolidation** | **Yes** (this whole repo) | **Yes — nobody does it** | Etsy migrators | **Strongest** |
 
-Etsy→Shopify import apps exist and are established: Easy:Import, SP Etsy
-Importer, Salestio, shopUpz ($14.99/mo unlimited), InfoShore. **Every one of
-them imports listings 1:1.**
+### The two uncontested candidates
 
-That is precisely the mechanism that produced the mess documented in
-`01-store-facts.md`: 243 Shopify products carrying roughly 96 real designs,
-868 tags of which 530 are used once, no collection structure, no SEO, an
-option model split across 12 inconsistent names and six palette definitions.
+Both come straight out of Butterlu's own needs, documented in this folder.
 
-**Nobody sells the consolidation step.** The importers create the problem and
-stop. There is no app that takes a flooded, imported catalog and:
+**Catalog generation from a design matrix** (`08-listing-architecture.md`).
+Butterlu needs to build 100+ listings from 11 quote templates x 17
+relationships, each with its own SEO copy and collection assignments, without
+hand-writing them. No options app does this. It is a merchandising tool, not
+an options tool.
 
-- groups near-duplicate listings into candidate products (advisory, human-ruled)
-- collapses listing-per-keyword into product + variants
-- derives a collection taxonomy from the noisy imported tag vocabulary
-- preserves the marketplace keyword surface as collections rather than losing it
-- generates the redirects so the collapse doesn't break inbound links
-- writes SEO fields the marketplace never had
+**Post-import Etsy consolidation** (`01`, `04`, this repo's data). Every
+Etsy→Shopify importer on the App Store — Easy:Import, SP Etsy Importer,
+Salestio, shopUpz, InfoShore — imports listings 1:1. **That is the mechanism
+that produced Butterlu's catalog**: 243 products carrying ~96 designs, 868
+tags of which 530 are used once, no collections, no SEO. The importers create
+the problem and stop. Nobody sells the cleanup.
 
-This is a **post-migration cleanup** product, not an importer and not an
-options app.
+These two are the same product viewed from two ends: **take a flooded,
+keyword-farmed marketplace catalog and turn it into a properly modelled
+Shopify store.** Consolidate what exists; generate what is missing.
 
-### Why this is a stronger candidate
-
-- **Lived experience.** Butterlu is a worked example, end to end, with the
-  before-state captured in `data/`.
-- **Working prototype logic already exists.** The clustering, hash-based
-  duplicate detection, tag mining, and defect detection in this folder are the
-  core algorithms.
-- **The buyer has budget and pain.** Someone who just paid to import 500 Etsy
-  listings and now has an unnavigable store has an acute, dated, expensive problem.
-- **It is adjacent to a proven category** rather than head-on against eleven
-  entrenched incumbents.
+The prototype logic already exists in this folder — hash-based duplicate
+detection, cluster analysis, tag mining, template/relationship matrix
+extraction, defect detection.
 
 ### Honest risks
 
-- **Smaller TAM** than product options. Migration is a one-time event, which
-  makes recurring revenue hard — likely a one-off or short-subscription product.
-- **Unvalidated demand.** Nobody selling it may mean nobody wants it. This
-  needs customer discovery before a line of app code is written.
-- **Correctness is the whole product**, and it is genuinely hard — see the
-  false-positive clustering problem in `README.md` ground rule 3. Getting this
-  wrong destroys a merchant's catalog.
+- **Smaller TAM** than product options.
+- **Migration is one-time**, which makes recurring revenue hard. Likely a
+  one-off or short-subscription product — which fits *recouping* build cost
+  better than it fits *funding ongoing* dev.
+- **Unvalidated demand.** Nobody selling it may mean nobody wants it. Needs
+  customer discovery before app code is written.
+- **Correctness is the entire product.** See ground rule 3 in `README.md`:
+  naive clustering merges "Grandpa", "Abuelo" and "Great Grandpa" into one
+  product. Getting this wrong destroys a merchant's catalog. This is the
+  hardest part and the reason it is defensible.
 
 ## Requirements for public App Store distribution
 
-Confirmed from `shopify.dev`. Applies to whatever gets built.
+Confirmed from `shopify.dev`:
 
-- **Shopify billing API is mandatory.** All charges for App Store apps must go
-  through Shopify's billing system. Bring-your-own-Stripe is not permitted.
+- **Shopify billing API is mandatory.** All charges must go through it.
+  Bring-your-own-Stripe is not permitted.
 - **Mandatory compliance webhooks** (`customers/data_request`,
-  `customers/redact`, `shop/redact`) are required for **every** listed app,
-  *regardless of whether the app collects personal data*.
-- **App review** against the published requirements checklist — the same
-  checklist the App Review team uses.
-- **OAuth / managed installation** must be configured and tested; incorrect App
-  URL or redirect URLs are a rejection cause.
-- Requires a **Shopify Partner account** and a development store.
+  `customers/redact`, `shop/redact`) for **every** listed app, regardless of
+  whether it collects personal data.
+- **App review** against the published requirements checklist.
+- **OAuth / managed installation** configured and tested — bad App URL or
+  redirect URLs are a documented rejection cause.
+- **Shopify Partner account** and a development store.
 
-Budget for review iteration. First submissions commonly bounce.
+Budget for review iteration; first submissions commonly bounce.
 
 ## Do not couple the two timelines
 
-This is the most important operational point in this doc.
-
-**Butterlu is losing money today** because the store cannot capture
-personalization (`06-personalization.md`). A public app is a months-long
-project including review. These must not be sequenced together.
+Unchanged and still the most important operational point.
 
 | Track | Action | Timeline |
 |---|---|---|
-| **Butterlu** | Ship line item properties (`06` rung 1), or install one of the free incumbents — Globo or Zepto give live preview immediately at no or low cost. | Days |
-| **Product** | Customer discovery on the consolidation thesis *before* building. Talk to Etsy→Shopify migrators. | Weeks |
+| **Butterlu** | Ship `snippets/butterlu-personalization.liquid` (rung 1, free, already written). Optionally add Globo's **free** tier for richer option types. Do **not** pay for Advanced — live preview is what you intend to build. | Days |
+| **Product** | Customer discovery on the consolidation/generation thesis before building. | Weeks |
 
-Using an incumbent app at Butterlu is also **free competitive research** — it
-shows exactly what the leaders do well and where they fall short, from the
-position of a real merchant with a real catalog.
+Running Globo's free tier at Butterlu is also free competitive research: it
+shows exactly where the paywall sits and what merchants get for $19.90.
 
-## Open questions for the owner
+## Open questions
 
-1. Is the goal a **product business**, or a **funded way to solve Butterlu**?
-   These lead to different decisions. If the latter, buying an app is faster
-   and cheaper than building one.
-2. Willingness to do customer discovery before building? The consolidation
-   thesis is evidenced but **not validated**.
-3. Is Butterlu willing to install a competitor app in the interim? Recommended.
-4. Does a Shopify Partner account exist yet?
+1. Which wedge — price-attack on live preview, or the uncontested
+   consolidation/generation angle? They imply very different products.
+2. Is there appetite for customer discovery before building?
+3. Does a Shopify Partner account exist yet?
+4. What is the actual dev budget being funded? The arithmetic above is only
+   meaningful against a real number.
