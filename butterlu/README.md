@@ -14,6 +14,12 @@ details**. It is not in this repo and must never be committed.
 `.gitignore` blocks `**/shop_settings*.json`. Only the sanitized extract at
 `data/etsy/shop-profile.sanitized.json` is tracked.
 
+The Etsy **order exports** are worse: they carry **~5,200 customer names and
+home addresses** — third-party data, not the owner's own. `.gitignore` blocks
+`*SoldOrderItems*.csv`. Only `data/etsy/orders-deidentified-2024-2026.csv` is
+tracked, with names, streets, cities and postcodes dropped and order/buyer IDs
+replaced by salted hashes.
+
 **PII-scan every new export before adding it.** The listings CSV was scanned
 (emails, phones, SSNs, card numbers, street addresses) and is clean.
 
@@ -30,7 +36,8 @@ details**. It is not in this repo and must never be committed.
 | `07-app-productization.md` | Market research on selling the customizer as a Shopify App Store app. |
 | `08-listing-architecture.md` | **The design matrix** — how to model listings to capture keywords. Answers the godparent question. |
 | `09-etsy-actuals.md` | **Authoritative Etsy data** from the owner's export. Supersedes Etsy inferences in `08`. |
-| `10-review-intelligence.md` | **Demand and quality signal** from 12,788 Etsy reviews, 2014–2026. Volume trend, occasion mix, defect themes, seasonality. |
+| `10-review-intelligence.md` | Demand and quality signal from 12,788 Etsy reviews, 2014–2026. **Partly superseded by `11`** — see its header. |
+| `11-order-actuals.md` | **THE REVENUE RECORD.** 6,248 order line items, 2024–2026. What actually sells. Supersedes demand inferences in `08`, `09`, `10`. |
 
 ## Data files
 
@@ -45,6 +52,7 @@ details**. It is not in this repo and must never be committed.
 | `data/etsy/shop-profile.sanitized.json` | Shop announcement and buyer message. Financial/identity fields stripped. |
 | `data/etsy/etsy-reviews-2026-08-22.json` | 12,788 unique reviews, 2014–2026. Reviewer names pseudonymized to salted hashes. |
 | `data/etsy/review-analysis.json` | Derived review stats: yearly volume, occasion mix, complaint and praise themes, seasonality. |
+| `data/etsy/orders-deidentified-2024-2026.csv` | 6,248 order line items. **Customer names and addresses removed; order/buyer keys hashed.** |
 | `data/etsy-recon.json` | 38 live Etsy listings recovered by fingerprint search. Sample, not a census. |
 | `data/app-pricing.json` | Real pricing tiers for Globo and Zepto — what the free tiers actually gate. |
 | `data/design-matrix.json` | Design template x relationship grid: 11 templates, 17 relationships, 187 cells. |

@@ -1,5 +1,21 @@
 # 10 — Review intelligence (Etsy, 2014–2026)
 
+> ## ⚠️ SUPERSEDED IN PART 2026-08-22 — read `11-order-actuals.md` first
+>
+> The order exports arrived after this document was written. Where the two
+> disagree, **`11` is correct** — it is the transaction record; this is a proxy.
+>
+> Three specific corrections, applied in place below:
+> - **Growth:** this doc said 2026 was up 14%. Real figure is **+31% net
+>   revenue, +29% orders**. Reviews under-sample and lag.
+> - **Repeat buyers:** this doc estimated ~26%. Real figure is **6.0%**. The
+>   name-matching method was as unreliable as its own caveat warned.
+> - **Wedding:** answered. Not retired — **lost**. $865 of 2026 revenue from
+>   94 live listings.
+>
+> The occasion *rankings*, complaint themes and praise themes below held up well
+> against the money and remain useful.
+
 **Source:** owner's Etsy review export, 7 files, retrieved 2026-08-22.
 **Data:** `data/etsy/etsy-reviews-2026-08-22.json` (12,788 unique reviews),
 derived stats in `data/etsy/review-analysis.json`.
@@ -36,7 +52,8 @@ Comparable Jan 1 – Aug 21 windows, so no partial-year distortion:
 | 2025 | 201 | −84% |
 | **2026** | **229** | **−82%** |
 
-**2026 is up 14% on 2025.** The five-year slide bottomed out in 2025. That changes
+**2026 is up 14% on 2025 by review count** — and **+31% by net revenue**, per
+`11`, which is the number to quote. The five-year slide bottomed out in 2025. That changes
 the framing of this whole project: this is not a rescue of a dying shop, it is a
 recovering shop with an untapped second channel. Full-year totals: 2020 peak 2,360
 reviews / 2,254 distinct orders; 2025 was 365.
@@ -146,8 +163,13 @@ Seasonality-neutral (Jan–Aug window only, so Christmas can't distort it):
 This is not seasonal and not a small-n artifact — 2024–2026 is 754 text reviews with
 one wedding mention between them. Yet "Featured on The Knot – Best of Weddings" is
 still the shop's headline trust badge, and `08` treats wedding as a live template.
-Either weddings were deliberately dropped, or they were lost. **This needs an
-owner ruling before any wedding SEO work is funded.**
+
+> **NARROWED 2026-08-22.** An earlier revision of this doc asked whether weddings
+> were *deliberately dropped or lost*. Cross-checking the Etsy export settles half
+> of it: **94 wedding listings are still live on Etsy** (15% of live inventory,
+> `04`). The category was not retired. So it was **lost** — 94 live listings are
+> generating no measurable demand signal at all. That is a far more urgent finding
+> than "the owner stopped doing weddings," and it still blocks wedding SEO spend.
 
 **Baby/pregnancy is 2026's strongest occasion at 6.3%** — its highest share on
 record, and it is the one segment growing while everything else flattens. This
@@ -188,14 +210,18 @@ Anything that slips is really targeting May 2027.
 
 ## Repeat buyers
 
+> **WITHDRAWN — see `11`.** The real repeat rate from order data is **6.0%** of
+> buyers and 12.5% of revenue. The 26% below is a first-name-collision artifact.
+> It is kept only to show how the method failed.
+
 1,177 reviewer IDs appear more than once, out of 4,583 identified reviewers —
 **about 26%**. 411 five-star reviews explicitly mention reordering. One 2026 review:
 *"I LOVE it just like I LOVED the other 7 frames I've ordered from them."*
 
 This is a caveated number in both directions: it undercounts buyers who ordered
-without reviewing, and overcounts because common first names collide. But a repeat
-rate anywhere near 26% on a gift purchase is high, and Etsy owns that relationship
-today. Nothing on Shopify currently captures an email address.
+without reviewing, and overcounts because common first names collide. **The
+overcount dominated** — order data puts the true rate at 6.0%. The Shopify
+email-capture opportunity is still real, but size it against 6%, not 26%.
 
 ## Testimonials cleared for site use
 
@@ -234,10 +260,10 @@ Note the top two are both baby/ultrasound — consistent with 2026's occasion sh
 
 ## Open questions this raises
 
-1. **Were weddings dropped on purpose, or lost?** Blocks all wedding-related work.
+1. **Why did weddings stop selling?** Not a retirement — 94 listings are still
+   live on Etsy (`04`) producing near-zero review signal. Blocks wedding work.
 2. **What caused the 2020→2025 decline** — Etsy algorithm, competition, deliberate
    scale-back, or capacity? Determines whether Shopify growth is additive or a
    replacement channel.
 3. **Godparent: 70 listings, 0.9% of 2026 mentions.** Listing bloat or real demand?
-4. **Orders CSV** would convert every proxy here into fact, and add revenue per
-   occasion — which reviews cannot show at all.
+4. ~~**Orders CSV**~~ — **received 2026-08-22.** See `11-order-actuals.md`.

@@ -17,7 +17,18 @@
     and this snippet will use it as the field label. Falls back to a default.
 
   PER-PRODUCT CHARACTER LIMIT (optional):
-    Create  custom.personalization_max_chars  (integer). Falls back to 100.
+    Create  custom.personalization_max_chars  (integer). Falls back to 300.
+
+    300 is not arbitrary. Measured against 5,278 real Etsy personalization
+    payloads (2024-2026, see 11-order-actuals.md): median 38 chars, p90 113,
+    p99 243, max 292. A 100-char cap - this snippet's original default -
+    would have truncated 12.5% of real orders. Do not lower it below 255
+    without checking that distribution again.
+
+    The field is a <textarea>, deliberately: 48% of real payloads contain
+    newlines, and 33% contain non-ASCII characters (accents, curly quotes,
+    emoji - 18.5% carry emoji specifically). A single-line <input> or any
+    ASCII-only sanitising would corrupt a large share of orders.
 
   TO MAKE IT OPTIONAL on a given product:
     Create  custom.personalization_required  (true/false). Defaults to true.
@@ -34,7 +45,7 @@
 
   assign max_chars = product.metafields.custom.personalization_max_chars.value
   if max_chars == blank or max_chars == 0
-    assign max_chars = 100
+    assign max_chars = 300
   endif
 
   assign is_required = true

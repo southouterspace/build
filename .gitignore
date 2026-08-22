@@ -29,3 +29,10 @@ shop_settings.json
 **/shop_settings*.json
 !**/shop-profile.sanitized.json
 *-shop_settings.json
+
+# Etsy ORDER exports — contain ~5,200 customer names and home addresses.
+# Never commit. Only the de-identified derivative at
+# butterlu/data/etsy/orders-deidentified-*.csv is tracked.
+EtsySoldOrderItems*.csv
+**/EtsySoldOrderItems*.csv
+*SoldOrderItems*.csv

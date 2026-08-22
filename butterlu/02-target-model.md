@@ -20,7 +20,7 @@ product layer to the collection and content layer.
 |---|---|
 | **Product** | One product = one design (one printed quote/artwork). Already effectively true: 96 distinct designs across 99 live listings. |
 | **Variant** | Background colour, drawn from **one canonical palette**, with consistent option naming. Secondary axes (bow colour, flowers) remain variants — the 2048-variant limit gives ample headroom. |
-| **Personalization** | Customer's name/date/quote is captured as a **line item property**, never as a variant. See `06-personalization.md`. |
+| **Personalization** | Customer's name/date/quote is captured as a **line item property**, never as a variant. **Confirmed by evidence:** zero of 618 live Etsy listings model personalization as a variation (`09`), and 84.5% of 6,248 real order line items carry a free-text personalization payload (`11`). See `06-personalization.md`. |
 | **Collection** | The discovery and SEO layer. Faceted by recipient, occasion, and theme. Each collection gets real SEO copy. See `04-collections-taxonomy.md`. |
 | **Content** | Long-tail phrases the archive proves had demand become collection pages and, where warranted, blog/landing pages — not products. See `05-seo-program.md`. |
 
@@ -36,6 +36,15 @@ product layer to the collection and content layer.
 
 ## Migration ordering
 
+> **REVISED 2026-08-22 against order data (`11`).** Two changes:
+> **consolidation is far safer than assumed** — 315 of 618 live Etsy listings
+> earned nothing in 2026, and 55 produce 71% of revenue, so most of what gets
+> consolidated away is already dead. And **baby/pregnancy leads everything**:
+> 42.5% of 2026 revenue, +300% YoY. Build that range first at every stage.
+>
+> A new step 6 is added: **import the reviews.** 12,788 reviews averaging 4.918
+> exist and appear nowhere on Shopify (`10`).
+
 Ordered by risk-adjusted value. Each stage should be independently shippable
 and reversible.
 
@@ -50,6 +59,9 @@ and reversible.
    currently unreachable from any menu.
 5. **SEO program** (`05`) — last. Traffic into a store that can't take a custom
    order is wasted spend.
+6. **Review import** — 12,788 Etsy reviews at a 4.918 average (`10`) are the
+   store's strongest conversion asset and are currently invisible on Shopify.
+   Independent of the rest; can run in parallel once collections exist.
 
 ## Redirect discipline (non-negotiable)
 

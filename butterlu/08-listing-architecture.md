@@ -3,6 +3,30 @@
 Answers: *how do we build listings to capture keywords when a godparent frame
 is the same design as a grandparent frame with the word swapped?*
 
+> ## ⛔ SUPERSEDED AS A DEMAND MODEL — 2026-08-22
+>
+> **The matrix counts listings. Listings do not predict revenue.** `11` (order
+> actuals) settles this with the transaction record:
+>
+> - **315 of 618 live Etsy listings earned $0 in 2026.** 55 listings produce
+>   71% of revenue.
+> - **70 godparent listings earned $4,215. One baby listing earned $4,391.**
+>   A matrix cell's population tells you nothing about what it is worth.
+> - **94 wedding listings earned $865**, −45% YoY. The matrix treats wedding as
+>   a live template; the money says it is not.
+>
+> **What survives:** the structural rule below — that the product/variant
+> boundary follows *search intent*, not manufacturing — is sound and unaffected.
+> Relationship must still never be a variant.
+>
+> **What does not:** every cell count as a proxy for demand, and the build
+> ambition implied by grid coverage. Do not build a cell because it is empty.
+> Build it because `11` shows revenue, or a deliberate bet is being made.
+>
+> **Missing template:** `09` found a `first-time` / new-grandparent template
+> the Shopify-derived matrix never saw (19 grandpa, 18 baby listings), and `11`
+> shows the new-baby range is the growth engine. Both belong in any revision.
+>
 > ## ⚠️ Provenance: this matrix is Shopify-derived and ~16 months stale
 >
 > **The matrix has never seen Etsy.** It is mined entirely from the 243
@@ -27,6 +51,10 @@ is the same design as a grandparent frame with the word swapped?*
 > ButterLu's unique description boilerplate through search-engine indexes.
 > Findings are in `data/etsy-recon.json` and summarised in
 > "What Etsy actually looks like now" below. **They confirm the divergence.**
+>
+> **RESOLVED 2026-08-22 — the export was obtained.** See `09-etsy-actuals.md`
+> for the real 618-listing census and `11-order-actuals.md` for what sold.
+> The refresh instructions below are kept for the next time.
 >
 > **To refresh: export the Etsy listings CSV** (Etsy Shop Manager → Settings →
 > Options → Download Data → "Currently for sale listings"). First-party,

@@ -4,6 +4,24 @@
 **Sequencing:** run this **last** (see `02-target-model.md`). Driving traffic to
 a store that cannot capture a custom order wastes the spend.
 
+> ## Retargeted 2026-08-22 — optimise 55 designs, not 618 listings
+>
+> `11` (order actuals) changes what this program should target:
+>
+> - **55 listings produce 71% of revenue; 315 produce nothing.** SEO effort
+>   follows revenue, not listing count. Draft for the designs behind those 55.
+> - **Baby/pregnancy is 42.5% of 2026 revenue, up 300%.** It is the first
+>   niche in the pilot, not one of twelve.
+> - **Cut wedding entirely.** $865 of 2026 revenue, −45% YoY, from 94 live
+>   listings. Do not spend a keyword on it.
+> - **Godparent and baptism are declining** (−33%, −51%). Reduce ambition; they
+>   were the historic flagship and are no longer the business.
+> - **Use "most orders ship within 2 days"** — measured median is 2 days, 84.7%
+>   within 3 (`11`). The shop currently advertises a slower figure than it
+>   achieves.
+>
+> Revised pilot order: **baby/pregnancy → grandparent → memorial/pet.**
+
 ## Baseline
 
 - `seo.title`: **0 of 243** populated
@@ -58,10 +76,19 @@ must be rejected.
 1. **Etsy shop stats.** First-party, converting search terms from the
    marketplace where this catalog actually sold. Beats any scrape. Highest
    priority to obtain.
-2. **The archive** (`data/keyword-assets.json`). 208 distinct tags across 129
-   archived listings, plus 28 phrases with proven Etsy-era usage and zero live
-   presence. Free, already mined, demand-validated.
-3. **Google Search Console.** Free, real impressions and queries for
+2. **The real Etsy tag corpus** (`data/etsy/etsy-analysis.json`) — **use this,
+   not `keyword-assets.json`.** 7,965 tag assignments across 618 *live* listings,
+   2,454 distinct, 12.9 per listing. First-party and current. Top tags:
+   `personalized_frame` 147 · `personalized_gift` 95 · `picture_frame` 87 ·
+   `grandma_gift` 80 · `baby_keepsake` 73 · `grandparent_gift` 71 ·
+   `baby_photo_frame` 68 · `baby_announcement` 64 · `baptism_gift` 59 ·
+   `pregnancy_reveal` 55.
+   **Weight these by revenue from `11` before using them** — tag frequency
+   reflects how listings were built, not what sold. Baptism tags rank high and
+   baptism revenue fell 51%.
+3. **The archive** (`data/keyword-assets.json`) — superseded as a primary
+   source, still useful for *abandoned* intents that no live listing targets.
+4. **Google Search Console.** Free, real impressions and queries for
    butterlu.com. **Connect immediately if not already** — GSC only collects from
    the moment of verification, so every day unconnected is data permanently lost.
 
@@ -86,10 +113,19 @@ all 96.
 ## Drafting constraints
 
 - `seo.title` <= 60 chars; `seo.description` <= 155 chars (truncation limits)
-- Every description must carry at least one **concrete** trust/logistics signal
-  drawn from the product's real description — handmade, ships from Texas, glass
-  included, 4x6 photo, easel + wall mount. Do not invent shipping times,
-  guarantees, or review counts that have not been confirmed by the owner.
+- Every description must carry at least one **concrete** trust/logistics signal.
+  These are now **verified against data** and may be used as written:
+
+  | Claim | Evidence |
+  |---|---|
+  | "Most orders ship within 2 days" | Median 2 days, 84.7% ≤3 days, n=6,217 (`11`) |
+  | "4.9 stars from 12,000+ reviews" | 4.918 across 12,788 reviews (`10`) |
+  | "Handmade by a family shop since 2015" | Owner bio (`shop-profile.sanitized.json`) |
+  | "Featured on The Knot – Best of Weddings" | Shop announcement — **true, but wedding-only; do not use on baby or grandparent pages** |
+  | "Made from recycled wood fibre MDF" | Shop announcement |
+
+  Anything **not** in this table or the product's own copy must be confirmed by
+  the owner. Do not invent shipping times, guarantees, or review counts.
 - One primary phrase per product. **No two live products may target the same
   primary phrase** — that is the cannibalisation the Etsy model caused.
 - Write for a human. No keyword lists in the description field.
@@ -101,7 +137,8 @@ all 96.
 
 - [ ] `06-personalization.md` resolved — store can take a custom order
 - [ ] `04-collections-taxonomy.md` done — pages exist to point head terms at
-- [ ] Godparent decision made — don't optimise a 3-product category
+- [ ] Godparent range sized (`04`) — declining, −33% YoY, don't over-invest
+- [ ] Wedding formally dropped from scope (`11`)
 - [ ] Google Search Console connected
 - [ ] Etsy stats exported if obtainable
 

@@ -1,5 +1,30 @@
 # 06 — Personalization Capture
 
+> ## Field spec is now measured, not assumed — 2026-08-22
+>
+> `11` derives the requirements from **5,278 real personalization payloads**.
+> Four are hard constraints, and one of them corrected a defect in this
+> project's own snippet:
+>
+> | Requirement | Evidence |
+> |---|---|
+> | **Multi-line input mandatory** | 48.0% of payloads contain newlines |
+> | **Limit ≥255, use 300** | max 292, p99 243; a 100-char cap truncates **12.5%** of orders |
+> | **Full UTF-8 incl. emoji** | 33.3% non-ASCII, 18.5% contain emoji |
+> | **Free text, not a name field** | Buyers embed layout and production instructions |
+>
+> Real payload: `I Love My Nana! (At the top) 💜 Saoirse (at the bottom)
+> please make the frame wide.`
+>
+> **`snippets/butterlu-personalization.liquid` defaulted to 100 characters and
+> has been corrected to 300.** It was already a `<textarea>`, so the newline
+> requirement was met — by luck, not by evidence.
+>
+> Also from `11`: **84.5% of all order line items carry a personalization
+> payload.** This is not an edge case, it is the main path. And `10` found
+> **one** wrong-personalization complaint in twelve years — the manual process
+> is accurate, and any system built here must not regress that.
+
 **Status:** REVENUE-BLOCKING. Confirmed by the store owner that the Shopify
 site has no customization functionality. **This outranks every other workstream.**
 
