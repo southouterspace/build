@@ -28,8 +28,9 @@ details**. It is not in this repo and must never be committed.
 | `05-seo-program.md` | Workstream: SEO recon + drafting pipeline. |
 | `06-personalization.md` | Workstream: capture customer personalization. **Revenue-blocking.** |
 | `07-app-productization.md` | Market research on selling the customizer as a Shopify App Store app. |
-| `09-etsy-actuals.md` | **Authoritative Etsy data** from the owner's export. Supersedes Etsy inferences in `08`. |
 | `08-listing-architecture.md` | **The design matrix** — how to model listings to capture keywords. Answers the godparent question. |
+| `09-etsy-actuals.md` | **Authoritative Etsy data** from the owner's export. Supersedes Etsy inferences in `08`. |
+| `10-review-intelligence.md` | **Demand and quality signal** from 12,788 Etsy reviews, 2014–2026. Volume trend, occasion mix, defect themes, seasonality. |
 
 ## Data files
 
@@ -42,6 +43,8 @@ details**. It is not in this repo and must never be committed.
 | `data/etsy/etsy-listings-2026-08-22.csv` | The real export: 618 live Etsy listings with tags, prices, variations. |
 | `data/etsy/etsy-analysis.json` | Derived stats: prices, top-100 tags, variation names, godparent counts. |
 | `data/etsy/shop-profile.sanitized.json` | Shop announcement and buyer message. Financial/identity fields stripped. |
+| `data/etsy/etsy-reviews-2026-08-22.json` | 12,788 unique reviews, 2014–2026. Reviewer names pseudonymized to salted hashes. |
+| `data/etsy/review-analysis.json` | Derived review stats: yearly volume, occasion mix, complaint and praise themes, seasonality. |
 | `data/etsy-recon.json` | 38 live Etsy listings recovered by fingerprint search. Sample, not a census. |
 | `data/app-pricing.json` | Real pricing tiers for Globo and Zepto — what the free tiers actually gate. |
 | `data/design-matrix.json` | Design template x relationship grid: 11 templates, 17 relationships, 187 cells. |

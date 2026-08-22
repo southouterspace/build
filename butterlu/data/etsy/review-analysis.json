@@ -1,0 +1,298 @@
+{
+ "_generated": "2026-08-22",
+ "_source": "etsy-reviews-2026-08-22.json (12,788 unique reviews, 2014-01-08 to 2026-08-21)",
+ "_caveat": "Reviews are a PROXY for orders, not orders. Etsy review rate is typically 30-50% of orders and varies over time, so absolute volumes are understated and trend comparisons assume a stable review rate.",
+ "totals": {
+  "unique_reviews": 12788,
+  "raw_rows": 13647,
+  "exact_duplicates_removed": 859,
+  "distinct_order_ids": 12250,
+  "orders_with_multiple_reviews": 507,
+  "with_text": 6839,
+  "text_pct": 53.5,
+  "avg_stars": 4.9178,
+  "star_distribution": {
+   "5": 12155,
+   "4": 404,
+   "3": 107,
+   "2": 55,
+   "1": 67
+  }
+ },
+ "by_year": {
+  "2014": {
+   "reviews": 16,
+   "distinct_orders": 14,
+   "avg_stars": 5.0,
+   "pct_3_or_below": 0.0
+  },
+  "2015": {
+   "reviews": 542,
+   "distinct_orders": 521,
+   "avg_stars": 4.943,
+   "pct_3_or_below": 0.6
+  },
+  "2016": {
+   "reviews": 872,
+   "distinct_orders": 839,
+   "avg_stars": 4.945,
+   "pct_3_or_below": 0.7
+  },
+  "2017": {
+   "reviews": 1280,
+   "distinct_orders": 1246,
+   "avg_stars": 4.97,
+   "pct_3_or_below": 0.6
+  },
+  "2018": {
+   "reviews": 1344,
+   "distinct_orders": 1303,
+   "avg_stars": 4.943,
+   "pct_3_or_below": 1.3
+  },
+  "2019": {
+   "reviews": 1365,
+   "distinct_orders": 1311,
+   "avg_stars": 4.922,
+   "pct_3_or_below": 2.0
+  },
+  "2020": {
+   "reviews": 2360,
+   "distinct_orders": 2254,
+   "avg_stars": 4.915,
+   "pct_3_or_below": 1.9
+  },
+  "2021": {
+   "reviews": 1842,
+   "distinct_orders": 1764,
+   "avg_stars": 4.879,
+   "pct_3_or_below": 2.8
+  },
+  "2022": {
+   "reviews": 1230,
+   "distinct_orders": 1165,
+   "avg_stars": 4.891,
+   "pct_3_or_below": 2.5
+  },
+  "2023": {
+   "reviews": 869,
+   "distinct_orders": 830,
+   "avg_stars": 4.908,
+   "pct_3_or_below": 1.5
+  },
+  "2024": {
+   "reviews": 474,
+   "distinct_orders": 439,
+   "avg_stars": 4.884,
+   "pct_3_or_below": 2.7
+  },
+  "2025": {
+   "reviews": 365,
+   "distinct_orders": 348,
+   "avg_stars": 4.921,
+   "pct_3_or_below": 1.9
+  },
+  "2026": {
+   "reviews": 229,
+   "distinct_orders": 226,
+   "avg_stars": 4.873,
+   "pct_3_or_below": 2.6
+  }
+ },
+ "ytd_jan1_aug21_comparable": {
+  "2015": 174,
+  "2016": 527,
+  "2017": 717,
+  "2018": 793,
+  "2019": 853,
+  "2020": 1276,
+  "2021": 1175,
+  "2022": 820,
+  "2023": 616,
+  "2024": 337,
+  "2025": 201,
+  "2026": 229
+ },
+ "seasonality_by_month_all_years": {
+  "1": 1054,
+  "2": 691,
+  "3": 736,
+  "4": 797,
+  "5": 1557,
+  "6": 1537,
+  "7": 825,
+  "8": 760,
+  "9": 716,
+  "10": 722,
+  "11": 1051,
+  "12": 2342
+ },
+ "occasion_mentions_all_text": {
+  "godparent": 156,
+  "grandparent": 351,
+  "baby_pregnancy": 161,
+  "wedding": 157,
+  "baptism": 34,
+  "christmas": 334,
+  "mothers_day": 92,
+  "fathers_day": 78,
+  "aunt_uncle": 89,
+  "memorial_pet": 14
+ },
+ "occasion_share_jan_aug_by_year": {
+  "2017": {
+   "n": 372,
+   "godparent": 6,
+   "grandparent": 14,
+   "baby_pregnancy": 6,
+   "wedding": 24,
+   "baptism": 1,
+   "christmas": 10,
+   "mothers_day": 18,
+   "fathers_day": 5,
+   "aunt_uncle": 1,
+   "memorial_pet": 0
+  },
+  "2018": {
+   "n": 363,
+   "godparent": 7,
+   "grandparent": 13,
+   "baby_pregnancy": 8,
+   "wedding": 21,
+   "baptism": 0,
+   "christmas": 10,
+   "mothers_day": 11,
+   "fathers_day": 3,
+   "aunt_uncle": 3,
+   "memorial_pet": 0
+  },
+  "2019": {
+   "n": 400,
+   "godparent": 12,
+   "grandparent": 10,
+   "baby_pregnancy": 15,
+   "wedding": 18,
+   "baptism": 4,
+   "christmas": 9,
+   "mothers_day": 5,
+   "fathers_day": 1,
+   "aunt_uncle": 7,
+   "memorial_pet": 1
+  },
+  "2020": {
+   "n": 698,
+   "godparent": 18,
+   "grandparent": 38,
+   "baby_pregnancy": 15,
+   "wedding": 10,
+   "baptism": 2,
+   "christmas": 10,
+   "mothers_day": 13,
+   "fathers_day": 37,
+   "aunt_uncle": 7,
+   "memorial_pet": 0
+  },
+  "2021": {
+   "n": 610,
+   "godparent": 16,
+   "grandparent": 60,
+   "baby_pregnancy": 17,
+   "wedding": 16,
+   "baptism": 5,
+   "christmas": 8,
+   "mothers_day": 8,
+   "fathers_day": 12,
+   "aunt_uncle": 5,
+   "memorial_pet": 1
+  },
+  "2022": {
+   "n": 382,
+   "godparent": 11,
+   "grandparent": 17,
+   "baby_pregnancy": 6,
+   "wedding": 3,
+   "baptism": 1,
+   "christmas": 5,
+   "mothers_day": 5,
+   "fathers_day": 3,
+   "aunt_uncle": 4,
+   "memorial_pet": 0
+  },
+  "2023": {
+   "n": 172,
+   "godparent": 3,
+   "grandparent": 17,
+   "baby_pregnancy": 6,
+   "wedding": 0,
+   "baptism": 1,
+   "christmas": 1,
+   "mothers_day": 6,
+   "fathers_day": 2,
+   "aunt_uncle": 0,
+   "memorial_pet": 0
+  },
+  "2024": {
+   "n": 331,
+   "godparent": 7,
+   "grandparent": 11,
+   "baby_pregnancy": 7,
+   "wedding": 1,
+   "baptism": 1,
+   "christmas": 5,
+   "mothers_day": 3,
+   "fathers_day": 2,
+   "aunt_uncle": 5,
+   "memorial_pet": 0
+  },
+  "2025": {
+   "n": 201,
+   "godparent": 5,
+   "grandparent": 13,
+   "baby_pregnancy": 2,
+   "wedding": 0,
+   "baptism": 4,
+   "christmas": 0,
+   "mothers_day": 1,
+   "fathers_day": 5,
+   "aunt_uncle": 3,
+   "memorial_pet": 0
+  },
+  "2026": {
+   "n": 222,
+   "godparent": 2,
+   "grandparent": 5,
+   "baby_pregnancy": 14,
+   "wedding": 0,
+   "baptism": 0,
+   "christmas": 1,
+   "mothers_day": 1,
+   "fathers_day": 1,
+   "aunt_uncle": 3,
+   "memorial_pet": 5
+  }
+ },
+ "complaint_themes_negative": {
+  "n_negative_with_text": 198,
+  "quality_cheap": 58,
+  "shipping_late": 11,
+  "damaged": 7,
+  "communication": 12,
+  "color_mismatch": 7,
+  "orientation": 3
+ },
+ "praise_themes_five_star": {
+  "n_five_star_with_text": 6348,
+  "fast_shipping": 1099,
+  "quality_sturdy": 1042,
+  "repeat_purchase": 402,
+  "recipient_loved": 1052,
+  "matches_photo": 278,
+  "seller_communication": 158,
+  "custom_honored": 172
+ },
+ "repeat_buyers": {
+  "_method": "reviewer_id equality; understates (name changes) and overstates (common first names)",
+  "distinct_identified_reviewers": 4583,
+  "reviewer_ids_with_multiple": 1177
+ }
+}
