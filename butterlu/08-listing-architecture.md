@@ -3,6 +3,33 @@
 Answers: *how do we build listings to capture keywords when a godparent frame
 is the same design as a grandparent frame with the word swapped?*
 
+> ## ⚠️ Provenance: this matrix is Shopify-derived and ~16 months stale
+>
+> **The matrix has never seen Etsy.** It is mined entirely from the 243
+> products in `data/catalog.json`, which are the *Shopify* catalog.
+>
+> Dating the snapshot from `publishedAt`: **all 99 published products entered
+> Shopify in April–May 2025** (24 in April, 75 in May) and **nothing has been
+> published since**. Product IDs cluster in batches consistent with bulk
+> imports over a few weeks. Today is 2026-08-22.
+>
+> So the matrix represents **Etsy as of ~April/May 2025**, filtered through
+> whatever that import captured, minus whatever was archived afterwards.
+> **Any listing added to Etsy since then is absent from it.** The owner has
+> confirmed new products were added to Etsy in the interim.
+>
+> Direct scraping of `etsy.com/shop/ButterLu` and `/shop/BoutiqueButterLu` was
+> attempted and **failed — Etsy blocks automated access**, including via a
+> stealth proxy. Search confirms `etsy.com/shop/ButterLu` is live.
+>
+> **To refresh: export the Etsy listings CSV** (Etsy Shop Manager → Settings →
+> Options → Download Data → "Currently for sale listings"). First-party,
+> complete, includes title, description, price, SKU, quantity and **all 13
+> tags per listing** — a far better keyword source than tags mined out of
+> Shopify descriptions. See "Refreshing from Etsy" at the end of this doc.
+>
+> Treat every cell count below as a **floor**, not a current state.
+
 ## The rule
 
 > **The product/variant boundary follows search intent and purchase decision —
@@ -176,3 +203,53 @@ rebuilt legitimately, at roughly 1/10th the listing count.
 3. Is the variant axis colourway only, or also a genuine artwork variant
    (black-and-white vs colour)? If both, that is two option axes, well within
    the 2048-variant limit.
+
+
+## Refreshing from Etsy
+
+The template list, the relationship axis, and every cell count here are
+derived from a stale Shopify import. Refreshing them requires current Etsy data.
+
+**Recommended input: the Etsy listings CSV.** Shop Manager → Settings →
+Options → Download Data → "Currently for sale listings". No API registration,
+no scraping, and it is the authoritative source.
+
+Once that CSV exists, the same mining that produced this doc can be re-run to
+yield materially more:
+
+1. **Current Etsy matrix** — templates x relationships as they stand today,
+   not as of April 2025.
+2. **Etsy-vs-Shopify diff** — three buckets:
+   - on Etsy, missing from Shopify (**new since the import — the owner's question**)
+   - on Shopify, gone from Etsy (retired designs; check before reviving)
+   - on both (the overlap the current matrix approximates)
+3. **Real tag data.** Etsy allows 13 tags per listing and they are the seller's
+   own keyword bets. `data/keyword-assets.json` currently infers these from
+   Shopify tags, which are import residue. The CSV gives them first-hand.
+4. **Price data**, absent from every analysis so far.
+
+**This is the highest-value outstanding data pull in the project.** It feeds
+this doc, `04-collections-taxonomy.md` (the godparent revival decision) and
+`05-seo-program.md` (which already flags Etsy stats as beating any SERP scrape).
+
+Note: the CSV covers *listings*. Etsy **shop stats** — the converting search
+terms — are a separate export and are the single best SEO input available.
+
+### Also unresolved: how many Etsy shops are there?
+
+Three distinct Etsy references appear across the 88 product descriptions:
+
+| Reference | Distinct descriptions mentioning it |
+|---|---|
+| `boutiquebutterlu.etsy.com` | 37 |
+| `butterlu.etsy.com` | 27 |
+| `myfourlittlechicks.etsy.com` | 2 |
+
+`etsy.com/shop/ButterLu` is confirmed live. Whether `BoutiqueButterLu` is a
+second active shop, a rename, or a legacy URL is **unknown** — and
+`myfourlittlechicks` is unexplained.
+
+This matters for the refresh: if there is more than one live shop, the export
+is needed from each. It also matters for `05-seo-program.md`, since product
+descriptions currently point customers at Etsy URLs that may be wrong, dead,
+or a competitor's.
