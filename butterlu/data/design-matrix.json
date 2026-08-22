@@ -1,0 +1,363 @@
+{
+  "provenance": "Derived from butterlu/data/catalog.json 2026-08-22. Template detection is phrase-match on titles; relationship detection is keyword-match. Approximate - needs human confirmation against artwork.",
+  "templates": {
+    "will-you-be-my": {
+      "pattern": "will you be my",
+      "intent": "Proposal / the ask"
+    },
+    "get-promoted-to": {
+      "pattern": "get promoted to",
+      "intent": "Milestone / role change"
+    },
+    "i-love-my": {
+      "pattern": "i love my",
+      "intent": "Gift from the child"
+    },
+    "are-a-blessing": {
+      "pattern": "are a blessing",
+      "intent": "Sentimental tribute"
+    },
+    "littles": {
+      "pattern": "little (girl|guy|buddy)",
+      "intent": "Bond / nickname"
+    },
+    "bestie-buddy": {
+      "pattern": "(bestie|'s buddy)",
+      "intent": "Bond / nickname"
+    },
+    "thank-you-for-raising": {
+      "pattern": "thank you for raising",
+      "intent": "Wedding thank-you"
+    },
+    "today-a": {
+      "pattern": "today a ",
+      "intent": "Wedding milestone"
+    },
+    "est-year": {
+      "pattern": "est\\.? ?20",
+      "intent": "Announcement / reveal"
+    },
+    "handpicked": {
+      "pattern": "handpicked for earth",
+      "intent": "Memorial / heaven"
+    },
+    "and-me": {
+      "pattern": "\\band me\\b",
+      "intent": "Shared-photo bond"
+    }
+  },
+  "relationships": [
+    "godmother",
+    "godfather",
+    "godparents",
+    "grandma",
+    "grandpa",
+    "great-grandma",
+    "great-grandpa",
+    "aunt",
+    "uncle",
+    "mom",
+    "dad",
+    "parents",
+    "sister",
+    "friend",
+    "teacher",
+    "bride-groom",
+    "pet"
+  ],
+  "matrix": {
+    "will-you-be-my": {
+      "godmother": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 9
+      },
+      "godfather": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 4
+      },
+      "godparents": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 7
+      },
+      "mom": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 9
+      },
+      "dad": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 4
+      }
+    },
+    "get-promoted-to": {
+      "godmother": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 5
+      },
+      "godfather": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 1
+      },
+      "grandma": {
+        "ACTIVE": 2,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "grandpa": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "great-grandma": {
+        "ACTIVE": 2,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "aunt": {
+        "ACTIVE": 2,
+        "DRAFT": 0,
+        "ARCHIVED": 3
+      },
+      "uncle": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 1
+      },
+      "mom": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 5
+      },
+      "dad": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 1
+      },
+      "parents": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "sister": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 5
+      },
+      "friend": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 3
+      }
+    },
+    "i-love-my": {
+      "godmother": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 12
+      },
+      "godfather": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 6
+      },
+      "godparents": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 8
+      },
+      "grandma": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "grandpa": {
+        "ACTIVE": 5,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "great-grandma": {
+        "ACTIVE": 3,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "great-grandpa": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "mom": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 12
+      },
+      "dad": {
+        "ACTIVE": 4,
+        "DRAFT": 0,
+        "ARCHIVED": 6
+      }
+    },
+    "are-a-blessing": {
+      "godmother": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 14
+      },
+      "godfather": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 22
+      },
+      "godparents": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 4
+      },
+      "mom": {
+        "ACTIVE": 0,
+        "DRAFT": 0,
+        "ARCHIVED": 14
+      },
+      "dad": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 22
+      }
+    },
+    "littles": {
+      "grandma": {
+        "ACTIVE": 0,
+        "DRAFT": 2,
+        "ARCHIVED": 0
+      },
+      "grandpa": {
+        "ACTIVE": 4,
+        "DRAFT": 2,
+        "ARCHIVED": 0
+      },
+      "mom": {
+        "ACTIVE": 0,
+        "DRAFT": 2,
+        "ARCHIVED": 0
+      },
+      "dad": {
+        "ACTIVE": 0,
+        "DRAFT": 2,
+        "ARCHIVED": 0
+      },
+      "parents": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "bride-groom": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      }
+    },
+    "bestie-buddy": {
+      "grandpa": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "aunt": {
+        "ACTIVE": 2,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "sister": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "friend": {
+        "ACTIVE": 3,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      }
+    },
+    "thank-you-for-raising": {
+      "mom": {
+        "ACTIVE": 2,
+        "DRAFT": 1,
+        "ARCHIVED": 0
+      },
+      "dad": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "parents": {
+        "ACTIVE": 2,
+        "DRAFT": 1,
+        "ARCHIVED": 0
+      },
+      "bride-groom": {
+        "ACTIVE": 2,
+        "DRAFT": 1,
+        "ARCHIVED": 0
+      }
+    },
+    "today-a": {
+      "mom": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "parents": {
+        "ACTIVE": 2,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "bride-groom": {
+        "ACTIVE": 2,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      }
+    },
+    "est-year": {
+      "grandma": {
+        "ACTIVE": 0,
+        "DRAFT": 2,
+        "ARCHIVED": 0
+      },
+      "grandpa": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      },
+      "mom": {
+        "ACTIVE": 0,
+        "DRAFT": 2,
+        "ARCHIVED": 0
+      }
+    },
+    "handpicked": {
+      "grandma": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      }
+    },
+    "and-me": {
+      "grandma": {
+        "ACTIVE": 1,
+        "DRAFT": 0,
+        "ARCHIVED": 0
+      }
+    }
+  },
+  "cellCounts": {
+    "live": 39,
+    "archivedOnly": 9,
+    "empty": 139,
+    "gridSize": 187
+  }
+}

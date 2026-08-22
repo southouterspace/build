@@ -17,6 +17,7 @@ write test (see `01-store-facts.md`).
 | `05-seo-program.md` | Workstream: SEO recon + drafting pipeline. |
 | `06-personalization.md` | Workstream: capture customer personalization. **Revenue-blocking.** |
 | `07-app-productization.md` | Market research on selling the customizer as a Shopify App Store app. |
+| `08-listing-architecture.md` | **The design matrix** — how to model listings to capture keywords. Answers the godparent question. |
 
 ## Data files
 
@@ -26,6 +27,13 @@ write test (see `01-store-facts.md`).
 | `data/clusters.json` | 26 duplicate/near-duplicate clusters. **Advisory only** — see the warning below. |
 | `data/keyword-assets.json` | Etsy-era keyword map mined from archived listings, plus the variant/collection defect lists. |
 | `data/app-store-landscape.json` | Shopify App Store *Custom products* category: 27 competitors, ratings, review counts, pricing. |
+| `data/design-matrix.json` | Design template x relationship grid: 11 templates, 17 relationships, 187 cells. |
+
+## Code
+
+| Path | Contents |
+|---|---|
+| `snippets/butterlu-personalization.liquid` | Rung 1 personalization capture. Working, **untested against the live theme**. |
 
 ## Ground rules for any agent working from these docs
 

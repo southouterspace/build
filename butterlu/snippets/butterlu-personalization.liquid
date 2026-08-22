@@ -1,0 +1,123 @@
+{%- comment -%}
+  butterlu-personalization.liquid
+  Rung 1 personalization capture — see butterlu/06-personalization.md
+
+  Captures the customer's custom text as a Shopify LINE ITEM PROPERTY, which
+  flows automatically to the cart, the order, the admin, and the packing slip.
+  No app, no subscription.
+
+  INSTALL (Online Store 2.0 theme, e.g. Dawn):
+    1. Save this file as snippets/butterlu-personalization.liquid
+    2. In sections/main-product.liquid, inside the {% form 'product' %} block
+       and BEFORE the add-to-cart button, add:
+         {% render 'butterlu-personalization', product: product %}
+
+  PER-PRODUCT PROMPT (optional):
+    Create a product metafield  custom.personalization_prompt  (single line text)
+    and this snippet will use it as the field label. Falls back to a default.
+
+  PER-PRODUCT CHARACTER LIMIT (optional):
+    Create  custom.personalization_max_chars  (integer). Falls back to 100.
+
+  TO MAKE IT OPTIONAL on a given product:
+    Create  custom.personalization_required  (true/false). Defaults to true.
+
+  NOT TESTED against the live Butterlu theme. Validate on a duplicated,
+  unpublished theme before publishing.
+{%- endcomment -%}
+
+{%- liquid
+  assign prompt = product.metafields.custom.personalization_prompt.value
+  if prompt == blank
+    assign prompt = 'Personalization — name, date, or your custom quote'
+  endif
+
+  assign max_chars = product.metafields.custom.personalization_max_chars.value
+  if max_chars == blank or max_chars == 0
+    assign max_chars = 100
+  endif
+
+  assign is_required = true
+  if product.metafields.custom.personalization_required.value == false
+    assign is_required = false
+  endif
+
+  assign uid = 'butterlu-perso-' | append: product.id
+-%}
+
+<div class="butterlu-personalization" data-butterlu-personalization>
+  <label for="{{ uid }}" class="form__label">
+    {{ prompt }}
+    {%- if is_required %} <span aria-hidden="true">*</span>{% endif -%}
+  </label>
+
+  <textarea
+    id="{{ uid }}"
+    name="properties[Personalization]"
+    class="text-area field__input"
+    rows="3"
+    maxlength="{{ max_chars }}"
+    {% if is_required %}required aria-required="true"{% endif %}
+    data-butterlu-input
+    placeholder="e.g. Auntie Sarah — 12 June 2026"
+  ></textarea>
+
+  <div class="butterlu-personalization__meta">
+    <span data-butterlu-counter aria-live="polite">0 / {{ max_chars }}</span>
+    {%- if is_required -%}
+      <span data-butterlu-error hidden role="alert">
+        Please add your personalization before adding to cart.
+      </span>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%}
+    Leading underscore hides this from the customer-facing cart while still
+    recording it on the order — useful for audit/versioning.
+  {%- endcomment -%}
+  <input type="hidden" name="properties[_perso_version]" value="1">
+</div>
+
+<script>
+  (function () {
+    var root = document.currentScript.previousElementSibling;
+    if (!root || !root.hasAttribute('data-butterlu-personalization')) return;
+
+    var input   = root.querySelector('[data-butterlu-input]');
+    var counter = root.querySelector('[data-butterlu-counter]');
+    var error   = root.querySelector('[data-butterlu-error]');
+    var form    = input && input.closest('form[action*="/cart/add"]');
+    var max     = input ? parseInt(input.getAttribute('maxlength'), 10) : 0;
+
+    if (!input) return;
+
+    function sync() {
+      if (counter) counter.textContent = input.value.length + ' / ' + max;
+      if (error && input.value.trim()) error.hidden = true;
+    }
+    input.addEventListener('input', sync);
+    sync();
+
+    // Shopify DROPS empty line item properties, so an empty required field
+    // would silently produce an order with no personalization. Block it here.
+    // Native `required` does not fire on themes that submit the cart via fetch.
+    if (form && input.hasAttribute('required')) {
+      form.addEventListener('submit', function (event) {
+        if (input.value.trim()) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        if (error) error.hidden = false;
+        input.focus();
+      }, true); // capture phase: run before the theme's own AJAX handler
+    }
+  })();
+</script>
+
+<style>
+  .butterlu-personalization { margin: 1.5rem 0; }
+  .butterlu-personalization__meta {
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-size: 0.85rem; opacity: 0.75; margin-top: 0.35rem;
+  }
+  .butterlu-personalization [data-butterlu-error] { color: rgb(var(--color-error, 200 0 0)); opacity: 1; }
+</style>

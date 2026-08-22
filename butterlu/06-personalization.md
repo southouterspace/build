@@ -40,12 +40,22 @@ Shopify carries the value through to the cart, the order, the admin, and the
 packing slip automatically. No app, no subscription, no data model change.
 This is how most made-to-order shops do it.
 
+**A working implementation is in `snippets/butterlu-personalization.liquid`.**
+It renders the field, enforces a character limit, supports per-product prompts
+and limits via metafields, and blocks add-to-cart when a required field is
+empty — including on themes that submit the cart via fetch, where the native
+`required` attribute never fires. Install instructions are in the file header.
+
+**It has not been tested against the live Butterlu theme.** Validate on a
+duplicated, unpublished theme before publishing.
+
 Considerations:
 - Add a per-product prompt (the descriptions already contain the wording).
 - Use `properties[_Foo]` (leading underscore) for anything that should be
   hidden from the customer-facing cart.
-- Blank-value behaviour: an empty property is dropped by Shopify. If
-  personalization is mandatory, enforce it client-side.
+- Blank-value behaviour: **Shopify silently drops an empty property.** If
+  personalization is mandatory this must be enforced client-side, or orders
+  arrive blank with no error. The snippet does this.
 - Verify it survives the theme's AJAX cart if one is in use.
 
 **This unblocks revenue and can ship in an afternoon. Do it regardless of what
