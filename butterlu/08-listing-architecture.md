@@ -266,169 +266,34 @@ most wanted — search terms.
 
 ### The ask list to send the shop owner
 
-All from **Shop Manager → Download Data** unless noted:
+**A formatted, forwardable version of this list is at
+`etsy-export-request.html` in this folder** (published as an artifact for
+sending to the owner directly).
 
-1. **Currently for Sale Listings → Download CSV** — the matrix refresh. Highest value.
-2. **Orders → CSV Type / Month / Year** — order items, orders, Etsy Payments
-   sales and deposits. Gives real demand and price data.
-3. **Take your data with you → Download Your Shop Settings**, and
-   **Download Your Reviews** — reviews are useful quality signal (see the 2026
-   personalization failure noted above).
-4. **Account → Download Data → Request your data** — full ZIP in CSV *and*
-   JSON, including shop information.
-5. **Stats: screenshots.** No export path was found for the Stats dashboard —
-   traffic sources and the search terms that led to listings — and no API scope
-   covers it. Ask for screenshots of Stats → Search terms over the longest
-   available date range. **This is the single best SEO input available**
-   (`05-seo-program.md`) and appears to be manual-only.
-6. **Confirm which shops are live** — `ButterLu`, `BoutiqueButterLu`,
-   `myfourlittlechicks`. Export from each live one.
+All URLs below are confirmed from Etsy's own help documentation, not guessed.
 
-Once that CSV exists, the same mining that produced this doc can be re-run to
-yield materially more:
+| # | What | Direct URL | In-app path |
+|---|---|---|---|
+| 1 | **Currently for Sale Listings CSV** | `etsy.com/your/shops/me/download` | Shop Manager → Settings → Options → Download Data → Currently for Sale Listings |
+| 2 | **Orders CSV** | `etsy.com/your/shops/me/download` | same page → Orders → CSV Type / Month / Year (leave Month blank for a full year) |
+| 3 | **Shop settings + reviews** | `etsy.com/your/shops/me/download` | same page → Take your data with you |
+| 4 | **Etsy search terms** ⚠ screenshots | `etsy.com/your/shops/me/stats/referrers/etsysearch` | Shop Manager → Stats → How shoppers found you → Etsy search |
+| 5 | **Marketplace Insights** ⚠ screenshots | `etsy.com/your/shops/me/stats` | Shop Manager → Stats → Marketplace Insights |
+| — | Full account archive (optional, slow) | `etsy.com/your/account/privacy` | Account settings → Privacy → Download Data → request, confirm by email, return |
 
-1. **Current Etsy matrix** — templates x relationships as they stand today,
-   not as of April 2025.
-2. **Etsy-vs-Shopify diff** — three buckets:
-   - on Etsy, missing from Shopify (**new since the import — the owner's question**)
-   - on Shopify, gone from Etsy (retired designs; check before reviving)
-   - on both (the overlap the current matrix approximates)
-3. **Real tag data.** Etsy allows 13 tags per listing and they are the seller's
-   own keyword bets. `data/keyword-assets.json` currently infers these from
-   Shopify tags, which are import residue. The CSV gives them first-hand.
-4. **Price data**, absent from every analysis so far.
+Per Etsy's docs the listings CSV carries **Title, Description, Price, Currency
+code, Quantity, Tags, Materials, Image URLs, SKU**.
 
-**This is the highest-value outstanding data pull in the project.** It feeds
-this doc, `04-collections-taxonomy.md` (the godparent revival decision) and
-`05-seo-program.md` (which already flags Etsy stats as beating any SERP scrape).
+**Items 4 and 5 have no export.** No download path exists for the Stats
+dashboard and no API scope covers it, so they are screenshot-only. Item 4 is
+the single best SEO input available (`05-seo-program.md`).
 
-Note: the CSV covers *listings*. Etsy **shop stats** — the converting search
-terms — are a separate export and are the single best SEO input available.
+**Marketplace Insights (item 5) is real Etsy search-volume data** — searches
+and listing counts over the last 30 days per keyword, 15 free lookups per
+week. Choose the keywords deliberately; the cap is weekly. Suggested first
+five, from the godparent gap in this doc: `godmother frame`, `godparent gift`,
+`baptism gift`, `personalized picture frame`, `grandma frame`.
 
-### Also unresolved: how many Etsy shops are there?
-
-Three distinct Etsy references appear across the 88 product descriptions:
-
-| Reference | Distinct descriptions mentioning it |
-|---|---|
-| `boutiquebutterlu.etsy.com` | 37 |
-| `butterlu.etsy.com` | 27 |
-| `myfourlittlechicks.etsy.com` | 2 |
-
-`etsy.com/shop/ButterLu` is confirmed live. Whether `BoutiqueButterLu` is a
-second active shop, a rename, or a legacy URL is **unknown** — and
-`myfourlittlechicks` is unexplained.
-
-This matters for the refresh: if there is more than one live shop, the export
-is needed from each. It also matters for `05-seo-program.md`, since product
-descriptions currently point customers at Etsy URLs that may be wrong, dead,
-or a competitor's.
-
-
-## What Etsy actually looks like now
-
-**Method.** Etsy blocks scraping, so listings were recovered indirectly: three
-phrases unique to ButterLu's boilerplate were searched against indexed Etsy
-pages —
-
-```
-"photo turns to keep your photo in place"
-"sanded to give it a warm, rustic touch"
-"Primary color refers to the background color"
-```
-
-**38 unique live listings** recovered. Data: `data/etsy-recon.json`.
-
-> **This is a sample, not a census.** It reflects what search engines have
-> indexed, not the shop's true inventory. The Etsy CSV export remains the
-> authoritative source. One near-match (`DreamyPresents`) used similar but
-> not identical wording — copycats are a real risk with fingerprint matching.
-
-### Finding 1 — Etsy titles have been rewritten. Shopify's have not.
-
-Etsy now uses a benefit-led, colon-separated convention:
-
-```
-Personalized Abuela Gift: Rustic 4x6 Photo Frame
-Personalized Godmother Picture Frame: Baptism Gift
-Mother of Groom Gift: Rustic Wedding Photo Frame
-Personalized Grammy Photo Frame: Rustic Nursery Decor
-```
-
-Shopify still carries the old keyword-stuffed run-ons:
-
-```
-Birthday Gift For Great Grandma  Personalized Gift For Great Grandma
-Gift From Grandchild  I Love My Great Grandma  4x6 Frame
-```
-
-**Etsy has moved on from the listing-flood strategy.** The newest listings also
-carry rewritten body copy ("Primary Color: Refers to the background color of
-the design. Text is printed in white or black, depending on what contrasts
-best."), cleaner than the Shopify-side boilerplate.
-
-### Finding 2 — relationships on Etsy that do not exist on Shopify at all
-
-Not live, not draft, **not even archived**:
-
-| Relationship | On Etsy | Anywhere on Shopify |
-|---|---|---|
-| **Abuela** | 2 | **0** |
-| **Grammy** | 1 | **0** |
-| **Memaw** | 1 | **0** |
-
-These are new matrix rows. The relationship axis in this doc is missing them.
-
-### Finding 3 — godparent is alive on Etsy and archived on Shopify
-
-In a 38-listing sample:
-
-| | Etsy (sample) | Shopify (live) |
-|---|---|---|
-| godmother | **7** | 1 |
-| godparent/godchild | **3** | 1 |
-| grandpa | 0 | 17 |
-
-Recovered godparent listings include `Godmother Proposal Gift: Rustic Photo
-Frame With Bow`, `Personalized Godmother Picture Frame: Baptism Gift`,
-`Godmother Gift From Godchild`, `Personalized Godparent Picture Frame` and
-`Personalized Godmother Picture Frame: Rustic Burlap Bow`.
-
-**This settles the godparent question in `04-collections-taxonomy.md`.** The
-category was not retired — it is actively merchandised on Etsy with rewritten
-titles, while Shopify shows 3 products in a 103-product collection. Reviving
-it on Shopify is bringing Shopify in line with the live business, not a bet.
-
-### Finding 4 — listings created after the Shopify import
-
-Etsy IDs are roughly sequential by creation. The four newest recovered —
-`1796129634`, `1796129988`, `1818445202`, `1832920613` — sit well above the
-range implied by the April/May 2025 import, confirming new listings since.
-`1818445202` is "Personalized Baby Girl Birth Announcement Picture Frame".
-
-Age spread of the sample: 12 oldest (<600M), 14 (600–900M), 4 (900M–1.2B),
-3 (1.2–1.6B), 5 newest (>1.6B). **The shop has been continuously active
-throughout**, not frozen at the import.
-
-### Finding 5 — a 2026 personalization failure, in public
-
-A review surfaced on `etsy.com/shop/ButterLu/reviews`:
-
-> *"I love my personalized picture frame I purchased, however it arrived not
-> personalized. I typed in the dogs name 'Axel' 2026 The frame does not have
-> that on it."*
-
-A paying customer entered personalization and received a blank frame — on the
-platform that **does** have a personalization field. This is direct evidence
-for `06-personalization.md`: personalization capture and fulfilment is already
-failing where it exists, which raises the stakes on building it correctly on
-Shopify rather than bolting on a text box.
-
-## Revised conclusion on the matrix
-
-The matrix in this doc is **a subset of, and stylistically behind, the live
-Etsy catalog.** It remains structurally sound — templates x relationships is
-the right model, and Etsy's own rewritten titles follow it more cleanly than
-Shopify's. But the axis is incomplete and the cell counts are floors.
-
-Do not treat it as current until refreshed from the CSV export.
+**Also confirm which shops are live** — `ButterLu`, `BoutiqueButterLu`,
+`myfourlittlechicks`. Export from each active one, and retire any dead Etsy
+URLs still printed in live product descriptions.

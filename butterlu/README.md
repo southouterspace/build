@@ -35,6 +35,7 @@ write test (see `01-store-facts.md`).
 
 | Path | Contents |
 |---|---|
+| `etsy-export-request.html` | Forwardable data request for the Etsy shop owner. Confirmed deep links to every export. |
 | `snippets/butterlu-personalization.liquid` | Rung 1 personalization capture. Working, **untested against the live theme**. |
 
 ## Ground rules for any agent working from these docs

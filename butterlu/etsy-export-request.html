@@ -1,0 +1,217 @@
+<title>ButterLu Etsy Handoff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --paper:#FBFAF8; --raise:#FFFFFF; --ink:#1A1D21; --ink-2:#4A5058; --ink-3:#767C85;
+    --rule:#E3DFD8; --rule-2:#CFC9BF;
+    --accent:#A8411C; --accent-ink:#8E3616; --accent-wash:#F6E9E2;
+    --flag:#2C5A4C; --flag-wash:#E3EDE9;
+    --shadow:0 1px 2px rgba(26,29,33,.05), 0 8px 24px -16px rgba(26,29,33,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#15171A; --raise:#1D2024; --ink:#EDEAE5; --ink-2:#A9B0B8; --ink-3:#7C838C;
+      --rule:#2C3037; --rule-2:#3C424A;
+      --accent:#E58356; --accent-ink:#F0A382; --accent-wash:#33211A;
+      --flag:#79B8A2; --flag-wash:#1B2A26;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15171A; --raise:#1D2024; --ink:#EDEAE5; --ink-2:#A9B0B8; --ink-3:#7C838C;
+    --rule:#2C3037; --rule-2:#3C424A;
+    --accent:#E58356; --accent-ink:#F0A382; --accent-wash:#33211A;
+    --flag:#79B8A2; --flag-wash:#1B2A26;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+    font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:44rem;margin:0 auto;padding:3.5rem 1.5rem 5rem}
+  @media(max-width:640px){.wrap{padding:2.25rem 1.15rem 4rem}}
+
+  .eyebrow{
+    font-family:Archivo,system-ui,sans-serif; font-weight:600; font-size:.7rem;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--accent); margin:0 0 .6rem;
+  }
+  h1{
+    font-family:Archivo,system-ui,sans-serif; font-weight:700;
+    font-size:clamp(1.9rem,5.5vw,2.6rem); line-height:1.1; letter-spacing:-.02em;
+    margin:0 0 .9rem; text-wrap:balance;
+  }
+  .standfirst{font-size:1.08rem;color:var(--ink-2);margin:0;text-wrap:pretty}
+  .standfirst strong{color:var(--ink);font-weight:600}
+
+  .meta{
+    display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin:1.75rem 0 0;
+    padding-top:1.25rem;border-top:1px solid var(--rule);
+    font-family:Archivo,system-ui,sans-serif;font-size:.78rem;color:var(--ink-3);
+  }
+  .meta b{color:var(--ink-2);font-weight:600}
+
+  h2.section{
+    font-family:Archivo,system-ui,sans-serif;font-weight:600;font-size:.74rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+    margin:3.25rem 0 1.1rem;padding-bottom:.5rem;border-bottom:1px solid var(--rule);
+  }
+
+  ol.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.1rem}
+  .task{
+    background:var(--raise);border:1px solid var(--rule);border-radius:3px;
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .task-head{display:flex;gap:.9rem;align-items:flex-start;padding:1.15rem 1.25rem .35rem}
+  .num{
+    flex:none;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.82rem;
+    font-weight:500;color:var(--accent);background:var(--accent-wash);
+    border-radius:2px;padding:.18rem .45rem;margin-top:.18rem;
+  }
+  .task.shot .num{color:var(--flag);background:var(--flag-wash)}
+  .task-head h3{
+    font-family:Archivo,system-ui,sans-serif;font-weight:600;font-size:1.06rem;
+    line-height:1.3;margin:0;letter-spacing:-.01em;
+  }
+  .body{padding:.35rem 1.25rem 1.25rem 3.45rem}
+  @media(max-width:520px){.body{padding-left:1.25rem}}
+
+  .why{margin:.4rem 0 .95rem;color:var(--ink-2);font-size:.97rem}
+  .why em{color:var(--accent-ink);font-style:normal;font-weight:600}
+
+  a.golink{
+    display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.83rem;
+    color:var(--accent-ink);text-decoration:none;word-break:break-all;line-height:1.5;
+    background:var(--accent-wash);border:1px solid transparent;border-radius:2px;
+    padding:.6rem .7rem;margin-bottom:.9rem;
+  }
+  a.golink:hover,a.golink:focus-visible{border-color:var(--accent);text-decoration:underline}
+  a.golink:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .task.shot a.golink{color:var(--flag);background:var(--flag-wash)}
+  .task.shot a.golink:hover,.task.shot a.golink:focus-visible{border-color:var(--flag)}
+
+  .path{
+    font-family:Archivo,system-ui,sans-serif;font-size:.88rem;color:var(--ink-2);
+    line-height:1.75;margin:0 0 .85rem;
+  }
+  .path b{color:var(--ink);font-weight:600}
+  .path .sep{color:var(--ink-3);padding:0 .2em}
+
+  .gets{
+    margin:0;padding:.75rem .9rem;border-left:2px solid var(--rule-2);
+    background:var(--paper);font-size:.9rem;color:var(--ink-2);
+  }
+  .gets b{font-family:Archivo,system-ui,sans-serif;font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.25rem;font-weight:600}
+  code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.86em;color:var(--ink)}
+
+  .flagbar{
+    display:inline-flex;align-items:center;gap:.4rem;font-family:Archivo,system-ui,sans-serif;
+    font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--flag);background:var(--flag-wash);padding:.22rem .5rem;border-radius:2px;
+    margin-bottom:.7rem;
+  }
+  .note{
+    margin-top:2.75rem;padding:1.15rem 1.25rem;border:1px solid var(--rule);
+    border-left:3px solid var(--accent);border-radius:3px;background:var(--raise);
+    font-size:.95rem;color:var(--ink-2);
+  }
+  .note h4{font-family:Archivo,system-ui,sans-serif;font-size:.95rem;font-weight:600;
+    color:var(--ink);margin:0 0 .5rem}
+  .note ul{margin:.5rem 0 0;padding-left:1.1rem}
+  .note li{margin-bottom:.35rem}
+  footer{margin-top:3.5rem;padding-top:1.25rem;border-top:1px solid var(--rule);
+    font-family:Archivo,system-ui,sans-serif;font-size:.8rem;color:var(--ink-3)}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Data request</p>
+  <h1>What we need from the Etsy shop</h1>
+  <p class="standfirst">Etsy has no way to give someone else access to a shop — no staff logins, no invites. <strong>So these have to come from you.</strong> Every link below opens the right page directly once you're signed in.</p>
+
+  <div class="meta">
+    <span><b>Time needed</b> ~15 minutes</span>
+    <span><b>Items</b> 5</span>
+    <span><b>Send to</b> whoever asked for this</span>
+  </div>
+
+  <h2 class="section">Files to download</h2>
+  <ol class="tasks">
+
+    <li class="task">
+      <div class="task-head"><span class="num">01</span><h3>Currently for Sale Listings</h3></div>
+      <div class="body">
+        <p class="why">The most important one. <em>If you only do one, do this.</em></p>
+        <a class="golink" href="https://www.etsy.com/your/shops/me/download">https://www.etsy.com/your/shops/me/download</a>
+        <p class="path">If the link doesn't work: <b>Shop Manager</b><span class="sep">→</span><b>Settings</b><span class="sep">→</span><b>Options</b><span class="sep">→</span><b>Download Data</b> tab<span class="sep">→</span>under <b>Currently for Sale Listings</b>, press <b>Download CSV</b>.</p>
+        <p class="gets"><b>What's in it</b>Title, description, price, currency, quantity, <strong>tags</strong>, materials, image URLs and SKU for every active listing. The tags are the part we most need — 13 per listing.</p>
+      </div>
+    </li>
+
+    <li class="task">
+      <div class="task-head"><span class="num">02</span><h3>Orders</h3></div>
+      <div class="body">
+        <p class="why">Shows what actually sells, and at what price.</p>
+        <a class="golink" href="https://www.etsy.com/your/shops/me/download">https://www.etsy.com/your/shops/me/download</a>
+        <p class="path">Same page as above. Scroll to <b>Orders</b><span class="sep">→</span>pick a <b>CSV Type</b>, then <b>Month</b> and <b>Year</b>.</p>
+        <p class="gets"><b>Tip</b>Leave <b>Month</b> empty to get a whole year in one file. Last two full years is ideal. <code>Order Items</code> is the most useful CSV type if you have to pick one.</p>
+      </div>
+    </li>
+
+    <li class="task">
+      <div class="task-head"><span class="num">03</span><h3>Shop settings &amp; reviews</h3></div>
+      <div class="body">
+        <p class="why">Quick, and the reviews tell us where orders go wrong.</p>
+        <a class="golink" href="https://www.etsy.com/your/shops/me/download">https://www.etsy.com/your/shops/me/download</a>
+        <p class="path">Same page<span class="sep">→</span>under <b>Take your data with you</b><span class="sep">→</span><b>Download Your Shop Settings</b> and <b>Download Your Reviews</b>.</p>
+      </div>
+    </li>
+  </ol>
+
+  <h2 class="section">Screens to photograph</h2>
+  <ol class="tasks" start="4">
+
+    <li class="task shot">
+      <div class="task-head"><span class="num">04</span><h3>The search terms shoppers used</h3></div>
+      <div class="body">
+        <span class="flagbar">Screenshots — no download exists</span>
+        <p class="why">Etsy gives you no way to export this. <em>It's also the single most valuable thing on this list.</em></p>
+        <a class="golink" href="https://www.etsy.com/your/shops/me/stats/referrers/etsysearch">https://www.etsy.com/your/shops/me/stats/referrers/etsysearch</a>
+        <p class="path">If the link doesn't work: <b>Shop Manager</b><span class="sep">→</span><b>Stats</b><span class="sep">→</span>under <b>How shoppers found you</b>, choose <b>Etsy search</b>.</p>
+        <p class="gets"><b>What to capture</b>Set the date range as far back as it will go, then screenshot the whole list of search terms. Scroll and keep shooting until you reach the end — the long tail matters as much as the top.</p>
+      </div>
+    </li>
+
+    <li class="task shot">
+      <div class="task-head"><span class="num">05</span><h3>Marketplace Insights</h3></div>
+      <div class="body">
+        <span class="flagbar">Screenshots — 15 free searches per week</span>
+        <p class="why">Real Etsy search volume, straight from Etsy. Free, but capped — <em>don't burn the 15 on guesses.</em></p>
+        <a class="golink" href="https://www.etsy.com/your/shops/me/stats">https://www.etsy.com/your/shops/me/stats</a>
+        <p class="path"><b>Shop Manager</b><span class="sep">→</span><b>Stats</b><span class="sep">→</span><b>Marketplace Insights</b><span class="sep">→</span>type a keyword.</p>
+        <p class="gets"><b>Search these five first</b><code>godmother frame</code> · <code>godparent gift</code> · <code>baptism gift</code> · <code>personalized picture frame</code> · <code>grandma frame</code><br>Screenshot each result. Results stay available for 7 days, and the weekly allowance resets.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="note">
+    <h4>Two quick questions while you're in there</h4>
+    <ul>
+      <li><strong>Which shops are still live?</strong> Three names show up in the old product descriptions — <code>ButterLu</code>, <code>BoutiqueButterLu</code> and <code>myfourlittlechicks</code>. We need the files from each one that's still active, and we should retire any dead links still printed on the products.</li>
+      <li><strong>Is there an export button anywhere on the Stats page?</strong> We couldn't find one in Etsy's documentation, so we're assuming screenshots. If you spot one, use it instead — it beats photographing screens.</li>
+    </ul>
+  </div>
+
+  <div class="note" style="border-left-color:var(--flag)">
+    <h4>Optional, and slower</h4>
+    <p style="margin:0">A complete archive of everything Etsy holds, in both CSV and JSON, is available at <a class="golink" style="display:inline;padding:.1rem .3rem;margin:0" href="https://www.etsy.com/your/account/privacy">etsy.com/your/account/privacy</a> under <strong>Download Data</strong>. It takes longer — you request it, wait for an email, confirm, then come back and enter your password to download. Only worth doing if the files above turn out to be missing something.</p>
+  </div>
+
+  <footer>Please don't share your Etsy password with anyone. Everything needed is in the files above.</footer>
+</div>

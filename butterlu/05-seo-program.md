@@ -36,7 +36,16 @@ keyword stuffing. That is the template to beat.
 ### What it CANNOT produce — do not fabricate these
 
 - **Search volume.** Firecrawl returns ranked results, not volume. Volume and
-  difficulty require Ahrefs / Semrush / Google Keyword Planner.
+  difficulty for *Google* require Ahrefs / Semrush / Google Keyword Planner.
+
+  > **CORRECTED 2026-08-22.** An earlier revision said search volume was
+  > unavailable full stop. **For Etsy specifically that is wrong.** Etsy ships
+  > **Marketplace Insights** (Shop Manager → Stats → Marketplace Insights),
+  > which exposes real Etsy search data — searches and listing counts over the
+  > last 30 days for a given keyword. **15 free keyword searches per week**
+  > (unlimited on Etsy Plus), results retained 7 days. That is genuine
+  > first-party volume data for the marketplace this catalog actually sells on.
+  > The weekly cap means keywords must be chosen deliberately, not sprayed.
 - **Reliable rank positions.** SERP scrapes are un-personalized approximations,
   not rank tracking.
 - **What butterlu.com currently ranks for.** That is Google Search Console only.
