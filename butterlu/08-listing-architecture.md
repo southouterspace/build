@@ -216,9 +216,73 @@ rebuilt legitimately, at roughly 1/10th the listing count.
 The template list, the relationship axis, and every cell count here are
 derived from a stale Shopify import. Refreshing them requires current Etsy data.
 
-**Recommended input: the Etsy listings CSV.** Shop Manager → Settings →
-Options → Download Data → "Currently for sale listings". No API registration,
-no scraping, and it is the authoritative source.
+**Recommended input: the Etsy listings CSV.** Shop Manager → **Download Data**
+→ **Currently for Sale Listings** → **Download CSV**. No API registration, no
+scraping, and it is the authoritative source.
+
+Per Etsy's own help documentation, that CSV contains: **Title, Description,
+Price, Currency code, Quantity, Tags, Materials, Image URLs, SKU.** Tags are
+the keyword goldmine — 13 per listing, chosen by the seller.
+
+### There is no way to grant a third party access to an Etsy shop
+
+Verified against Etsy help documentation and the Open API v3 scope list:
+
+- **Etsy has no multi-user or staff-account model.** Unlike Shopify, a shop
+  cannot invite a collaborator with scoped permissions.
+- **"Shop members" / "Shop team"** (Settings → About your shop → Members) is a
+  **public display** on the shop's About page. It grants **no access**.
+- Etsy's own guidance for running more than one shop is to *create a separate
+  account with a different email* — there is no delegation model at all.
+- The only community-known workaround is **sharing login credentials**, which
+  is contrary to Etsy's account terms, breaks under 2FA (every sign-in needs a
+  code from the owner's phone), triggers new-device verification, produces no
+  audit trail, and exposes payments, tax and personal data with no way to
+  scope it down. **Do not plan around this.**
+
+**Therefore: the shop owner must run the exports themselves and share the
+files.** That is the supported path and it is fast.
+
+### The API route, and why it does not help here
+
+A developer can register an Etsy app and have the owner complete an OAuth flow
+granting it scopes — genuine delegated access, no credential sharing. Relevant
+scopes: `listings_r`, `shops_r`, `transactions_r`.
+
+Two blockers:
+
+1. **Scopes must be declared when the app is created** and cannot be added
+   later without going through Etsy's app review.
+2. **There is no analytics or statistics scope.** The full documented scope
+   list is `address_r/w`, `email_r`, `listings_r/w/d`, `profile_r/w`,
+   `shops_r/w`, `transactions_r/w`. None covers the Stats dashboard.
+   `transactions_r` reads **sales and receipt data**, not traffic sources or
+   search terms. *(Inferred from the absence of any such scope, not from an
+   explicit statement that no stats API exists.)*
+
+Community reports also indicate Etsy has tightened API approval and is slow to
+grant it. The API is more work than the CSV and does not deliver the one thing
+most wanted — search terms.
+
+### The ask list to send the shop owner
+
+All from **Shop Manager → Download Data** unless noted:
+
+1. **Currently for Sale Listings → Download CSV** — the matrix refresh. Highest value.
+2. **Orders → CSV Type / Month / Year** — order items, orders, Etsy Payments
+   sales and deposits. Gives real demand and price data.
+3. **Take your data with you → Download Your Shop Settings**, and
+   **Download Your Reviews** — reviews are useful quality signal (see the 2026
+   personalization failure noted above).
+4. **Account → Download Data → Request your data** — full ZIP in CSV *and*
+   JSON, including shop information.
+5. **Stats: screenshots.** No export path was found for the Stats dashboard —
+   traffic sources and the search terms that led to listings — and no API scope
+   covers it. Ask for screenshots of Stats → Search terms over the longest
+   available date range. **This is the single best SEO input available**
+   (`05-seo-program.md`) and appears to be manual-only.
+6. **Confirm which shops are live** — `ButterLu`, `BoutiqueButterLu`,
+   `myfourlittlechicks`. Export from each live one.
 
 Once that CSV exists, the same mining that produced this doc can be re-run to
 yield materially more:
