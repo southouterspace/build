@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Butterlu — local secrets
+butterlu/.env
+.env
+.env.local
