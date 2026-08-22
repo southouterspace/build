@@ -37,6 +37,7 @@ replaced by salted hashes.
 | `08-listing-architecture.md` | **The design matrix** — how to model listings to capture keywords. Answers the godparent question. |
 | `09-etsy-actuals.md` | **Authoritative Etsy data** from the owner's export. Supersedes Etsy inferences in `08`. |
 | `10-review-intelligence.md` | Demand and quality signal from 12,788 Etsy reviews, 2014–2026. **Partly superseded by `11`** — see its header. |
+| `13-shopify-live-state.md` | **READ BEFORE BUILDING.** What the Shopify store is actually doing: 0 orders ever, traffic is bots, real human traffic ~13/month. Names demand as the binding constraint and lists live storefront defects. |
 | `12-decision-readiness.md` | **START HERE for build decisions.** Audits every Shopify decision against the evidence; closes the palette, option, timing and growth-driver questions. |
 | `11-order-actuals.md` | **THE REVENUE RECORD.** 6,248 order line items, 2024–2026. What actually sells. Supersedes demand inferences in `08`, `09`, `10`. |
 
@@ -44,7 +45,7 @@ replaced by salted hashes.
 
 | File | Contents |
 |---|---|
-| `data/catalog.json` | All 243 products. Full metadata, `descriptionHtml` length + SHA-256 (HTML itself excluded). |
+| `data/catalog.json` | All 243 products (**99 ACTIVE**, 129 archived, 15 draft — use 99 for storefront reasoning; see `13`). Full metadata, `descriptionHtml` length + SHA-256 (HTML itself excluded). |
 | `data/clusters.json` | 26 duplicate/near-duplicate clusters. **Advisory only** — see the warning below. |
 | `data/keyword-assets.json` | Etsy-era keyword map mined from archived listings, plus the variant/collection defect lists. |
 | `data/app-store-landscape.json` | Shopify App Store *Custom products* category: 27 competitors, ratings, review counts, pricing. |

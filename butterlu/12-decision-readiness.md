@@ -11,6 +11,15 @@ This document was written by re-interrogating the order export for decisions the
 earlier docs described but did not resolve. It closes four open questions that
 `03`, `04` and `11` had left to "ask the owner."
 
+> **AMENDED 2026-08-22 — see `13-shopify-live-state.md`.** This document audits
+> whether the *catalog* decisions are ready. They are. But `13` measured the live
+> Shopify store and found **0 orders ever** and real human traffic of roughly
+> **13 sessions/month** — the 12,291 sessions in Analytics are bot traffic
+> (99.5% desktop, 99.7% direct). Catalog readiness is necessary and not
+> sufficient: it multiplies traffic that does not yet exist. Read `13` before
+> using this scorecard to schedule work. The build list and the 12.8%–42% range
+> below were re-verified against `13` and are **unchanged**.
+
 ---
 
 ## Scorecard
