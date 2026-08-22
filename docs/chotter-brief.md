@@ -38,7 +38,7 @@ tenant's Google Business Profile penalized and to put both of you in front of a 
   violation. The FTC has already brought suppression cases (Fashion Nova, $4.2M, 2022). A
   platform that ships gating as a feature is a far more attractive target than any one plumber.
 - **Incentivized reviews are separately prohibited by Google.** This constrains the referral
-  program in §17 — rewards must attach to *referred customers*, never to *reviews left*.
+  program in §18 — rewards must attach to *referred customers*, never to *reviews left*.
 
 I want to be precise about what's a policy violation versus a legal question: the Google policy
 part is unambiguous and is enough on its own to kill the feature. The FTC exposure is real but
@@ -61,7 +61,104 @@ auditable. Never automate "predict unhappiness, skip the ask."
 
 ---
 
-## 2. Pre-payment vs post-payment — the actual answer
+## 2. The journey, end to end
+
+Five actors, though only three of them are people. Onboarding happens once; everything from
+"at the job" onward repeats per invoice.
+
+### Before any jobs — the owner, once (target: under 10 minutes)
+
+1. **Sign up** with a magic link. Business name and slug.
+2. **Branding** — logo, accent color, and the owner's own photo. Before Stripe, deliberately.
+3. **Preview the review screen.** This is the aha moment and it should arrive in minute two, not
+   after underwriting: *"here's what your customer sees."* Their own face, their own name, the
+   real button. Everything after this is them working to get to that screen for real.
+4. **Connect Stripe** (Express, hosted, KYB). Deferrable — they can keep building, they just
+   can't send.
+5. **Connect Google Business Profile.** One step gets the Place ID, the review URL, and
+   multi-location mapping. Manual Place ID finder as fallback. If they have no claimed profile,
+   this is the single biggest drop-off in the funnel and it needs a real hand-holding path, not
+   an error message.
+6. **Add the team** — techs with photos and a one-line personal blurb. Most never get a login
+   (§12); they just need a face.
+7. **Add services** — five items, or skip entirely and rely on flat-fee entry.
+8. **Send themselves a $1 test invoice** and pay it. Onboarding ends on a completed loop.
+
+### Before the job — capturing the contact
+
+Four paths, each writing a consent event with provenance (§6):
+
+- Web form on their site.
+- QR on a yard sign, truck magnet, or invoice leave-behind.
+- Field capture during an estimate — ideally the QR, so the customer types their own number on
+  their own phone and the consent is unambiguous.
+- CSV or QuickBooks import, with an attestation.
+
+### At the job — the tech
+
+1. **Pick or create** the contact and property. On a repeat visit the property carries its own
+   history: equipment, gate code, what was done last time.
+2. **Build the invoice.** Favorites and recents, then search, then "copy from last job here,"
+   then the full library. Flat fee is always one tap away.
+3. **Photos and signature.** Trust on the pay page now, dispute evidence later.
+4. **Generate the link.**
+5. **Hand it over**, by whichever fits:
+   - **Share sheet** *(free tier, and often simply the best option)* — the tech's own Messages
+     app, from a number the customer already has in their phone.
+   - **QR on the tech's screen** — the customer scans and pays on their own device. Best when
+     you're standing there, because it puts them on the phone where a Google review can actually
+     happen (§4).
+   - **Chotter number or email** (paid tiers) — when the office needs the audit trail.
+
+**Offline:** steps 1–3 work with no signal. Step 4 needs a token, so **pre-allocate a block of
+link tokens to each device on sync** — a book of check numbers — and let the app mint links
+against it offline. The server knows those tokens exist but has nothing bound to them yet, so a
+customer who opens one before the invoice syncs sees *"this invoice is on its way"* rather than a
+404. Refill the block on every sync and keep it generous.
+
+### Minutes later — the customer
+
+1. Opens the link. Amount, one-line job summary, the tech's face and one sentence, then the
+   payment sheet with Apple Pay first.
+2. Pays. Optional tip. ACH is the default above the tenant's threshold; financing is offered if
+   the amount qualifies.
+3. Confirmation resolves — *"Paid"* — and then the ask: same face, larger, one button to Google,
+   new tab.
+4. Below it, quiet: private feedback, receipt by text, and the referral card if enabled.
+
+### The same minute — the system
+
+- Stripe's `payment_intent.succeeded` webhook lands, is verified, queued, and processed.
+  **This, not the browser redirect, is what marks the invoice paid.**
+- Office and tech get a push: *"Paid — $340, Cedar Ln."*
+- The review ask enters the velocity governor's queue rather than firing immediately (§5).
+
+### Over the next week — the system, still working
+
+- **Review follow-ups:** at most two, spaced, inside the recipient's local business hours,
+  stopped by a click or an attributed review.
+- **Dunning** if unpaid: T+3, T+7, T+14, then it becomes a human's problem with a flag in the
+  office UI.
+- **GBP polling** looks for new reviews and attributes them by time proximity and name match.
+- **Payout** lands, and the reconciliation record ties it to its invoices and fees.
+
+### Ongoing — the office
+
+The dashboard answers three questions without a click: what's outstanding, what came in today,
+and how long people are taking to pay. Alongside it: new reviews with attribution, inbound SMS
+replies waiting on an answer, and failed deliveries.
+
+At month end, two exports go to the bookkeeper — the transaction CSV and the payout
+reconciliation (§11).
+
+### Quarterly — the owner
+
+The mode experiment reports back (§3). Reputation trend, tech leaderboard, and the upgrade prompt
+when their volume justifies a dedicated number or their brand justifies a custom domain.
+
+---
+
+## 3. Pre-payment vs post-payment — the actual answer
 
 The argument for pre-payment is right about intent and wrong about mechanics.
 
@@ -111,7 +208,7 @@ config screen into a reason to stay.
 
 ---
 
-## 3. Recipient flow, screen by screen
+## 4. Recipient flow, screen by screen
 
 The recipient is on a phone, one-handed, possibly standing in their driveway. Design for that.
 
@@ -149,7 +246,7 @@ convert. Make the QR handoff a first-class field flow, not an afterthought.
 
 ---
 
-## 4. Review attribution, and the trap of review velocity
+## 5. Review attribution, and the trap of review velocity
 
 **You cannot observe whether a specific person left a review.** Google gives you no per-link
 attribution. Plan the whole feature around that.
@@ -192,7 +289,7 @@ they actively penalize businesses that do. If a tenant asks, the answer is a doc
 
 ---
 
-## 5. Messaging: the 10DLC problem, and a better free tier
+## 6. Messaging: the 10DLC problem, and a better free tier
 
 This is where the plan as sketched has the most operational risk.
 
@@ -278,7 +375,7 @@ Confirmed as the email rail, matching the pattern already in `fettle/`.
 
 ---
 
-## 6. Payments architecture
+## 7. Payments architecture
 
 ### Stripe Connect shape
 
@@ -291,7 +388,7 @@ Confirmed as the email rail, matching the pattern already in `fettle/`.
 - **Express onboarding** is Stripe-hosted, handles KYC/KYB, and gets a plumber through
   underwriting without you touching identity documents.
 - **`application_fee_amount`** is your take-rate lever, itemized and visible, which is the honest
-  posture (see §7).
+  posture (see §8).
 
 The cost: Chotter's dashboards must aggregate across connected accounts rather than reading one
 balance, and platform-level reporting is more work. Worth it.
@@ -356,7 +453,7 @@ default rather than an option.
 
 ---
 
-## 7. Money model
+## 8. Money model
 
 Where revenue comes from, and the trap to avoid.
 
@@ -382,7 +479,7 @@ keeping messaging *out* of free rather than by crippling the payment flow.
 
 ---
 
-## 8. Field UX
+## 9. Field UX
 
 The tech is in a mechanical room, on a ladder, wearing gloves, in bright sun or no light, on one
 bar of signal. Design constraints follow from that, not from the desktop dashboard.
@@ -390,7 +487,7 @@ bar of signal. Design constraints follow from that, not from the desktop dashboa
 - **Offline-first drafts.** Basements and crawlspaces have no signal. Invoice drafts persist
   locally and sync when connectivity returns. This is the difference between software techs
   tolerate and software techs abandon, and it's the main thing pulling toward a native client
-  (§13) — though the web app should use the same sync design first.
+  (§14) — though the web app should use the same sync design first.
 - **Service library:** name, description, default price, taxable flag, category, estimated
   duration, internal cost (for margin reporting), and optional good/better/best tiers. Tiered
   pricing is standard practice in HVAC and plumbing and its absence reads as amateur.
@@ -401,10 +498,10 @@ bar of signal. Design constraints follow from that, not from the desktop dashboa
   is always one tap away — it's the escape hatch that keeps the library from being a blocker.
 - **Photos and signature** attached to the invoice. Dual purpose: customer trust on the pay page,
   dispute evidence later.
-- **The QR handoff** (§3): tech shows a code, customer pays on their own phone. Make this the
+- **The QR handoff** (§4): tech shows a code, customer pays on their own phone. Make this the
   hero of the in-person flow.
 - **Tap to Pay needs the native client.** It requires Stripe's Terminal SDK, so a pure Workers +
-  React app can't offer it — which is one of the arguments for the Expo app in §13. Note the
+  React app can't offer it — which is one of the arguments for the Expo app in §14. Note the
   tension resolved there: the QR handoff is *better* for review capture, because it lands the
   customer on their own phone with their own Google account. Tap to Pay is for the card-in-hand
   and no-smartphone cases, not the default.
@@ -412,7 +509,7 @@ bar of signal. Design constraints follow from that, not from the desktop dashboa
 
 ---
 
-## 9. CRM scope — draw the line hard
+## 10. CRM scope — draw the line hard
 
 The temptation is to grow into field service management. Don't. ServiceTitan, Jobber, and
 Housecall Pro own scheduling, dispatch, routing, and inventory, and competing there means
@@ -444,7 +541,7 @@ estimates-as-a-workflow (a saved draft invoice is enough).
 
 ---
 
-## 10. Accounting and the QuickBooks export
+## 11. Accounting and the QuickBooks export
 
 "QuickBooks friendly" hides the real requirement. Three deliverables, in ascending order of how
 much a bookkeeper will love you:
@@ -472,7 +569,7 @@ later, but know that it doesn't resolve the labor/materials question for you.
 
 ---
 
-## 11. Data model sketch
+## 12. Data model sketch
 
 Core entities. Every tenant-scoped table carries `tenant_id`.
 
@@ -523,7 +620,7 @@ Two notes worth arguing about early:
 
 ---
 
-## 12. Platform architecture on Cloudflare + Neon
+## 13. Platform architecture on Cloudflare + Neon
 
 Aligns with what `fettle/` already establishes (Workers + Hono + Drizzle + TanStack Router + Bun),
 with Neon Postgres substituted for D1.
@@ -571,7 +668,7 @@ half the logins will happen on a phone.
 
 ---
 
-## 13. Native app and offline sync (Expo + SQLite)
+## 14. Native app and offline sync (Expo + SQLite)
 
 ### What native actually buys you
 
@@ -580,10 +677,10 @@ Four things the web app cannot do, in order of how much they matter:
 1. **Real offline.** Basements, crawlspaces, mechanical rooms, rural service areas. This is the
    reason the app exists; everything else is a bonus.
 2. **Tap to Pay on iPhone and Android** via Stripe Terminal's React Native SDK — which resolves
-   the limitation flagged in §8. Needs a development build with the config plugin, an Apple
+   the limitation flagged in §9. Needs a development build with the config plugin, an Apple
    entitlement obtained through Stripe, and iPhone XS or later. **Start the entitlement request
    early**; it has lead time and it is not something you can compress at the end.
-3. **A deterministic share sheet.** Tier 0 messaging (§5) works on the web through
+3. **A deterministic share sheet.** Tier 0 messaging (§6) works on the web through
    `navigator.share`, but behavior varies by browser and body prefill is unreliable. Native makes
    the free tier's delivery mechanism dependable — which matters, because it *is* the free tier.
 4. **Push notifications.** Payment received, review posted, customer replied. The office cares
@@ -604,7 +701,7 @@ Two ways to have it without that outcome:
 uses the same outbox / mutation-queue design against IndexedDB. That gets you most of the offline
 behavior *and*, more importantly, proves the protocol. The Expo app then becomes a client of
 something already working rather than the thing that has to invent it. This costs almost nothing
-extra, because offline drafts were already on the list (§8).
+extra, because offline drafts were already on the list (§9).
 
 **If native must be in the MVP, cut its scope to one flow.** The app does the field job and
 nothing else: create invoice → add items from the library → photos → signature → generate link →
@@ -638,6 +735,10 @@ assignment, and money must have exactly one authority.
 - **Up (push):** an `outbox` table of intent-level mutations (`invoice.create`, `line.add`,
   `line.set_qty`, `media.attach`), each carrying a client-generated ULID and an idempotency key.
   Replay in order; the server is authoritative and its response overwrites local state.
+
+**Link tokens are pre-allocated, not minted offline.** The device draws a block of server-issued
+tokens on each sync so a tech can generate and share a link with no signal; the pay page renders a
+"on its way" state until the invoice syncs and binds to the token (§2).
 
 **Client-generated IDs, server-generated numbers.** Records get client-side ULIDs so nothing needs
 reconciling on sync. But the human-facing sequential invoice *number* must be server-assigned or
@@ -692,7 +793,7 @@ verbally distinct from an App Store review prompt, in the UI and in the store sc
 These are in tension, and the tension should be resolved deliberately rather than by whichever
 gets built first.
 
-The QR handoff (§3) puts the customer on **their own phone, signed into their own Google account**
+The QR handoff (§4) puts the customer on **their own phone, signed into their own Google account**
 — the only place a review can actually happen. Tap to Pay puts the card on the *tech's* device:
 lower friction for the payment, higher friction for everything after it.
 
@@ -703,7 +804,7 @@ device; it cannot appear on the tech's screen and count for anything.
 
 ---
 
-## 14. Security and privacy
+## 15. Security and privacy
 
 - **PCI: stay SAQ-A.** Stripe Elements in an iframe, card data never touches your origin. This is
   non-negotiable and shapes the whole payment page.
@@ -724,7 +825,7 @@ device; it cannot appear on the tech's screen and count for anything.
 
 ---
 
-## 15. Edge cases that will otherwise become support tickets
+## 16. Edge cases that will otherwise become support tickets
 
 | Case | Handling |
 |---|---|
@@ -734,7 +835,7 @@ device; it cannot appear on the tech's screen and count for anything.
 | Overpayment / tip on a zero balance | Allowed, recorded separately, flows to export as tip not revenue |
 | Link expired | Friendly state + "request a new link" that pings the office, not a 404 |
 | Wrong phone/email | Surface delivery failure in the office UI within minutes, not silently |
-| Customer replies to the SMS | Inbound thread in the CRM with a notification (§5) |
+| Customer replies to the SMS | Inbound thread in the CRM with a notification (§6) |
 | Tech deleted with open invoices | Soft-delete; the review screen keeps their face on already-sent links |
 | Refund after a review was left | Do nothing to the review. Flag the job for the owner |
 | Job flagged as a callback | Suppress the ask (manual, auditable — see §1) |
@@ -743,7 +844,7 @@ device; it cannot appear on the tech's screen and count for anything.
 
 ---
 
-## 16. Metrics
+## 17. Metrics
 
 **The two headline numbers**, which are also the sales pitch:
 
@@ -760,7 +861,7 @@ governor cap, ACH adoption rate on large invoices, tip attach rate, mode A/B del
 
 ---
 
-## 17. Referrals — design now, ship later
+## 18. Referrals — design now, ship later
 
 The mechanics are straightforward. The compliance and payout questions are not.
 
@@ -781,17 +882,17 @@ The mechanics are straightforward. The compliance and payout questions are not.
 
 ---
 
-## 18. Suggested phasing
+## 19. Suggested phasing
 
 **Phase 0 — the loop works (~6 weeks).** Tenants + auth, service library, invoice creation,
 payment links, Stripe Connect Express, card + Apple/Google Pay, post-payment review ask with
 GBP-or-manual Place ID, email delivery via Resend, share-sheet SMS handoff, basic contacts,
-**and the outbox sync protocol running on the web against IndexedDB** (§13) so the native app
+**and the outbox sync protocol running on the web against IndexedDB** (§14) so the native app
 inherits a proven design rather than inventing one.
 *Goal: a real plumber sends a real invoice and gets a real review.*
 
 *If the native app is held as an MVP stretch goal, it enters here scoped to the field flow only —
-create, itemize, photograph, sign, share — with everything else staying on the web (§13).*
+create, itemize, photograph, sign, share — with everything else staying on the web (§14).*
 
 **Phase 1 — it's a business.** Telnyx Tier 1 messaging with 10DLC, dunning + review follow-ups,
 velocity governor, GBP OAuth + attribution, transaction CSV + payout reconciliation, properties
@@ -808,7 +909,7 @@ multi-location and franchise roles, tech leaderboards, reputation reporting.
 
 ---
 
-## 19. Open questions
+## 20. Open questions
 
 1. **Vertical focus for v1.** HVAC/plumbing/electrical (high ticket, ACH and financing matter,
    fewer jobs) vs. cleaning/lawn/pest (low ticket, high frequency, recurring plans matter). These
@@ -816,16 +917,16 @@ multi-location and franchise roles, tech leaderboards, reputation reporting.
 2. **Do they already run Jobber or Housecall Pro?** If yes, Chotter is a companion and needs to
    coexist gracefully — which means an import path and eventually integrations, not a migration
    pitch.
-3. **Take rate vs. pure SaaS.** §7 recommends capped-and-transparent, but this is a positioning
+3. **Take rate vs. pure SaaS.** §8 recommends capped-and-transparent, but this is a positioning
    decision as much as a pricing one and it should be made deliberately.
 4. **Is the review the wedge or the payment?** The review story sells the vision; the DSO and ACH
    savings numbers sell the subscription. Which one leads the landing page changes the product.
 5. **"Chotter"** — worth a trademark and domain check, and worth saying out loud a few times.
    "Sent via Chotter" appears in every free-tier message, so it has to survive being heard, not
    just read.
-6. **GBP API access approval** — start the application now (§4). The attribution feature is
+6. **GBP API access approval** — start the application now (§5). The attribution feature is
    blocked on Google's timeline, not yours.
-7. **Is the native app in the MVP, or Phase 1?** §13 recommends shipping the sync protocol in
+7. **Is the native app in the MVP, or Phase 1?** §14 recommends shipping the sync protocol in
    Phase 0 and the app in Phase 1. If it has to be in the MVP, the scope has to shrink to the
    field flow alone — that's the trade, and it should be made explicitly rather than discovered
    in week five.
