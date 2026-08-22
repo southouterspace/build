@@ -73,6 +73,12 @@ names (`Gray`, `Peach`, `Teal`, `Off White`, `no flower/twine`), not F-codes.
 Do not fold it in. This is the one place where near-identical option names are
 not a defect.
 
+**The casing split is corrupting the sales data too.** In real orders, bow
+colour records as `White` (254 units) and `white` (164) — **one colour, 418
+units, split across two values and under-counted by 39% in every report**.
+`Natural Burlap` 205 and `natural/tan burlap` 40 do the same. This is not
+cosmetic: it hides the top-selling bow colour.
+
 **Target:** one canonical name per concept, Title Case.
 `Color` · `Bow Color` · `Flower` · `Flower Color` · `Heart Color`.
 Decide whether `Background Color` (12 products) is semantically the same axis
@@ -148,11 +154,20 @@ improvement.
 variant (157 products) is the presumptive canon — it reads as
 `As Shown` + `1`..`41`. The `41` group is the same list without `As Shown`.
 
-**Open question for the owner:** are the 41-value products genuinely missing
-the "As Shown" default, or is "As Shown" a duplicate of one numbered colour?
-This determines whether the canon is 41 or 42.
+> **CLOSED 2026-08-22 by demand data — the canon is 42.**
+> 5,938 real colour choices from the order export (`12`, `data/etsy/option-demand.json`)
+> show **"As Shown" is the single most-chosen value in the catalog**: 532 units,
+> 9.0% of everything sold, rank 1 of 94. It is not a duplicate of a numbered
+> colour — it is the default that outsells every named one. The 41-value
+> products are **missing the most popular option**, which is lost revenue, not a
+> cosmetic inconsistency.
+>
+> **Merchandise the top 20.** They are 77.4% of units sold and should lead the
+> swatch order and drive the colour facet. 25 of 94 values were chosen two times
+> or fewer in three years. Top ten by demand:
+> `As Shown` · `22` · `17` · `37` · `21` · `24` · `3` · `19` · `31` · `25`.
 
-**Also unresolved:** the option values are bare numbers (`1`, `2`, ... `41`).
+**Still unresolved:** the option values are bare numbers (`1`, `2`, ... `41`).
 These are meaningless to a shopper and unusable as a colour facet. Mapping them
 to real names (with swatches) is a separate, higher-effort project worth
 scoping — it is likely the single biggest storefront UX win available.
@@ -195,6 +210,19 @@ Decoded, there are only **two real decisions**:
 the display, horizontal with the bow on top."* A buyer facing
 `Straight/Vertical` vs `Straight Edge/Portrt` vs `Portrait/Vertical` cannot
 reasonably know what they are picking.
+
+**Demand after normalisation** (317 units, `12`):
+
+| Edge style | Orientation | Units |
+|---|---|---:|
+| Scalloped | Landscape | 184 |
+| Scalloped | Portrait | 80 |
+| Straight | Portrait | 37 |
+| Straight | Landscape | 16 |
+
+**Scalloped outsells straight 5:1**, and landscape leads portrait 200:117. The
+scalloped edge is what customers actually buy, and Shopify does not offer the
+axis at all.
 
 **Target:** two clean options on Shopify — `Edge Style` (Straight | Scalloped)
 and `Orientation` (Portrait | Landscape) — with the orientation illustrated in
@@ -251,8 +279,9 @@ one-line human ruling: *intentional single-SKU, or missing its palette?*
 ## Acceptance criteria
 
 - [ ] One option name per concept across all 243 products.
-- [ ] One canonical palette; `colorPaletteSizes` collapses to a single entry
-      (excluding deliberate single-SKU products).
+- [ ] One canonical palette of **42** values; `colorPaletteSizes` collapses to a
+      single entry (excluding deliberate single-SKU products).
+- [ ] Swatch order and colour facet led by the top-20 by demand.
 - [ ] Zero products where `impliedCombinations != variantsCount`.
 - [ ] Every one of the 9 no-colour live products has a recorded ruling.
 - [ ] `Frame Orientation` decomposed into `Edge Style` + `Orientation`, present

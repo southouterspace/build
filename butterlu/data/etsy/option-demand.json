@@ -1,0 +1,850 @@
+{
+ "_generated": "2026-08-22",
+ "_source": "orders-deidentified-2024-2026.csv \u2014 option values on REAL orders",
+ "_purpose": "Empirical basis for the canonical palette and option model in 03-variant-normalization.md. Demand-weighted, not catalogue-derived.",
+ "color": {
+  "total_units": 5938,
+  "distinct_values": 94,
+  "as_shown_units": 532,
+  "as_shown_rank": 1,
+  "coverage": {
+   "top_5": 33.5,
+   "top_10": 51.9,
+   "top_15": 66.2,
+   "top_20": 77.4,
+   "top_25": 84.7,
+   "top_30": 89.8,
+   "top_41": 95.6
+  },
+  "values_chosen_2_or_fewer_times": 25,
+  "ranked": [
+   {
+    "value": "As Shown",
+    "units_all": 532,
+    "units_2026": 132,
+    "share_pct": 8.96,
+    "cumulative_pct": 8.96
+   },
+   {
+    "value": "22",
+    "units_all": 435,
+    "units_2026": 45,
+    "share_pct": 7.33,
+    "cumulative_pct": 16.28
+   },
+   {
+    "value": "17",
+    "units_all": 432,
+    "units_2026": 86,
+    "share_pct": 7.28,
+    "cumulative_pct": 23.56
+   },
+   {
+    "value": "37",
+    "units_all": 326,
+    "units_2026": 44,
+    "share_pct": 5.49,
+    "cumulative_pct": 29.05
+   },
+   {
+    "value": "21",
+    "units_all": 265,
+    "units_2026": 61,
+    "share_pct": 4.46,
+    "cumulative_pct": 33.51
+   },
+   {
+    "value": "24",
+    "units_all": 253,
+    "units_2026": 57,
+    "share_pct": 4.26,
+    "cumulative_pct": 37.77
+   },
+   {
+    "value": "3",
+    "units_all": 237,
+    "units_2026": 56,
+    "share_pct": 3.99,
+    "cumulative_pct": 41.76
+   },
+   {
+    "value": "19",
+    "units_all": 223,
+    "units_2026": 44,
+    "share_pct": 3.76,
+    "cumulative_pct": 45.52
+   },
+   {
+    "value": "31",
+    "units_all": 201,
+    "units_2026": 21,
+    "share_pct": 3.38,
+    "cumulative_pct": 48.91
+   },
+   {
+    "value": "25",
+    "units_all": 178,
+    "units_2026": 31,
+    "share_pct": 3.0,
+    "cumulative_pct": 51.9
+   },
+   {
+    "value": "20",
+    "units_all": 178,
+    "units_2026": 29,
+    "share_pct": 3.0,
+    "cumulative_pct": 54.9
+   },
+   {
+    "value": "5",
+    "units_all": 178,
+    "units_2026": 32,
+    "share_pct": 3.0,
+    "cumulative_pct": 57.9
+   },
+   {
+    "value": "23",
+    "units_all": 166,
+    "units_2026": 22,
+    "share_pct": 2.8,
+    "cumulative_pct": 60.69
+   },
+   {
+    "value": "39",
+    "units_all": 165,
+    "units_2026": 30,
+    "share_pct": 2.78,
+    "cumulative_pct": 63.47
+   },
+   {
+    "value": "34",
+    "units_all": 162,
+    "units_2026": 13,
+    "share_pct": 2.73,
+    "cumulative_pct": 66.2
+   },
+   {
+    "value": "15",
+    "units_all": 150,
+    "units_2026": 34,
+    "share_pct": 2.53,
+    "cumulative_pct": 68.73
+   },
+   {
+    "value": "18",
+    "units_all": 145,
+    "units_2026": 30,
+    "share_pct": 2.44,
+    "cumulative_pct": 71.17
+   },
+   {
+    "value": "41",
+    "units_all": 129,
+    "units_2026": 19,
+    "share_pct": 2.17,
+    "cumulative_pct": 73.34
+   },
+   {
+    "value": "Pink Toile White Bow",
+    "units_all": 127,
+    "units_2026": 127,
+    "share_pct": 2.14,
+    "cumulative_pct": 75.48
+   },
+   {
+    "value": "4",
+    "units_all": 112,
+    "units_2026": 26,
+    "share_pct": 1.89,
+    "cumulative_pct": 77.37
+   },
+   {
+    "value": "12",
+    "units_all": 93,
+    "units_2026": 15,
+    "share_pct": 1.57,
+    "cumulative_pct": 78.93
+   },
+   {
+    "value": "13",
+    "units_all": 90,
+    "units_2026": 17,
+    "share_pct": 1.52,
+    "cumulative_pct": 80.45
+   },
+   {
+    "value": "36",
+    "units_all": 86,
+    "units_2026": 8,
+    "share_pct": 1.45,
+    "cumulative_pct": 81.9
+   },
+   {
+    "value": "11",
+    "units_all": 84,
+    "units_2026": 16,
+    "share_pct": 1.41,
+    "cumulative_pct": 83.31
+   },
+   {
+    "value": "16",
+    "units_all": 80,
+    "units_2026": 14,
+    "share_pct": 1.35,
+    "cumulative_pct": 84.66
+   },
+   {
+    "value": "Pink Toile",
+    "units_all": 73,
+    "units_2026": 64,
+    "share_pct": 1.23,
+    "cumulative_pct": 85.89
+   },
+   {
+    "value": "1",
+    "units_all": 67,
+    "units_2026": 26,
+    "share_pct": 1.13,
+    "cumulative_pct": 87.02
+   },
+   {
+    "value": "38",
+    "units_all": 62,
+    "units_2026": 10,
+    "share_pct": 1.04,
+    "cumulative_pct": 88.06
+   },
+   {
+    "value": "off white barnwood",
+    "units_all": 55,
+    "units_2026": 13,
+    "share_pct": 0.93,
+    "cumulative_pct": 88.99
+   },
+   {
+    "value": "2",
+    "units_all": 47,
+    "units_2026": 7,
+    "share_pct": 0.79,
+    "cumulative_pct": 89.78
+   },
+   {
+    "value": "14",
+    "units_all": 43,
+    "units_2026": 9,
+    "share_pct": 0.72,
+    "cumulative_pct": 90.5
+   },
+   {
+    "value": "30",
+    "units_all": 42,
+    "units_2026": 5,
+    "share_pct": 0.71,
+    "cumulative_pct": 91.21
+   },
+   {
+    "value": "7",
+    "units_all": 38,
+    "units_2026": 3,
+    "share_pct": 0.64,
+    "cumulative_pct": 91.85
+   },
+   {
+    "value": "35",
+    "units_all": 35,
+    "units_2026": 1,
+    "share_pct": 0.59,
+    "cumulative_pct": 92.44
+   },
+   {
+    "value": "As shown",
+    "units_all": 32,
+    "units_2026": 25,
+    "share_pct": 0.54,
+    "cumulative_pct": 92.98
+   },
+   {
+    "value": "8",
+    "units_all": 31,
+    "units_2026": 9,
+    "share_pct": 0.52,
+    "cumulative_pct": 93.5
+   },
+   {
+    "value": "as shown",
+    "units_all": 30,
+    "units_2026": 1,
+    "share_pct": 0.51,
+    "cumulative_pct": 94.0
+   },
+   {
+    "value": "Blue Toile",
+    "units_all": 30,
+    "units_2026": 24,
+    "share_pct": 0.51,
+    "cumulative_pct": 94.51
+   },
+   {
+    "value": "27",
+    "units_all": 24,
+    "units_2026": 7,
+    "share_pct": 0.4,
+    "cumulative_pct": 94.91
+   },
+   {
+    "value": "gray",
+    "units_all": 22,
+    "units_2026": 1,
+    "share_pct": 0.37,
+    "cumulative_pct": 95.28
+   },
+   {
+    "value": "Blue Stripe",
+    "units_all": 21,
+    "units_2026": 14,
+    "share_pct": 0.35,
+    "cumulative_pct": 95.64
+   },
+   {
+    "value": "10",
+    "units_all": 20,
+    "units_2026": 6,
+    "share_pct": 0.34,
+    "cumulative_pct": 95.98
+   },
+   {
+    "value": "Pink Stripe",
+    "units_all": 14,
+    "units_2026": 11,
+    "share_pct": 0.24,
+    "cumulative_pct": 96.21
+   },
+   {
+    "value": "9",
+    "units_all": 14,
+    "units_2026": 2,
+    "share_pct": 0.24,
+    "cumulative_pct": 96.45
+   },
+   {
+    "value": "26",
+    "units_all": 12,
+    "units_2026": 4,
+    "share_pct": 0.2,
+    "cumulative_pct": 96.65
+   },
+   {
+    "value": "Maroon Bows",
+    "units_all": 12,
+    "units_2026": 10,
+    "share_pct": 0.2,
+    "cumulative_pct": 96.85
+   },
+   {
+    "value": "33",
+    "units_all": 12,
+    "units_2026": 2,
+    "share_pct": 0.2,
+    "cumulative_pct": 97.05
+   },
+   {
+    "value": "32",
+    "units_all": 12,
+    "units_2026": 4,
+    "share_pct": 0.2,
+    "cumulative_pct": 97.25
+   },
+   {
+    "value": "Blue Stripe w/bow",
+    "units_all": 11,
+    "units_2026": 5,
+    "share_pct": 0.19,
+    "cumulative_pct": 97.44
+   },
+   {
+    "value": "Yellow Stripes",
+    "units_all": 11,
+    "units_2026": 11,
+    "share_pct": 0.19,
+    "cumulative_pct": 97.63
+   },
+   {
+    "value": "Sage Stripes",
+    "units_all": 10,
+    "units_2026": 10,
+    "share_pct": 0.17,
+    "cumulative_pct": 97.79
+   },
+   {
+    "value": "28",
+    "units_all": 10,
+    "units_2026": 0,
+    "share_pct": 0.17,
+    "cumulative_pct": 97.96
+   },
+   {
+    "value": "6",
+    "units_all": 10,
+    "units_2026": 0,
+    "share_pct": 0.17,
+    "cumulative_pct": 98.13
+   },
+   {
+    "value": "40",
+    "units_all": 9,
+    "units_2026": 1,
+    "share_pct": 0.15,
+    "cumulative_pct": 98.28
+   },
+   {
+    "value": "Pink Stripes",
+    "units_all": 7,
+    "units_2026": 7,
+    "share_pct": 0.12,
+    "cumulative_pct": 98.4
+   },
+   {
+    "value": "Pink Stripe No Bow",
+    "units_all": 7,
+    "units_2026": 7,
+    "share_pct": 0.12,
+    "cumulative_pct": 98.52
+   },
+   {
+    "value": "Blush",
+    "units_all": 6,
+    "units_2026": 6,
+    "share_pct": 0.1,
+    "cumulative_pct": 98.62
+   },
+   {
+    "value": "Pink Toile Tan Bow",
+    "units_all": 6,
+    "units_2026": 6,
+    "share_pct": 0.1,
+    "cumulative_pct": 98.72
+   },
+   {
+    "value": "29",
+    "units_all": 5,
+    "units_2026": 2,
+    "share_pct": 0.08,
+    "cumulative_pct": 98.8
+   },
+   {
+    "value": "Gray Stripes",
+    "units_all": 5,
+    "units_2026": 5,
+    "share_pct": 0.08,
+    "cumulative_pct": 98.89
+   },
+   {
+    "value": "Pink",
+    "units_all": 4,
+    "units_2026": 4,
+    "share_pct": 0.07,
+    "cumulative_pct": 98.96
+   },
+   {
+    "value": "Pink Stripe WhiteBow",
+    "units_all": 4,
+    "units_2026": 4,
+    "share_pct": 0.07,
+    "cumulative_pct": 99.02
+   },
+   {
+    "value": "BLACK",
+    "units_all": 4,
+    "units_2026": 2,
+    "share_pct": 0.07,
+    "cumulative_pct": 99.09
+   },
+   {
+    "value": "blue stripes",
+    "units_all": 3,
+    "units_2026": 3,
+    "share_pct": 0.05,
+    "cumulative_pct": 99.14
+   },
+   {
+    "value": "Navy Stripes",
+    "units_all": 3,
+    "units_2026": 3,
+    "share_pct": 0.05,
+    "cumulative_pct": 99.19
+   },
+   {
+    "value": "Blue Checkers",
+    "units_all": 3,
+    "units_2026": 3,
+    "share_pct": 0.05,
+    "cumulative_pct": 99.24
+   },
+   {
+    "value": "Blue Stripes",
+    "units_all": 3,
+    "units_2026": 3,
+    "share_pct": 0.05,
+    "cumulative_pct": 99.29
+   },
+   {
+    "value": "Sage Toile white bow",
+    "units_all": 3,
+    "units_2026": 3,
+    "share_pct": 0.05,
+    "cumulative_pct": 99.34
+   },
+   {
+    "value": "Pink Toile No Bow",
+    "units_all": 3,
+    "units_2026": 3,
+    "share_pct": 0.05,
+    "cumulative_pct": 99.39
+   },
+   {
+    "value": "Blue Bows",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.43
+   },
+   {
+    "value": "Pink Toile white bow",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.46
+   },
+   {
+    "value": "Oatmeal white bow",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.49
+   },
+   {
+    "value": "Sage Toile no bow",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.53
+   },
+   {
+    "value": "Lilac Stripes",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.56
+   },
+   {
+    "value": "Blush Stripes",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.6
+   },
+   {
+    "value": "Yellow",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.63
+   },
+   {
+    "value": "Blue Stripe WhiteBow",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.66
+   },
+   {
+    "value": "Pink Checkers",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.7
+   },
+   {
+    "value": "Gray Checkers",
+    "units_all": 2,
+    "units_2026": 2,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.73
+   },
+   {
+    "value": "orange stripe",
+    "units_all": 2,
+    "units_2026": 0,
+    "share_pct": 0.03,
+    "cumulative_pct": 99.76
+   },
+   {
+    "value": "Blue",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.78
+   },
+   {
+    "value": "pink stripes",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.8
+   },
+   {
+    "value": "as shown - white",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.81
+   },
+   {
+    "value": "Pink Stripe White Bw",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.83
+   },
+   {
+    "value": "Maroon Checkers",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.85
+   },
+   {
+    "value": "Blue Toile White Bow",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.87
+   },
+   {
+    "value": "Yellow Toile no bow",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.88
+   },
+   {
+    "value": "Yellow Checkers",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.9
+   },
+   {
+    "value": "Blue Stripe Tan Bow",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.92
+   },
+   {
+    "value": "Lilac Checkers",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.93
+   },
+   {
+    "value": "Sage Checkers",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.95
+   },
+   {
+    "value": "As shown (white)",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.97
+   },
+   {
+    "value": "Sage",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 99.98
+   },
+   {
+    "value": "Blue Toile No Bow",
+    "units_all": 1,
+    "units_2026": 1,
+    "share_pct": 0.02,
+    "cumulative_pct": 100.0
+   }
+  ]
+ },
+ "bow_color": {
+  "total_units": 795,
+  "distinct": 17,
+  "top": [
+   {
+    "value": "White",
+    "units": 254
+   },
+   {
+    "value": "Natural Burlap",
+    "units": 205
+   },
+   {
+    "value": "white",
+    "units": 164
+   },
+   {
+    "value": "Cameo pink",
+    "units": 43
+   },
+   {
+    "value": "natural/tan burlap",
+    "units": 40
+   },
+   {
+    "value": "pink",
+    "units": 25
+   },
+   {
+    "value": "none",
+    "units": 21
+   },
+   {
+    "value": "no bow",
+    "units": 11
+   },
+   {
+    "value": "mint green",
+    "units": 7
+   },
+   {
+    "value": "Mint green",
+    "units": 6
+   },
+   {
+    "value": "white bow",
+    "units": 4
+   },
+   {
+    "value": "striped/as shown",
+    "units": 4
+   }
+  ]
+ },
+ "flowers": {
+  "total_units": 233,
+  "distinct": 22,
+  "top": [
+   {
+    "value": "F5",
+    "units": 51
+   },
+   {
+    "value": "Tan Bow Horizontal",
+    "units": 24
+   },
+   {
+    "value": "F14",
+    "units": 21
+   },
+   {
+    "value": "White Bow/Horizontal",
+    "units": 18
+   },
+   {
+    "value": "None",
+    "units": 17
+   },
+   {
+    "value": "F6",
+    "units": 16
+   },
+   {
+    "value": "F1",
+    "units": 13
+   },
+   {
+    "value": "F2",
+    "units": 10
+   },
+   {
+    "value": "F3",
+    "units": 9
+   },
+   {
+    "value": "F13",
+    "units": 8
+   }
+  ]
+ },
+ "frame_orientation": {
+  "total_units": 317,
+  "raw_distinct_values": 10,
+  "_finding": "12 raw spellings collapse to 2 axes x 2 values. Demand below is after normalisation.",
+  "normalised": [
+   {
+    "edge_style": "Scalloped",
+    "orientation": "Landscape",
+    "units": 184
+   },
+   {
+    "edge_style": "Scalloped",
+    "orientation": "Portrait",
+    "units": 80
+   },
+   {
+    "edge_style": "Straight",
+    "orientation": "Portrait",
+    "units": 37
+   },
+   {
+    "edge_style": "Straight",
+    "orientation": "Landscape",
+    "units": 16
+   }
+  ],
+  "raw": [
+   {
+    "value": "Scalloped/Landscape",
+    "units": 184
+   },
+   {
+    "value": "Scalloped/Portrait",
+    "units": 80
+   },
+   {
+    "value": "Straight/Vertical",
+    "units": 19
+   },
+   {
+    "value": "Straight Edge/Lnscp",
+    "units": 12
+   },
+   {
+    "value": "Straight Edge/Portrt",
+    "units": 9
+   },
+   {
+    "value": "Straight/Portrait",
+    "units": 6
+   },
+   {
+    "value": "Straight/Landscape",
+    "units": 3
+   },
+   {
+    "value": "Vertical/Portrait",
+    "units": 2
+   },
+   {
+    "value": "Portrait/Vertical",
+    "units": 1
+   },
+   {
+    "value": "Horizontal/Landscape",
+    "units": 1
+   }
+  ]
+ }
+}

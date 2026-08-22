@@ -37,6 +37,7 @@ replaced by salted hashes.
 | `08-listing-architecture.md` | **The design matrix** — how to model listings to capture keywords. Answers the godparent question. |
 | `09-etsy-actuals.md` | **Authoritative Etsy data** from the owner's export. Supersedes Etsy inferences in `08`. |
 | `10-review-intelligence.md` | Demand and quality signal from 12,788 Etsy reviews, 2014–2026. **Partly superseded by `11`** — see its header. |
+| `12-decision-readiness.md` | **START HERE for build decisions.** Audits every Shopify decision against the evidence; closes the palette, option, timing and growth-driver questions. |
 | `11-order-actuals.md` | **THE REVENUE RECORD.** 6,248 order line items, 2024–2026. What actually sells. Supersedes demand inferences in `08`, `09`, `10`. |
 
 ## Data files
@@ -52,6 +53,8 @@ replaced by salted hashes.
 | `data/etsy/shop-profile.sanitized.json` | Shop announcement and buyer message. Financial/identity fields stripped. |
 | `data/etsy/etsy-reviews-2026-08-22.json` | 12,788 unique reviews, 2014–2026. Reviewer names pseudonymized to salted hashes. |
 | `data/etsy/review-analysis.json` | Derived review stats: yearly volume, occasion mix, complaint and praise themes, seasonality. |
+| `data/etsy/shopify-build-list.csv` | **The build queue.** 55 revenue-producing Etsy designs joined to the Shopify catalog, with a blank `human_ruling` column. |
+| `data/etsy/option-demand.json` | Colour/bow/flower/orientation values ranked by units actually sold. Basis for the canonical palette. |
 | `data/etsy/orders-deidentified-2024-2026.csv` | 6,248 order line items. **Customer names and addresses removed; order/buyer keys hashed.** |
 | `data/etsy-recon.json` | 38 live Etsy listings recovered by fingerprint search. Sample, not a census. |
 | `data/app-pricing.json` | Real pricing tiers for Globo and Zepto — what the free tiers actually gate. |

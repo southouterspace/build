@@ -126,6 +126,20 @@ Three readings:
    demand signal is the single strangest thing in the dataset. Do not build
    wedding collections or fund wedding SEO until this is understood.
 
+## Collection merchandising follows category seasonality — ADDED 2026-08-22
+
+Peak months differ by category (`12`), and collection features should follow:
+
+| Category | Peak months | Note |
+|---|---|---|
+| Baby | May 13.6%, Dec 12.8%, Nov 11.1% | **Flattest curve — sells year-round** |
+| Grandparent | Dec 23.4%, Jun 16.1%, May 15.5% | Christmas-dependent |
+| Godparent | Dec 14.7%, May 11.9% | Baptism season |
+| Mom/Dad | Jun 21.9%, May 21.8% | Mother's/Father's Day |
+
+Baby having the flattest curve is a second reason to build it first: it is the
+only major category that does not depend on hitting one seasonal window.
+
 ## Reviews are a collection-page asset — ADDED 2026-08-22
 
 12,788 Etsy reviews averaging **4.918** exist and appear nowhere on Shopify

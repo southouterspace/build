@@ -45,6 +45,18 @@ product layer to the collection and content layer.
 > A new step 6 is added: **import the reviews.** 12,788 reviews averaging 4.918
 > exist and appear nowhere on Shopify (`10`).
 
+> **Timing constraint (`12`).** Q4 is **39.9% of annual revenue** and December
+> alone is **22.7%**. Personalized goods stop converting for Christmas around
+> mid-November. Work that misses that window is not late — it is targeting
+> **May 2027**, since Jan–Mar is the annual trough at 15% combined.
+>
+> **Growth lever (`12`).** 61.6% of 2026 baby revenue came from listings that
+> first sold in 2026. Growth comes from **new design launches**, not from
+> existing listings improving. A migration alone reproduces the flat 38%. The
+> target model must make launching a new design cheap and fast — which is the
+> commercial argument for the template/variant discipline in `03`, not just a
+> tidiness one.
+
 Ordered by risk-adjusted value. Each stage should be independently shippable
 and reversible.
 
@@ -59,7 +71,11 @@ and reversible.
    currently unreachable from any menu.
 5. **SEO program** (`05`) — last. Traffic into a store that can't take a custom
    order is wasted spend.
-6. **Review import** — 12,788 Etsy reviews at a 4.918 average (`10`) are the
+6. **Multi-unit prompt** — multi-unit orders are worth **2.3x** a single
+   ($54.28 vs $23.12 AOV) and 34% of them are the same frame bought twice
+   (`12`). Nothing in the storefront encourages it. Smallest build, measured
+   return.
+7. **Review import** — 12,788 Etsy reviews at a 4.918 average (`10`) are the
    store's strongest conversion asset and are currently invisible on Shopify.
    Independent of the rest; can run in parallel once collections exist.
 

@@ -228,6 +228,10 @@ Date paid → date shipped, 6,217 orders:
 
 **Median 2 days. 84.7% ship within 3 calendar days. 99.4% within 6.**
 
+**Seasonality (`12`): December is 22.7% of annual revenue and Q4 is 39.9%** —
+`10` estimated December at 18.3% from review counts, which under-weights the
+peak because Q4 buyers review at a lower rate.
+
 The shop advertises "3–4 business days" processing. **They are meaningfully
 faster than they claim** and are under-selling their single most-praised
 attribute — `10` found "fast shipping" to be the #1 praise theme at 17.5%.
@@ -289,9 +293,11 @@ justify prioritising it. US-only assumptions are safe for launch.
 
 ## Still outstanding
 
-- **Why did the baby range take off in 2026?** New listings, new photography,
-  an Etsy algorithm shift, or a seasonal fluke? This is the single most
-  valuable unanswered question in the project — it is the growth engine.
+- ~~**Why did the baby range take off in 2026?**~~ **ANSWERED in `12`.**
+  **61.6% of 2026 baby revenue came from listings that first sold in 2026.**
+  It is new design launches, not existing listings improving. The monthly curve
+  steps from ~$400/month in 2025 to $1,900-2,800/month from April 2026 and
+  holds — sustained, not a spike.
 - **Cost of goods.** None of this is margin. Revenue is not profit, and the
   31% discount rate makes the gap wider than it looks.
 - **Etsy fees.** Not in this export. Needed for a real Shopify-vs-Etsy
