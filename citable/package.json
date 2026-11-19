@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "private": true,
+  "name": "citable",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "build": "esbuild src/index.js --bundle --format=esm --minify --target=es2022 --outfile=build/worker.js",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "citable",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "account_id": "d85e596fe8902fb82e35f754fac9ffb8",
+  "workers_dev": true,
+  "observability": { "enabled": true },
+  "triggers": { "crons": ["17 * * * *"] },
+  "vars": {
+    "PUBLIC_ORIGIN": "https://citable.southouterspace.workers.dev",
+    "MONITOR_BATCH": "4"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "citable-db", "database_id": "a05e2bad-567f-42f0-86df-b9dc0e7b96d9" }
+  ]
+  // Secrets (wrangler secret put …): STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, ADMIN_TOKEN, ALERT_WEBHOOK (optional)
+}
